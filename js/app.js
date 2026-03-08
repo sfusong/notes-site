@@ -62,12 +62,6 @@ function renderSidebar() {
 
   html += `
     <div class="cat-item ${state.currentCategory === null ? 'active' : ''}" data-cat="">
-      <span class="cat-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-      </span>
       <span class="cat-name">全部笔记</span>
       <span class="cat-count">${total}</span>
     </div>`;
@@ -78,11 +72,6 @@ function renderSidebar() {
       const active = state.currentCategory === cat.name ? 'active' : '';
       html += `
         <div class="cat-item ${active}" data-cat="${escHtml(cat.name)}">
-          <span class="cat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
-            </svg>
-          </span>
           <span class="cat-name">${escHtml(cat.name)}</span>
           <span class="cat-count">${cat.notes.length}</span>
         </div>`;
@@ -200,6 +189,11 @@ async function loadNote({ file, category, title }) {
     const firstH1 = body.querySelector('h1:first-child');
     if (firstH1) firstH1.remove();
 
+    // Fade-in animation
+    body.classList.remove('fade-in');
+    void body.offsetWidth;
+    body.classList.add('fade-in');
+
     // Syntax highlight — only if hljs loaded successfully
     if (typeof hljs !== 'undefined') {
       body.querySelectorAll('pre code:not(.hljs)').forEach(el => {
@@ -305,6 +299,14 @@ function setupEventListeners() {
   document.querySelectorAll('.mobile-nav-btn').forEach(btn =>
     btn.addEventListener('click', () => switchMobilePanel(btn.dataset.panel))
   );
+
+  // Reading progress bar
+  $('noteContent').addEventListener('scroll', () => {
+    const el = $('noteContent');
+    const total = el.scrollHeight - el.clientHeight;
+    const pct = total > 0 ? (el.scrollTop / total) * 100 : 0;
+    $('readingProgress').style.width = pct + '%';
+  });
 
   // Keyboard shortcut: / to focus search
   document.addEventListener('keydown', e => {
