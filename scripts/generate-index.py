@@ -17,9 +17,42 @@ import re
 import json
 from datetime import datetime
 
-NOTES_DIR    = "notes"
-OUTPUT_FILE  = os.path.join(NOTES_DIR, "index.json")
+NOTES_DIR         = "notes"
+OUTPUT_FILE       = os.path.join(NOTES_DIR, "index.json")
+SEARCH_INDEX_FILE = os.path.join(NOTES_DIR, "search-index.json")
 PREVIEW_CHARS = 120   # 预览文字最大长度
+
+
+def strip_markdown(content: str) -> str:
+    """将 Markdown 内容转为纯文本，用于全文搜索索引。"""
+    # 去掉 front matter
+    content = re.sub(r'^---[\s\S]*?---\s*\n', '', content, count=1)
+    # 去掉代码块
+    content = re.sub(r'```[\s\S]*?```', ' ', content)
+    # 去掉行内代码
+    content = re.sub(r'`[^`\n]+`', ' ', content)
+    # 去掉图片
+    content = re.sub(r'!\[.*?\]\(.*?\)', '', content)
+    # 链接保留文字
+    content = re.sub(r'\[(.+?)\]\(.*?\)', r'\1', content)
+    # 去掉标题 #
+    content = re.sub(r'^#{1,6}\s+', '', content, flags=re.MULTILINE)
+    # 去掉粗体/斜体
+    content = re.sub(r'\*{1,3}(.+?)\*{1,3}', r'\1', content)
+    content = re.sub(r'_{1,3}(.+?)_{1,3}', r'\1', content)
+    # 去掉引用符号
+    content = re.sub(r'^[>]\s*', '', content, flags=re.MULTILINE)
+    # 去掉列表符号
+    content = re.sub(r'^[-*+]\s+', '', content, flags=re.MULTILINE)
+    content = re.sub(r'^\d+\.\s+', '', content, flags=re.MULTILINE)
+    # 去掉分隔线
+    content = re.sub(r'^[-*_]{3,}\s*$', '', content, flags=re.MULTILINE)
+    # 去掉 HTML 标签
+    content = re.sub(r'<[^>]+>', '', content)
+    # 合并多余空白
+    content = re.sub(r'[ \t]+', ' ', content)
+    content = re.sub(r'\n{3,}', '\n\n', content)
+    return content.strip()
 
 
 def extract_title(content: str):
@@ -112,29 +145,56 @@ def process_notes_dir():
 
             title   = extract_title(content) or os.path.splitext(filename)[0]
             preview = extract_preview(content)
+            plain   = strip_markdown(content)
 
             notes.append({
                 "title":    title,
                 "filename": filename,
                 "file":     f"{NOTES_DIR}/{entry}/{filename}",
                 "preview":  preview,
+                "_plain":   plain,
+                "_cat":     entry,
             })
 
         if notes:
             categories.append({"name": entry, "notes": notes})
             total_notes += len(notes)
 
+    # Build clean index (strip internal fields)
+    clean_categories = []
+    for cat in categories:
+        clean_notes = [
+            {k: v for k, v in n.items() if not k.startswith("_")}
+            for n in cat["notes"]
+        ]
+        clean_categories.append({"name": cat["name"], "notes": clean_notes})
+
     index = {
-        "categories": categories,
+        "categories": clean_categories,
         "total":      total_notes,
         "generated":  datetime.now().isoformat(timespec="seconds"),
     }
+
+    # Build search index (compact, no indent)
+    search_entries = []
+    for cat in categories:
+        for n in cat["notes"]:
+            search_entries.append({
+                "title":    n["title"],
+                "category": n["_cat"],
+                "file":     n["file"],
+                "content":  n["_plain"],
+            })
 
     os.makedirs(NOTES_DIR, exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(index, f, ensure_ascii=False, indent=2)
 
+    with open(SEARCH_INDEX_FILE, "w", encoding="utf-8") as f:
+        json.dump(search_entries, f, ensure_ascii=False, separators=(",", ":"))
+
     print(f"✅  已生成 {OUTPUT_FILE}")
+    print(f"✅  已生成 {SEARCH_INDEX_FILE}")
     print(f"   共 {len(categories)} 个分类，{total_notes} 篇笔记")
     for cat in categories:
         print(f"   📁  {cat['name']}  ({len(cat['notes'])} 篇)")

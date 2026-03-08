@@ -35,6 +35,8 @@ const state = {
   searchQuery: '',
   theme: 'claude',
   mobilePanel: 'sidebar',
+  searchIndex: null,
+  searchIndexLoading: false,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -140,19 +142,40 @@ function renderNoteList() {
     return;
   }
 
-  $('noteCards').innerHTML = notes.map(n => `
+  $('noteCards').innerHTML = notes.map(n => {
+    const snippet = getSnippet(n);
+    return `
     <div class="note-card ${state.currentNote?.file === n.file ? 'active' : ''}"
          data-file="${escHtml(n.file)}"
          data-category="${escHtml(n.category)}"
          data-title="${escHtml(n.title)}">
       <div class="note-card-title">${hilite(escHtml(n.title))}</div>
       <div class="note-card-category">${escHtml(n.category)}</div>
-      ${n.preview ? `<div class="note-card-preview">${hilite(escHtml(n.preview))}</div>` : ''}
-    </div>`).join('');
+      ${snippet ? `<div class="note-card-preview">${hilite(escHtml(snippet))}</div>` : ''}
+    </div>`;
+  }).join('');
 
   $('noteCards').querySelectorAll('.note-card').forEach(card => {
     card.addEventListener('click', () => loadNote(card.dataset));
   });
+}
+
+async function ensureSearchIndex() {
+  if (state.searchIndex !== null || state.searchIndexLoading) return;
+  state.searchIndexLoading = true;
+  try {
+    const res = await fetch('notes/search-index.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    // Map file → content for quick lookup
+    state.searchIndex = {};
+    for (const entry of data) {
+      state.searchIndex[entry.file] = entry.content;
+    }
+  } catch (e) {
+    state.searchIndex = {};  // empty fallback, graceful degradation
+  }
+  state.searchIndexLoading = false;
 }
 
 function filteredNotes() {
@@ -160,14 +183,47 @@ function filteredNotes() {
     ? state.allNotes.filter(n => n.category === state.currentCategory)
     : state.allNotes;
 
-  if (state.searchQuery) {
-    const q = state.searchQuery.toLowerCase();
-    notes = notes.filter(n =>
-      n.title.toLowerCase().includes(q) ||
-      (n.preview && n.preview.toLowerCase().includes(q))
-    );
+  if (!state.searchQuery) return notes;
+
+  const q = state.searchQuery.toLowerCase();
+
+  const titleMatches   = [];
+  const contentMatches = [];
+
+  for (const n of notes) {
+    const inTitle   = n.title.toLowerCase().includes(q);
+    const inPreview = n.preview && n.preview.toLowerCase().includes(q);
+    const fullText  = state.searchIndex ? (state.searchIndex[n.file] || '') : '';
+    const inContent = fullText.toLowerCase().includes(q);
+
+    if (inTitle) {
+      titleMatches.push(n);
+    } else if (inPreview || inContent) {
+      contentMatches.push(n);
+    }
   }
-  return notes;
+
+  return [...titleMatches, ...contentMatches];
+}
+
+function getSnippet(note) {
+  if (!state.searchQuery) return note.preview || '';
+
+  const q = state.searchQuery.toLowerCase();
+  const fullText = state.searchIndex ? (state.searchIndex[note.file] || '') : '';
+
+  // Try full content first, fall back to preview
+  const source = fullText || note.preview || '';
+  const idx = source.toLowerCase().indexOf(q);
+  if (idx === -1) return note.preview || '';
+
+  const WINDOW = 65;
+  const start = Math.max(0, idx - WINDOW);
+  const end   = Math.min(source.length, idx + q.length + WINDOW);
+  let snippet = source.slice(start, end).replace(/\n/g, ' ');
+  if (start > 0) snippet = '…' + snippet;
+  if (end < source.length) snippet = snippet + '…';
+  return snippet;
 }
 
 // ── Load & Render Note ────────────────────────────────────────
@@ -350,11 +406,13 @@ function setupEventListeners() {
   input.addEventListener('input', () => {
     state.searchQuery = input.value.trim();
     clear.style.display = state.searchQuery ? 'block' : 'none';
-    // When searching, switch to "all" view if a category is selected
-    if (state.searchQuery && state.currentCategory) {
-      // Keep category filter — search within category
-    }
     renderNoteList();
+
+    if (state.searchQuery && state.searchIndex === null && !state.searchIndexLoading) {
+      ensureSearchIndex().then(() => {
+        if (state.searchQuery) renderNoteList();
+      });
+    }
   });
 
   clear.addEventListener('click', () => {
