@@ -71,6 +71,7 @@ async function loadIndex() {
 
     renderSidebar();
     renderNoteList();
+    restoreFromHash();
   } catch (err) {
     $('categoryNav').innerHTML = `
       <div class="error-state">
@@ -229,6 +230,7 @@ function getSnippet(note) {
 // ── Load & Render Note ────────────────────────────────────────
 async function loadNote({ file, category, title }) {
   state.currentNote = { file, category, title };
+  history.replaceState(null, '', '#' + file);
 
   document.querySelectorAll('.note-card').forEach(c =>
     c.classList.toggle('active', c.dataset.file === file)
@@ -314,6 +316,21 @@ function showWelcome() {
   $('welcomeScreen').classList.remove('hidden');
   $('noteArticle').classList.add('hidden');
 }
+
+// ── URL Routing ───────────────────────────────────────────────
+function restoreFromHash() {
+  const file = decodeURIComponent(location.hash.slice(1));
+  if (!file) return;
+  const note = state.allNotes.find(n => n.file === file);
+  if (note) loadNote(note);
+}
+
+window.addEventListener('hashchange', () => {
+  const file = decodeURIComponent(location.hash.slice(1));
+  if (!file) { showWelcome(); return; }
+  const note = state.allNotes.find(n => n.file === file);
+  if (note && note.file !== state.currentNote?.file) loadNote(note);
+});
 
 // ── Theme ─────────────────────────────────────────────────────
 function setTheme(id, animate = true) {
