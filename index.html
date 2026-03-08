@@ -82,20 +82,26 @@
         </svg>
       </button>
 
-      <div class="article-layout">
-        <article class="note-article hidden" id="noteArticle">
-          <div class="article-header">
-            <div class="breadcrumb" id="breadcrumb"></div>
-            <h1 class="article-title" id="articleTitle"></h1>
-            <div class="article-meta" id="articleMeta"></div>
-          </div>
-          <div class="article-body markdown-body" id="articleBody"></div>
-        </article>
-        <aside class="toc-panel hidden" id="tocPanel">
-          <div class="toc-label">目录</div>
+      <article class="note-article hidden" id="noteArticle">
+        <div class="article-header">
+          <div class="breadcrumb" id="breadcrumb"></div>
+          <h1 class="article-title" id="articleTitle"></h1>
+          <div class="article-meta" id="articleMeta"></div>
+          <button class="toc-toggle hidden" id="tocToggle" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/>
+            </svg>
+            目录
+            <svg class="toc-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+        </div>
+        <div class="toc-inline hidden" id="tocPanel">
           <nav id="tocNav"></nav>
-        </aside>
-      </div>
+        </div>
+        <div class="article-body markdown-body" id="articleBody"></div>
+      </article>
     </main>
   </div>
 
