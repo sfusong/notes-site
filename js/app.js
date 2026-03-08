@@ -7,13 +7,33 @@ const CONFIG = {
   siteName: '我的笔记',
 };
 
+// ── Theme Definitions ─────────────────────────────────────────
+const THEMES = [
+  // id, name, group, dark(hljs), swatch bg, accent color
+  { id: 'claude',    name: 'Claude',   group: 'tool',  dark: false, bg: '#f9f7f4', ac: '#d97757' },
+  { id: 'notion',    name: 'Notion',   group: 'tool',  dark: false, bg: '#ffffff', ac: '#2e75d0' },
+  { id: 'vue',       name: 'Vue',      group: 'tool',  dark: true,  bg: '#1a1a2e', ac: '#42d392' },
+  { id: 'apple',     name: 'Apple',    group: 'tool',  dark: false, bg: '#f5f5f7', ac: '#007AFF' },
+  { id: 'linear',    name: 'Linear',   group: 'tool',  dark: true,  bg: '#0a0a0f', ac: '#7c3aed' },
+  { id: 'obsidian',  name: 'Obsidian', group: 'tool',  dark: true,  bg: '#1e1e2e', ac: '#e0af68' },
+  { id: 'github',    name: 'GitHub',   group: 'tool',  dark: false, bg: '#f6f8fa', ac: '#2da44e' },
+  { id: 'bear',      name: 'Bear',     group: 'paper', dark: false, bg: '#fef6e9', ac: '#d73a49' },
+  { id: 'kindle',    name: 'Kindle',   group: 'paper', dark: false, bg: '#f5f0e8', ac: '#8b4513' },
+  { id: 'newspaper', name: '报纸',     group: 'paper', dark: false, bg: '#ffffff', ac: '#cc0000' },
+  { id: 'cyberpunk', name: '赛博朋克', group: 'fun',   dark: true,  bg: '#0d0d1a', ac: '#ff2d78' },
+  { id: 'terminal',  name: '绿色终端', group: 'fun',   dark: true,  bg: '#0d0d0d', ac: '#00ff41' },
+  { id: 'chinese',   name: '国风',     group: 'fun',   dark: false, bg: '#f5f0e0', ac: '#c0392b' },
+];
+
+const GROUP_LABELS = { tool: '产品 / 工具', paper: '纸质 / 人文', fun: '个性 / 有趣' };
+
 const state = {
   categories: [],
   allNotes: [],
-  currentCategory: null,   // null = show all
+  currentCategory: null,
   currentNote: null,
   searchQuery: '',
-  theme: localStorage.getItem('theme') || 'light',
+  theme: 'claude',
   mobilePanel: 'sidebar',
 };
 
@@ -22,7 +42,11 @@ const $ = id => document.getElementById(id);
 
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  applyTheme(state.theme);
+  // Resolve saved theme (remap old 'light'/'dark' values)
+  const saved = localStorage.getItem('theme');
+  const mapped = saved === 'light' ? 'claude' : saved === 'dark' ? 'linear' : saved;
+  setTheme(mapped || 'claude', false);  // false = no transition on init
+  initThemePicker();
   setupEventListeners();
 
   // Configure marked
@@ -236,15 +260,61 @@ function showWelcome() {
 }
 
 // ── Theme ─────────────────────────────────────────────────────
-function applyTheme(theme) {
-  state.theme = theme;
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-  const light = $('hljs-light');
-  const dark  = $('hljs-dark');
-  if (light) light.disabled = (theme === 'dark');
-  if (dark)  dark.disabled  = (theme === 'light');
+function setTheme(id, animate = true) {
+  const theme = THEMES.find(t => t.id === id) || THEMES[0];
+  state.theme = theme.id;
+
+  if (animate) {
+    document.documentElement.classList.add('theme-switching');
+    setTimeout(() => document.documentElement.classList.remove('theme-switching'), 350);
+  }
+
+  document.documentElement.setAttribute('data-theme', theme.id);
+  localStorage.setItem('theme', theme.id);
+
+  // Sync hljs stylesheet
+  const hljsLight = $('hljs-light');
+  const hljsDark  = $('hljs-dark');
+  if (hljsLight) hljsLight.disabled = theme.dark;
+  if (hljsDark)  hljsDark.disabled  = !theme.dark;
+
+  // Update active marker in picker
+  document.querySelectorAll('.theme-option').forEach(btn =>
+    btn.classList.toggle('active', btn.dataset.theme === theme.id)
+  );
 }
+
+function initThemePicker() {
+  const groups = {};
+  THEMES.forEach(t => {
+    if (!groups[t.group]) groups[t.group] = [];
+    groups[t.group].push(t);
+  });
+
+  let html = '';
+  for (const [gid, themes] of Object.entries(groups)) {
+    html += `<div class="theme-group-label">${GROUP_LABELS[gid]}</div>`;
+    for (const t of themes) {
+      html += `
+        <button class="theme-option ${state.theme === t.id ? 'active' : ''}" data-theme="${t.id}">
+          <span class="theme-swatch" style="background:${t.bg};outline:2px solid ${t.ac}40"></span>
+          <span class="theme-label">${t.name}</span>
+          <svg class="theme-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>`;
+    }
+  }
+
+  const picker = $('themePicker');
+  picker.innerHTML = html;
+  picker.querySelectorAll('.theme-option').forEach(btn =>
+    btn.addEventListener('click', () => { setTheme(btn.dataset.theme); closePicker(); })
+  );
+}
+
+function togglePicker() { $('themePicker').classList.toggle('open'); }
+function closePicker()  { $('themePicker').classList.remove('open'); }
 
 // ── Mobile ────────────────────────────────────────────────────
 function isMobile() { return window.innerWidth <= 860; }
@@ -268,10 +338,10 @@ function switchMobilePanel(panel) {
 
 // ── Event Listeners ───────────────────────────────────────────
 function setupEventListeners() {
-  // Theme toggle
-  $('themeToggle').addEventListener('click', () =>
-    applyTheme(state.theme === 'light' ? 'dark' : 'light')
-  );
+  // Theme picker
+  $('themePickerBtn').addEventListener('click', e => { e.stopPropagation(); togglePicker(); });
+  document.addEventListener('click', () => closePicker());
+  $('themePicker').addEventListener('click', e => e.stopPropagation());
 
   // Search
   const input = $('searchInput');
