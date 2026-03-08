@@ -308,8 +308,12 @@ function setupEventListeners() {
     $('readingProgress').style.width = pct + '%';
   });
 
-  // Keyboard shortcut: / to focus search
+  // Focus mode
+  $('focusBtn').addEventListener('click', toggleFocusMode);
+
+  // Keyboard shortcuts
   document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') exitFocusMode();
     if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
       e.preventDefault();
       input.focus();
@@ -318,6 +322,15 @@ function setupEventListeners() {
 }
 
 // ── Utilities ─────────────────────────────────────────────────
+// ── Focus Mode ────────────────────────────────────────────────
+function toggleFocusMode() {
+  document.querySelector('.app').classList.toggle('focus-mode');
+}
+
+function exitFocusMode() {
+  document.querySelector('.app').classList.remove('focus-mode');
+}
+
 function escHtml(str) {
   return String(str)
     .replace(/&/g, '&amp;')
