@@ -585,6 +585,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 /* ── Focus Mode ──────────────────────────────────────────────── */
 .focus-mode .sidebar, .focus-mode .note-list-panel, .focus-mode .divider { display: none !important; }
 .focus-mode .note-article { max-width: 680px; }
+.focus-mode .toc-panel { display: none !important; }
 .focus-mode .focus-btn .focus-icon-enter { display: none; }
 .focus-mode .focus-btn .focus-icon-exit  { display: block; }
 .focus-mode .focus-btn { opacity: 1; color: var(--accent); }
@@ -592,8 +593,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 /* ── Article ─────────────────────────────────────────────────── */
 .note-article {
   max-width: 680px;
-  width: 100%;
-  margin: 0 auto;
+  width: 680px;
   padding: 52px 40px 96px;
 }
 .article-header {
@@ -814,6 +814,65 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   100% { background-position: -200% 0; }
 }
 
+/* ── Article Layout (article + TOC side-by-side) ───────────── */
+.article-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.note-article {
+  flex-shrink: 0;
+}
+
+/* ── TOC Panel ───────────────────────────────────────────────── */
+.toc-panel {
+  width: 196px;
+  flex-shrink: 0;
+  padding: 52px 0 96px 32px;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.toc-panel::-webkit-scrollbar { display: none; }
+
+.toc-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 10px;
+  padding-left: 8px;
+}
+
+#tocNav a {
+  display: block;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-3);
+  text-decoration: none;
+  border: none;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  margin-bottom: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#tocNav a:hover { color: var(--text); background: var(--accent-soft); }
+#tocNav a.toc-active { color: var(--accent); font-weight: 500; }
+#tocNav a.toc-h3 { padding-left: 18px; font-size: 11.5px; }
+
+/* Hide TOC on narrower screens — not enough room beside 680px article */
+@media (max-width: 1379px) {
+  .toc-panel { display: none !important; }
+}
+
 /* ── Mobile ──────────────────────────────────────────────────── */
 .mobile-nav { display: none; }
 
@@ -858,7 +917,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   .mobile-nav-btn svg { width: 19px; height: 19px; }
   .mobile-nav-btn.active { color: var(--accent); }
 
-  .note-article { padding: 28px 20px 56px; }
+  .note-article { padding: 28px 20px 56px; width: 100%; max-width: 100%; }
   .article-title { font-size: 22px; }
   .markdown-body { font-size: 14px; }
 }

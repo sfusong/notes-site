@@ -82,14 +82,20 @@
         </svg>
       </button>
 
-      <article class="note-article hidden" id="noteArticle">
-        <div class="article-header">
-          <div class="breadcrumb" id="breadcrumb"></div>
-          <h1 class="article-title" id="articleTitle"></h1>
-          <div class="article-meta" id="articleMeta"></div>
-        </div>
-        <div class="article-body markdown-body" id="articleBody"></div>
-      </article>
+      <div class="article-layout">
+        <article class="note-article hidden" id="noteArticle">
+          <div class="article-header">
+            <div class="breadcrumb" id="breadcrumb"></div>
+            <h1 class="article-title" id="articleTitle"></h1>
+            <div class="article-meta" id="articleMeta"></div>
+          </div>
+          <div class="article-body markdown-body" id="articleBody"></div>
+        </article>
+        <aside class="toc-panel hidden" id="tocPanel">
+          <div class="toc-label">目录</div>
+          <nav id="tocNav"></nav>
+        </aside>
+      </div>
     </main>
   </div>
 

@@ -296,6 +296,9 @@ async function loadNote({ file, category, title }) {
       });
     }
 
+    // TOC
+    buildToc();
+
     // Meta
     const chars    = md.replace(/\s/g, '').length;
     const readMins = Math.max(1, Math.ceil(chars / 400));
@@ -315,6 +318,64 @@ async function loadNote({ file, category, title }) {
 function showWelcome() {
   $('welcomeScreen').classList.remove('hidden');
   $('noteArticle').classList.add('hidden');
+  $('tocPanel').classList.add('hidden');
+}
+
+// ── Table of Contents ────────────────────────────────────────
+let _tocObserver = null;
+
+function buildToc() {
+  const body    = $('articleBody');
+  const panel   = $('tocPanel');
+  const nav     = $('tocNav');
+
+  // Collect h2 and h3 headings
+  const headings = [...body.querySelectorAll('h2, h3')];
+
+  if (headings.length < 2) {
+    panel.classList.add('hidden');
+    return;
+  }
+
+  // Add IDs to headings for anchor linking
+  headings.forEach((h, i) => {
+    if (!h.id) h.id = 'toc-h-' + i;
+  });
+
+  // Build TOC links
+  nav.innerHTML = headings.map(h => {
+    const cls = h.tagName === 'H3' ? ' toc-h3' : '';
+    return `<a href="#${h.id}" class="${cls}" data-id="${h.id}">${escHtml(h.textContent)}</a>`;
+  }).join('');
+
+  // Click: smooth scroll within noteContent
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = $('articleBody').querySelector('#' + a.dataset.id);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  panel.classList.remove('hidden');
+
+  // IntersectionObserver: highlight current heading
+  if (_tocObserver) _tocObserver.disconnect();
+
+  _tocObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        nav.querySelectorAll('a').forEach(a => a.classList.remove('toc-active'));
+        const active = nav.querySelector(`a[data-id="${entry.target.id}"]`);
+        if (active) active.classList.add('toc-active');
+      }
+    });
+  }, {
+    root: $('noteContent'),
+    rootMargin: '-10% 0px -80% 0px',
+  });
+
+  headings.forEach(h => _tocObserver.observe(h));
 }
 
 // ── URL Routing ───────────────────────────────────────────────
