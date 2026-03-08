@@ -207,6 +207,19 @@ async function loadNote({ file, category, title }) {
       });
     }
 
+    // Render math — only if KaTeX loaded successfully
+    if (!window._katexFailed && typeof renderMathInElement !== 'undefined') {
+      renderMathInElement(body, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true  },
+          { left: '$',  right: '$',  display: false },
+          { left: '\\[', right: '\\]', display: true  },
+          { left: '\\(', right: '\\)', display: false },
+        ],
+        throwOnError: false,
+      });
+    }
+
     // Meta
     const chars    = md.replace(/\s/g, '').length;
     const readMins = Math.max(1, Math.ceil(chars / 400));
