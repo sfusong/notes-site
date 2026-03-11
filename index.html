@@ -51,7 +51,11 @@
       </nav>
     </aside>
 
-    <div class="divider sidebar-divider"></div>
+    <div class="divider sidebar-divider" id="sidebarDivider">
+      <button class="divider-handle" id="sidebarToggle" title="收起/展开分类栏">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
 
     <!-- ====== Note List ====== -->
     <div class="note-list-panel" id="noteListPanel">
@@ -62,7 +66,11 @@
       <div class="note-cards" id="noteCards"></div>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider" id="listDivider">
+      <button class="divider-handle" id="listToggle" title="收起/展开笔记列表">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
 
     <!-- ====== Note Content ====== -->
     <main class="note-content" id="noteContent">
@@ -81,6 +89,8 @@
           <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
         </svg>
       </button>
+
+      <aside class="toc-side hidden" id="tocSide"></aside>
 
       <article class="note-article hidden" id="noteArticle">
         <div class="article-header">
