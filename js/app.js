@@ -345,8 +345,11 @@ function buildToc() {
   const headings = [...body.querySelectorAll('h2, h3')];
 
   if (headings.length < 2) {
+    nav.innerHTML = '';
     panel.classList.add('hidden');
     toggle.classList.add('hidden');
+    toggle.setAttribute('aria-expanded', 'false');
+    if (_tocObserver) _tocObserver.disconnect();
     return;
   }
 
