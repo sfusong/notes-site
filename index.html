@@ -60,8 +60,15 @@
     <!-- ====== Note List ====== -->
     <div class="note-list-panel" id="noteListPanel">
       <div class="note-list-header">
-        <h2 class="panel-title" id="panelTitle">全部笔记</h2>
-        <span class="note-count" id="noteCount"></span>
+        <div class="note-list-heading">
+          <h2 class="panel-title" id="panelTitle">全部笔记</h2>
+          <span class="note-count" id="noteCount"></span>
+        </div>
+        <button class="panel-action-btn" id="noteListCollapseBtn" aria-expanded="true" title="收起笔记列表">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
       </div>
       <div class="note-cards" id="noteCards"></div>
     </div>
@@ -89,6 +96,12 @@
           <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
         </svg>
       </button>
+      <button class="toc-fab hidden" id="tocFab" aria-expanded="false" title="打开目录">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/>
+        </svg>
+        目录
+      </button>
 
       <article class="note-article hidden" id="noteArticle">
         <div class="article-header">
@@ -105,11 +118,20 @@
             </svg>
           </button>
         </div>
-        <div class="toc-inline hidden" id="tocPanel">
-          <nav class="toc-nav" id="tocNav"></nav>
-        </div>
         <div class="article-body markdown-body" id="articleBody"></div>
       </article>
+      <aside class="toc-drawer hidden" id="tocPanel" aria-hidden="true">
+        <div class="toc-drawer-header">
+          <span class="toc-drawer-title">文章目录</span>
+          <button class="toc-close-btn" id="tocCloseBtn" aria-label="关闭目录">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <nav class="toc-nav" id="tocNav"></nav>
+      </aside>
     </main>
   </div>
 

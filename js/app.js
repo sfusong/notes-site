@@ -38,6 +38,7 @@ const state = {
   searchIndex: null,
   searchIndexLoading: false,
   noteRequestId: 0,
+  hasToc: false,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -117,6 +118,8 @@ function renderSidebar() {
 function selectCategory(category) {
   state.currentCategory = category;
   state.currentNote = null;
+  setReadingState(false);
+  setNoteListCollapsed(false);
 
   // Update active class
   document.querySelectorAll('.cat-item').forEach(el => {
@@ -232,6 +235,7 @@ function getSnippet(note) {
 async function loadNote({ file, category, title }) {
   const requestId = ++state.noteRequestId;
   state.currentNote = { file, category, title };
+  setReadingState(true);
   history.replaceState(null, '', '#' + file);
 
   document.querySelectorAll('.note-card').forEach(c =>
@@ -244,9 +248,9 @@ async function loadNote({ file, category, title }) {
   $('welcomeScreen').classList.add('hidden');
   article.classList.remove('hidden');
 
-  $('tocPanel').classList.add('hidden');
+  closeToc();
   $('tocToggle').classList.add('hidden');
-  $('tocToggle').setAttribute('aria-expanded', 'false');
+  $('tocFab').classList.add('hidden');
 
   $('articleTitle').textContent = title;
   $('breadcrumb').innerHTML =
@@ -327,9 +331,10 @@ async function loadNote({ file, category, title }) {
 function showWelcome() {
   $('welcomeScreen').classList.remove('hidden');
   $('noteArticle').classList.add('hidden');
-  $('tocPanel').classList.add('hidden');
+  closeToc();
   $('tocToggle').classList.add('hidden');
-  $('tocToggle').setAttribute('aria-expanded', 'false');
+  $('tocFab').classList.add('hidden');
+  state.hasToc = false;
   updateReadingProgress();
 }
 
@@ -341,17 +346,21 @@ function buildToc() {
   const panel   = $('tocPanel');
   const nav     = $('tocNav');
   const toggle  = $('tocToggle');
+  const fab     = $('tocFab');
 
   const headings = [...body.querySelectorAll('h2, h3')];
 
   if (headings.length < 2) {
+    state.hasToc = false;
     nav.innerHTML = '';
-    panel.classList.add('hidden');
+    closeToc();
     toggle.classList.add('hidden');
-    toggle.setAttribute('aria-expanded', 'false');
+    fab.classList.add('hidden');
     if (_tocObserver) _tocObserver.disconnect();
     return;
   }
+
+  state.hasToc = true;
 
   // Assign IDs
   headings.forEach((h, i) => { if (!h.id) h.id = 'toc-h-' + i; });
@@ -366,11 +375,12 @@ function buildToc() {
     a.addEventListener('click', e => {
       e.preventDefault();
       document.getElementById(a.dataset.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeToc();
     });
   });
 
   toggle.classList.remove('hidden');
-  // Keep collapsed by default; user opens on demand
+  updateTocEntryPoints();
 
   // IntersectionObserver: highlight current section
   if (_tocObserver) _tocObserver.disconnect();
@@ -388,10 +398,26 @@ function buildToc() {
 
 function toggleToc() {
   const panel  = $('tocPanel');
-  const toggle = $('tocToggle');
-  const open   = toggle.getAttribute('aria-expanded') === 'true';
-  toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
-  panel.classList.toggle('hidden', open);
+  const open = panel.classList.contains('open');
+  if (open) {
+    closeToc();
+    return;
+  }
+
+  panel.classList.remove('hidden');
+  panel.classList.add('open');
+  panel.setAttribute('aria-hidden', 'false');
+  $('tocToggle').setAttribute('aria-expanded', 'true');
+  $('tocFab').setAttribute('aria-expanded', 'true');
+}
+
+function closeToc() {
+  const panel = $('tocPanel');
+  panel.classList.remove('open');
+  panel.classList.add('hidden');
+  panel.setAttribute('aria-hidden', 'true');
+  $('tocToggle').setAttribute('aria-expanded', 'false');
+  $('tocFab').setAttribute('aria-expanded', 'false');
 }
 
 // ── URL Routing ───────────────────────────────────────────────
@@ -466,15 +492,6 @@ function initThemePicker() {
 function togglePicker() { $('themePicker').classList.toggle('open'); }
 function closePicker()  { $('themePicker').classList.remove('open'); }
 
-function togglePanel(panelId, toggleId) {
-  const panel = $(panelId);
-  const toggle = $(toggleId);
-  if (!panel || !toggle) return;
-
-  const collapsed = panel.classList.toggle('collapsed');
-  toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-}
-
 // ── Mobile ────────────────────────────────────────────────────
 function isMobile() { return window.innerWidth <= 860; }
 
@@ -495,11 +512,27 @@ function switchMobilePanel(panel) {
   );
 }
 
+function setReadingState(active) {
+  document.querySelector('.app').classList.toggle('reading-state', active);
+}
+
+function setNoteListCollapsed(collapsed) {
+  $('noteListPanel').classList.toggle('collapsed', collapsed);
+  $('noteListCollapseBtn').setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+  $('listToggle').setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+}
+
 function updateReadingProgress() {
   const el = $('noteContent');
   const total = el.scrollHeight - el.clientHeight;
   const progress = total > 0 ? el.scrollTop / total : 0;
   $('readingProgress').style.transform = `scaleX(${Math.max(0, Math.min(1, progress))})`;
+  updateTocEntryPoints();
+}
+
+function updateTocEntryPoints() {
+  const showFab = state.hasToc && !$('noteArticle').classList.contains('hidden') && $('noteContent').scrollTop > 220;
+  $('tocFab').classList.toggle('hidden', !showFab);
 }
 
 // ── Event Listeners ───────────────────────────────────────────
@@ -533,14 +566,16 @@ function setupEventListeners() {
     input.focus();
   });
 
-  $('sidebarToggle').addEventListener('click', e => {
+  $('noteListCollapseBtn').addEventListener('click', e => {
     e.preventDefault();
-    togglePanel('sidebar', 'sidebarToggle');
+    const collapsed = $('noteListPanel').classList.contains('collapsed');
+    setNoteListCollapsed(!collapsed);
   });
 
   $('listToggle').addEventListener('click', e => {
     e.preventDefault();
-    togglePanel('noteListPanel', 'listToggle');
+    const collapsed = $('noteListPanel').classList.contains('collapsed');
+    setNoteListCollapsed(!collapsed);
   });
 
   // Mobile nav
@@ -553,6 +588,8 @@ function setupEventListeners() {
 
   // TOC toggle
   $('tocToggle').addEventListener('click', toggleToc);
+  $('tocFab').addEventListener('click', toggleToc);
+  $('tocCloseBtn').addEventListener('click', closeToc);
 
   // Focus mode
   $('focusBtn').addEventListener('click', toggleFocusMode);
