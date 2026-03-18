@@ -7,6 +7,8 @@ const CONFIG = {
   siteName: '我的笔记',
 };
 
+const NOTE_PROGRESS_KEY = 'note-progress-v1';
+
 // ── Theme Definitions ─────────────────────────────────────────
 const THEMES = [
   // id, name, group, dark(hljs), swatch bg, accent color
@@ -39,6 +41,7 @@ const state = {
   searchIndexLoading: false,
   noteRequestId: 0,
   hasToc: false,
+  progressSaveTimer: null,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -251,6 +254,7 @@ async function loadNote({ file, category, title }) {
   closeToc();
   $('tocToggle').classList.add('hidden');
   $('tocFab').classList.add('hidden');
+  $('scrollTopBtn').classList.add('hidden');
 
   $('articleTitle').textContent = title;
   $('breadcrumb').innerHTML =
@@ -258,6 +262,8 @@ async function loadNote({ file, category, title }) {
      <span class="breadcrumb-sep">›</span>
      <span class="breadcrumb-item">${escHtml(title)}</span>`;
   $('articleMeta').textContent = '加载中…';
+  $('articleNav').classList.add('hidden');
+  $('articleNav').innerHTML = '';
 
   body.innerHTML = `
     <div class="loading-placeholder">
@@ -320,7 +326,8 @@ async function loadNote({ file, category, title }) {
        <span class="meta-sep">·</span>
        <span>约 ${readMins} 分钟</span>`;
 
-    $('noteContent').scrollTo({ top: 0, behavior: 'smooth' });
+    renderArticleNav(file);
+    restoreNoteProgress(file);
     updateReadingProgress();
   } catch (err) {
     if (requestId !== state.noteRequestId) return;
@@ -334,6 +341,7 @@ function showWelcome() {
   closeToc();
   $('tocToggle').classList.add('hidden');
   $('tocFab').classList.add('hidden');
+  $('scrollTopBtn').classList.add('hidden');
   state.hasToc = false;
   updateReadingProgress();
 }
@@ -528,11 +536,109 @@ function updateReadingProgress() {
   const progress = total > 0 ? el.scrollTop / total : 0;
   $('readingProgress').style.transform = `scaleX(${Math.max(0, Math.min(1, progress))})`;
   updateTocEntryPoints();
+  updateScrollTopEntry();
+  queueSaveNoteProgress();
+}
+
+function queueSaveNoteProgress() {
+  if (!state.currentNote?.file) return;
+  clearTimeout(state.progressSaveTimer);
+  state.progressSaveTimer = setTimeout(() => {
+    saveNoteProgress(state.currentNote.file);
+  }, 120);
+}
+
+function saveNoteProgress(file) {
+  const el = $('noteContent');
+  const total = el.scrollHeight - el.clientHeight;
+  const ratio = total > 0 ? el.scrollTop / total : 0;
+  let store = {};
+  try {
+    store = JSON.parse(localStorage.getItem(NOTE_PROGRESS_KEY) || '{}');
+  } catch {}
+  store[file] = { ratio, updatedAt: Date.now() };
+  localStorage.setItem(NOTE_PROGRESS_KEY, JSON.stringify(store));
+}
+
+function restoreNoteProgress(file) {
+  let store = {};
+  try {
+    store = JSON.parse(localStorage.getItem(NOTE_PROGRESS_KEY) || '{}');
+  } catch {}
+
+  const ratio = store[file]?.ratio;
+  const target = Number.isFinite(ratio) ? Math.max(0, Math.min(1, ratio)) : 0;
+
+  requestAnimationFrame(() => {
+    const el = $('noteContent');
+    const total = el.scrollHeight - el.clientHeight;
+    el.scrollTop = total > 0 ? total * target : 0;
+    updateReadingProgress();
+  });
+}
+
+function readingSequence() {
+  const notes = filteredNotes();
+  return notes.length ? notes : state.allNotes;
+}
+
+function renderArticleNav(file) {
+  const nav = $('articleNav');
+  const sequence = readingSequence();
+  const index = sequence.findIndex(n => n.file === file);
+  if (index === -1) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+
+  const prev = sequence[index - 1] || null;
+  const next = sequence[index + 1] || null;
+
+  if (!prev && !next) {
+    nav.classList.add('hidden');
+    nav.innerHTML = '';
+    return;
+  }
+
+  nav.innerHTML = `
+    ${renderArticleNavCard(prev, '上一篇')}
+    ${renderArticleNavCard(next, '下一篇')}`;
+  nav.classList.remove('hidden');
+
+  nav.querySelectorAll('.article-nav-card[data-file]').forEach(card => {
+    card.addEventListener('click', () => loadNote({
+      file: card.dataset.file,
+      category: card.dataset.category,
+      title: card.dataset.title,
+    }));
+  });
+}
+
+function renderArticleNavCard(note, label) {
+  if (!note) {
+    return `<div class="article-nav-card ghost"><span class="article-nav-label">${label}</span><strong>没有了</strong></div>`;
+  }
+
+  return `
+    <button class="article-nav-card"
+            data-file="${escHtml(note.file)}"
+            data-category="${escHtml(note.category)}"
+            data-title="${escHtml(note.title)}">
+      <span class="article-nav-label">${label}</span>
+      <strong>${escHtml(note.title)}</strong>
+      <small>${escHtml(note.category)}</small>
+    </button>`;
 }
 
 function updateTocEntryPoints() {
   const showFab = state.hasToc && !$('noteArticle').classList.contains('hidden') && $('noteContent').scrollTop > 220;
   $('tocFab').classList.toggle('hidden', !showFab);
+}
+
+function updateScrollTopEntry() {
+  const show = !$('noteArticle').classList.contains('hidden') && $('noteContent').scrollTop > window.innerHeight * 1.2;
+  $('scrollTopBtn').classList.toggle('hidden', !show);
 }
 
 // ── Event Listeners ───────────────────────────────────────────
@@ -590,6 +696,9 @@ function setupEventListeners() {
   $('tocToggle').addEventListener('click', toggleToc);
   $('tocFab').addEventListener('click', toggleToc);
   $('tocCloseBtn').addEventListener('click', closeToc);
+  $('scrollTopBtn').addEventListener('click', () => {
+    $('noteContent').scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   // Focus mode
   $('focusBtn').addEventListener('click', toggleFocusMode);

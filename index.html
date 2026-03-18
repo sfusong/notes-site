@@ -102,6 +102,11 @@
         </svg>
         目录
       </button>
+      <button class="scroll-top-btn hidden" id="scrollTopBtn" title="回到顶部" aria-label="回到顶部">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polyline points="18 15 12 9 6 15"/>
+        </svg>
+      </button>
 
       <article class="note-article hidden" id="noteArticle">
         <div class="article-header">
@@ -119,6 +124,7 @@
           </button>
         </div>
         <div class="article-body markdown-body" id="articleBody"></div>
+        <div class="article-nav hidden" id="articleNav"></div>
       </article>
       <aside class="toc-drawer hidden" id="tocPanel" aria-hidden="true">
         <div class="toc-drawer-header">
