@@ -37,6 +37,7 @@ const state = {
   mobilePanel: 'sidebar',
   searchIndex: null,
   searchIndexLoading: false,
+  noteRequestId: 0,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -229,6 +230,7 @@ function getSnippet(note) {
 
 // ── Load & Render Note ────────────────────────────────────────
 async function loadNote({ file, category, title }) {
+  const requestId = ++state.noteRequestId;
   state.currentNote = { file, category, title };
   history.replaceState(null, '', '#' + file);
 
@@ -268,8 +270,9 @@ async function loadNote({ file, category, title }) {
     const res = await fetch(file);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const md = await res.text();
+    if (requestId !== state.noteRequestId) return;
 
-    body.innerHTML = marked.parse(md);
+    body.innerHTML = sanitizeRenderedHtml(marked.parse(md));
 
     // Remove leading H1 — it's already shown in the article header
     const firstH1 = body.querySelector('h1:first-child');
@@ -314,7 +317,9 @@ async function loadNote({ file, category, title }) {
        <span>约 ${readMins} 分钟</span>`;
 
     $('noteContent').scrollTo({ top: 0, behavior: 'smooth' });
+    updateReadingProgress();
   } catch (err) {
+    if (requestId !== state.noteRequestId) return;
     body.innerHTML = `<div class="error-state">笔记加载失败：${err.message}</div>`;
   }
 }
@@ -325,6 +330,7 @@ function showWelcome() {
   $('tocPanel').classList.add('hidden');
   $('tocToggle').classList.add('hidden');
   $('tocToggle').setAttribute('aria-expanded', 'false');
+  updateReadingProgress();
 }
 
 // ── Table of Contents ────────────────────────────────────────
@@ -457,6 +463,15 @@ function initThemePicker() {
 function togglePicker() { $('themePicker').classList.toggle('open'); }
 function closePicker()  { $('themePicker').classList.remove('open'); }
 
+function togglePanel(panelId, toggleId) {
+  const panel = $(panelId);
+  const toggle = $(toggleId);
+  if (!panel || !toggle) return;
+
+  const collapsed = panel.classList.toggle('collapsed');
+  toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+}
+
 // ── Mobile ────────────────────────────────────────────────────
 function isMobile() { return window.innerWidth <= 860; }
 
@@ -475,6 +490,13 @@ function switchMobilePanel(panel) {
   document.querySelectorAll('.mobile-nav-btn').forEach(btn =>
     btn.classList.toggle('active', btn.dataset.panel === panel)
   );
+}
+
+function updateReadingProgress() {
+  const el = $('noteContent');
+  const total = el.scrollHeight - el.clientHeight;
+  const pct = total > 0 ? (el.scrollTop / total) * 100 : 0;
+  $('readingProgress').style.width = pct + '%';
 }
 
 // ── Event Listeners ───────────────────────────────────────────
@@ -508,18 +530,23 @@ function setupEventListeners() {
     input.focus();
   });
 
+  $('sidebarToggle').addEventListener('click', e => {
+    e.preventDefault();
+    togglePanel('sidebar', 'sidebarToggle');
+  });
+
+  $('listToggle').addEventListener('click', e => {
+    e.preventDefault();
+    togglePanel('noteListPanel', 'listToggle');
+  });
+
   // Mobile nav
   document.querySelectorAll('.mobile-nav-btn').forEach(btn =>
     btn.addEventListener('click', () => switchMobilePanel(btn.dataset.panel))
   );
 
   // Reading progress bar
-  $('noteContent').addEventListener('scroll', () => {
-    const el = $('noteContent');
-    const total = el.scrollHeight - el.clientHeight;
-    const pct = total > 0 ? (el.scrollTop / total) * 100 : 0;
-    $('readingProgress').style.width = pct + '%';
-  });
+  $('noteContent').addEventListener('scroll', updateReadingProgress);
 
   // TOC toggle
   $('tocToggle').addEventListener('click', toggleToc);
@@ -559,4 +586,29 @@ function hilite(text) {
   if (!state.searchQuery) return text;
   const escaped = state.searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+}
+
+function sanitizeRenderedHtml(html) {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const blockedTags = ['script', 'iframe', 'object', 'embed', 'link', 'meta'];
+
+  blockedTags.forEach(tag => {
+    doc.querySelectorAll(tag).forEach(el => el.remove());
+  });
+
+  doc.querySelectorAll('*').forEach(el => {
+    [...el.attributes].forEach(attr => {
+      const name = attr.name.toLowerCase();
+      const value = attr.value.trim().toLowerCase();
+      if (name.startsWith('on')) {
+        el.removeAttribute(attr.name);
+        return;
+      }
+      if ((name === 'href' || name === 'src' || name === 'xlink:href') && value.startsWith('javascript:')) {
+        el.removeAttribute(attr.name);
+      }
+    });
+  });
+
+  return doc.body.innerHTML;
 }

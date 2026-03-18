@@ -904,7 +904,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 
 /* note-content becomes flex-row to host side TOC */
 .note-content { flex-direction: row !important; flex-wrap: nowrap; align-items: flex-start; }
-.note-content > .reading-progress-bar { position: fixed; top: 0; left: 0; right: 0; width: auto !important; height: 2px; }
+.note-content > .reading-progress-bar { position: fixed; top: 0; left: 0; height: 2px; }
 .note-content > .welcome-screen,
 .note-content > .focus-btn { order: 0; }
 .note-content > article { order: 0; flex: 1 1 0; min-width: 0; }
