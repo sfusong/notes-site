@@ -35,6 +35,7 @@ const state = {
   currentCategory: null,
   currentNote: null,
   searchQuery: '',
+  searchSelection: -1,
   theme: 'claude',
   mobilePanel: 'sidebar',
   searchIndex: null,
@@ -141,29 +142,42 @@ function renderNoteList() {
   const notes = filteredNotes();
   $('panelTitle').textContent = state.currentCategory || '全部笔记';
   $('noteCount').textContent  = `${notes.length} 篇`;
+  renderSearchStatus(notes);
 
   if (notes.length === 0) {
+    state.searchSelection = -1;
     $('noteCards').innerHTML = `
       <div class="empty-state">
-        ${state.searchQuery ? '没有找到匹配的笔记' : '该分类暂无笔记'}
+        <strong>${state.searchQuery ? '没有找到匹配的笔记' : '该分类暂无笔记'}</strong>
+        ${state.searchQuery ? '<small>试试换个关键词，或按 <kbd>Esc</kbd> 清空搜索。</small>' : ''}
       </div>`;
     return;
   }
 
-  $('noteCards').innerHTML = notes.map(n => {
+  const selectedIndex = state.searchQuery
+    ? Math.min(Math.max(state.searchSelection, 0), notes.length - 1)
+    : -1;
+  state.searchSelection = selectedIndex;
+
+  $('noteCards').innerHTML = notes.map((n, index) => {
     const snippet = getSnippet(n);
     return `
-    <div class="note-card ${state.currentNote?.file === n.file ? 'active' : ''}"
+    <div class="note-card ${state.currentNote?.file === n.file ? 'active' : ''} ${selectedIndex === index ? 'search-selected' : ''}"
          data-file="${escHtml(n.file)}"
          data-category="${escHtml(n.category)}"
-         data-title="${escHtml(n.title)}">
+         data-title="${escHtml(n.title)}"
+         data-index="${index}">
       <div class="note-card-title">${hilite(escHtml(n.title))}</div>
-      <div class="note-card-category">${escHtml(n.category)}</div>
+      <div class="note-card-category">${hilite(escHtml(n.category))}</div>
       ${snippet ? `<div class="note-card-preview">${hilite(escHtml(snippet))}</div>` : ''}
     </div>`;
   }).join('');
 
   $('noteCards').querySelectorAll('.note-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (!state.searchQuery) return;
+      updateSearchSelection(Number(card.dataset.index));
+    });
     card.addEventListener('click', () => loadNote(card.dataset));
   });
 }
@@ -193,45 +207,106 @@ function filteredNotes() {
 
   if (!state.searchQuery) return notes;
 
-  const q = state.searchQuery.toLowerCase();
+  const tokens = searchTokens(state.searchQuery);
 
-  const titleMatches   = [];
-  const contentMatches = [];
-
-  for (const n of notes) {
-    const inTitle   = n.title.toLowerCase().includes(q);
-    const inPreview = n.preview && n.preview.toLowerCase().includes(q);
-    const fullText  = state.searchIndex ? (state.searchIndex[n.file] || '') : '';
-    const inContent = fullText.toLowerCase().includes(q);
-
-    if (inTitle) {
-      titleMatches.push(n);
-    } else if (inPreview || inContent) {
-      contentMatches.push(n);
-    }
-  }
-
-  return [...titleMatches, ...contentMatches];
+  return notes
+    .map(note => ({ note, score: searchScore(note, tokens) }))
+    .filter(entry => entry.score > 0)
+    .sort((a, b) => b.score - a.score || a.note.title.localeCompare(b.note.title, 'zh-CN'))
+    .map(entry => entry.note);
 }
 
 function getSnippet(note) {
   if (!state.searchQuery) return note.preview || '';
 
-  const q = state.searchQuery.toLowerCase();
+  const tokens = searchTokens(state.searchQuery);
   const fullText = state.searchIndex ? (state.searchIndex[note.file] || '') : '';
 
   // Try full content first, fall back to preview
   const source = fullText || note.preview || '';
-  const idx = source.toLowerCase().indexOf(q);
+  const lower = source.toLowerCase();
+  const idx = tokens.reduce((best, token) => {
+    const current = lower.indexOf(token);
+    return current !== -1 && (best === -1 || current < best) ? current : best;
+  }, -1);
   if (idx === -1) return note.preview || '';
 
   const WINDOW = 65;
   const start = Math.max(0, idx - WINDOW);
-  const end   = Math.min(source.length, idx + q.length + WINDOW);
+  const tokenLength = tokens[0]?.length || 0;
+  const end   = Math.min(source.length, idx + tokenLength + WINDOW);
   let snippet = source.slice(start, end).replace(/\n/g, ' ');
   if (start > 0) snippet = '…' + snippet;
   if (end < source.length) snippet = snippet + '…';
   return snippet;
+}
+
+function searchTokens(query) {
+  return query
+    .toLowerCase()
+    .split(/\s+/)
+    .map(token => token.trim())
+    .filter(Boolean);
+}
+
+function searchScore(note, tokens) {
+  if (!tokens.length) return 0;
+
+  const title = note.title.toLowerCase();
+  const category = note.category.toLowerCase();
+  const preview = (note.preview || '').toLowerCase();
+  const fullText = state.searchIndex ? (state.searchIndex[note.file] || '').toLowerCase() : '';
+  const corpus = `${title}\n${category}\n${preview}\n${fullText}`;
+
+  let score = 0;
+  for (const token of tokens) {
+    if (!corpus.includes(token)) return 0;
+    if (title.includes(token)) score += title.startsWith(token) ? 90 : 54;
+    if (category.includes(token)) score += 26;
+    if (preview.includes(token)) score += 20;
+    if (fullText.includes(token)) score += 14;
+  }
+
+  if (tokens.length > 1) score += 12;
+  if (title.includes(state.searchQuery.toLowerCase())) score += 36;
+  return score;
+}
+
+function renderSearchStatus(notes) {
+  const el = $('searchStatus');
+  if (!state.searchQuery) {
+    el.innerHTML = `<span>按 <kbd>/</kbd> 快速搜索</span>`;
+    el.classList.remove('active');
+    return;
+  }
+
+  const scope = state.currentCategory || '全部笔记';
+  const loading = state.searchIndexLoading && state.searchIndex === null;
+  el.classList.add('active');
+  el.innerHTML = `
+    <span>在 <strong>${escHtml(scope)}</strong> 中找到 <strong>${notes.length}</strong> 篇</span>
+    <span class="search-status-hint">${loading ? '正在载入全文索引…' : '↑ ↓ 选择，Enter 打开，Esc 清空'}</span>`;
+}
+
+function updateSearchSelection(nextIndex) {
+  const cards = [...$('noteCards').querySelectorAll('.note-card')];
+  if (!cards.length) {
+    state.searchSelection = -1;
+    return;
+  }
+
+  const clamped = Math.min(Math.max(nextIndex, 0), cards.length - 1);
+  state.searchSelection = clamped;
+  cards.forEach((card, index) => card.classList.toggle('search-selected', index === clamped));
+  cards[clamped].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function openSelectedSearchResult() {
+  const cards = [...$('noteCards').querySelectorAll('.note-card')];
+  if (!cards.length) return;
+
+  const target = cards[Math.min(Math.max(state.searchSelection, 0), cards.length - 1)] || cards[0];
+  target?.click();
 }
 
 // ── Load & Render Note ────────────────────────────────────────
@@ -654,6 +729,7 @@ function setupEventListeners() {
 
   input.addEventListener('input', () => {
     state.searchQuery = input.value.trim();
+    state.searchSelection = state.searchQuery ? 0 : -1;
     clear.style.display = state.searchQuery ? 'block' : 'none';
     renderNoteList();
 
@@ -667,9 +743,32 @@ function setupEventListeners() {
   clear.addEventListener('click', () => {
     input.value = '';
     state.searchQuery = '';
+    state.searchSelection = -1;
     clear.style.display = 'none';
     renderNoteList();
     input.focus();
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      updateSearchSelection(state.searchSelection + 1);
+      return;
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      updateSearchSelection(state.searchSelection - 1);
+      return;
+    }
+    if (e.key === 'Enter' && state.searchQuery) {
+      e.preventDefault();
+      openSelectedSearchResult();
+      return;
+    }
+    if (e.key === 'Escape' && state.searchQuery) {
+      e.preventDefault();
+      clear.click();
+    }
   });
 
   $('noteListCollapseBtn').addEventListener('click', e => {

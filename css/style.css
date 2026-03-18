@@ -31,12 +31,19 @@
   --glass-border:      rgba(255,255,255,0.46);
   --glass-shadow:      0 18px 42px rgba(0,0,0,0.10);
   --surface-glow:      radial-gradient(circle at top, rgba(255,255,255,0.72), transparent 54%);
+  --page-glow:         radial-gradient(circle at top left, rgba(255,255,255,0.75), transparent 28%);
+  --page-wash:         linear-gradient(180deg, rgba(255,255,255,0.34), transparent 18%);
+  --article-shell-bg:  color-mix(in srgb, var(--bg) 80%, white 20%);
+  --article-shell-border: rgba(255,255,255,0.42);
+  --article-shell-shadow: 0 18px 48px rgba(0,0,0,0.04);
   --code-bg:           linear-gradient(180deg, #2b2621, #1c1916);
   --code-border:       rgba(0,0,0,0.18);
   --code-text:         #f3ede4;
   --code-shadow:       0 10px 24px rgba(0,0,0,0.14);
   --quote-bg:          color-mix(in srgb, var(--accent-soft) 78%, white 22%);
   --table-head-bg:     color-mix(in srgb, var(--panel-bg) 82%, white 18%);
+  --mark-bg:           rgba(255,214,10,0.35);
+  --mark-text:         inherit;
 
   /* Accent */
   --accent:      #d97757;
@@ -90,6 +97,13 @@
   --code-border: rgba(66,211,146,0.16);
   --code-text: #d9f7ea;
   --code-shadow: 0 12px 28px rgba(0,0,0,0.24);
+  --page-glow: radial-gradient(circle at top left, rgba(66,211,146,0.08), transparent 26%);
+  --page-wash: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%);
+  --article-shell-bg: color-mix(in srgb, var(--panel-bg) 92%, #1c2440 8%);
+  --article-shell-border: rgba(148,163,184,0.10);
+  --article-shell-shadow: 0 18px 48px rgba(0,0,0,0.22);
+  --mark-bg: rgba(66,211,146,0.16);
+  --mark-text: #f2fff8;
 }
 
 /* ── Apple ──────────────────────────────────────────────────── */
@@ -120,6 +134,13 @@
   --code-border: rgba(124,58,237,0.20);
   --code-text: #ebe8ff;
   --code-shadow: 0 12px 28px rgba(0,0,0,0.28);
+  --page-glow: radial-gradient(circle at top left, rgba(124,58,237,0.08), transparent 26%);
+  --page-wash: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 18%);
+  --article-shell-bg: color-mix(in srgb, var(--panel-bg) 92%, #17172a 8%);
+  --article-shell-border: rgba(148,163,184,0.08);
+  --article-shell-shadow: 0 22px 54px rgba(0,0,0,0.26);
+  --mark-bg: rgba(124,58,237,0.18);
+  --mark-text: #f5f2ff;
 }
 
 /* ── Obsidian ───────────────────────────────────────────────── */
@@ -135,6 +156,13 @@
   --code-border: rgba(224,175,104,0.16);
   --code-text: #f3e8d7;
   --code-shadow: 0 12px 28px rgba(0,0,0,0.26);
+  --page-glow: radial-gradient(circle at top left, rgba(224,175,104,0.07), transparent 24%);
+  --page-wash: linear-gradient(180deg, rgba(255,255,255,0.025), transparent 18%);
+  --article-shell-bg: color-mix(in srgb, var(--panel-bg) 92%, #23273d 8%);
+  --article-shell-border: rgba(205,214,244,0.08);
+  --article-shell-shadow: 0 20px 52px rgba(0,0,0,0.24);
+  --mark-bg: rgba(224,175,104,0.16);
+  --mark-text: #fff3df;
 }
 
 /* ── GitHub ─────────────────────────────────────────────────── */
@@ -216,6 +244,13 @@
   --code-border: rgba(255,45,120,0.24);
   --code-text: #ffe0ef;
   --code-shadow: 0 16px 34px rgba(255,45,120,0.16);
+  --page-glow: radial-gradient(circle at top left, rgba(255,45,120,0.10), transparent 24%);
+  --page-wash: linear-gradient(180deg, rgba(123,92,255,0.04), transparent 18%);
+  --article-shell-bg: color-mix(in srgb, var(--panel-bg) 90%, #1b1027 10%);
+  --article-shell-border: rgba(255,45,120,0.12);
+  --article-shell-shadow: 0 24px 60px rgba(0,0,0,0.32);
+  --mark-bg: rgba(255,45,120,0.22);
+  --mark-text: #fff1f7;
 }
 
 /* ── Terminal ───────────────────────────────────────────────── */
@@ -234,6 +269,13 @@
   --code-border: rgba(0,255,65,0.20);
   --code-text: #afffca;
   --code-shadow: 0 12px 28px rgba(0,255,65,0.10);
+  --page-glow: radial-gradient(circle at top left, rgba(0,255,65,0.06), transparent 24%);
+  --page-wash: linear-gradient(180deg, rgba(0,255,65,0.025), transparent 18%);
+  --article-shell-bg: color-mix(in srgb, var(--panel-bg) 94%, #081109 6%);
+  --article-shell-border: rgba(0,255,65,0.10);
+  --article-shell-shadow: 0 20px 50px rgba(0,0,0,0.30);
+  --mark-bg: rgba(0,255,65,0.16);
+  --mark-text: #f0fff5;
 }
 
 /* ── Chinese (国风) ──────────────────────────────────────────── */
@@ -278,6 +320,10 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+::selection {
+  background: var(--mark-bg);
+  color: var(--mark-text);
+}
 button { cursor: pointer; font-family: var(--font); border: none; background: none; }
 
 /* ── Layout ─────────────────────────────────────────────────── */
@@ -285,9 +331,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.75), transparent 28%),
-    linear-gradient(180deg, rgba(255,255,255,0.34), transparent 18%);
+  background: var(--page-glow), var(--page-wash);
 }
 .divider {
   width: 1px;
@@ -497,6 +541,40 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   line-height: 1;
 }
 .search-clear:hover { color: var(--sb-text-hover); }
+.search-status {
+  margin: 0 10px 8px;
+  min-height: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--sb-text);
+  opacity: 0.72;
+  padding: 0 2px;
+}
+.search-status.active {
+  opacity: 1;
+  color: var(--sb-text-hover);
+}
+.search-status strong {
+  color: var(--sb-text-active);
+  font-weight: 600;
+}
+.search-status-hint {
+  white-space: nowrap;
+  color: var(--sb-text);
+}
+.search-status kbd,
+.empty-state kbd {
+  font: inherit;
+  font-size: 10px;
+  color: var(--sb-text-active);
+  padding: 1px 4px;
+  border-radius: 5px;
+  background: rgba(128,128,128,0.12);
+  border: 1px solid var(--sb-border);
+}
 
 /* Category Nav */
 .category-nav {
@@ -649,6 +727,10 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   box-shadow: 0 0 0 1px var(--accent-mid), 0 10px 28px rgba(217,119,87,0.12);
   border-color: rgba(217,119,87,0.24);
   transform: translateY(-1px);
+}
+.note-card.search-selected:not(.active) {
+  border-color: var(--accent-mid);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent-mid) 88%, transparent 12%), var(--card-shadow-hover);
 }
 
 .note-card-title {
@@ -832,9 +914,9 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   border-radius: 32px;
   background:
     var(--surface-glow),
-    color-mix(in srgb, var(--bg) 80%, white 20%);
-  border: 1px solid rgba(255,255,255,0.42);
-  box-shadow: 0 18px 48px rgba(0,0,0,0.04);
+    var(--article-shell-bg);
+  border: 1px solid var(--article-shell-border);
+  box-shadow: var(--article-shell-shadow);
   z-index: -1;
 }
 .article-header {
@@ -872,8 +954,9 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 /* ── Markdown Body ───────────────────────────────────────────── */
 .markdown-body {
   color: var(--text);
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 15.5px;
+  line-height: 1.82;
+  letter-spacing: 0.002em;
   font-family: var(--font);
 }
 
@@ -895,40 +978,50 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   font-weight: 600;
   letter-spacing: -0.018em;
   line-height: 1.3;
-  margin-top: 1.8em;
-  margin-bottom: 0.45em;
+  margin-top: 2.05em;
+  margin-bottom: 0.58em;
   color: var(--text);
   scroll-margin-top: 72px;
 }
 .markdown-body h1 { font-size: 1.6em; font-weight: 700; }
-.markdown-body h2 { font-size: 1.2em; }
-.markdown-body h3 { font-size: 1.07em; }
+.markdown-body h2 { font-size: 1.24em; }
+.markdown-body h3 { font-size: 1.09em; }
 .markdown-body h4 { font-size: 1em; font-weight: 600; }
 .markdown-body h5, .markdown-body h6 { font-size: 0.9em; color: var(--text-2); }
 
-.markdown-body p { margin-bottom: 0.9em; }
+.markdown-body > p:first-of-type {
+  font-size: 1.05em;
+  line-height: 1.9;
+  color: color-mix(in srgb, var(--text) 88%, var(--text-2) 12%);
+}
+.markdown-body p { margin-bottom: 1em; }
+.markdown-body p + p { text-wrap: pretty; }
+.markdown-body h2 + p,
+.markdown-body h3 + p { color: color-mix(in srgb, var(--text) 90%, var(--text-2) 10%); }
 
 /* Links */
 .markdown-body a {
   color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px solid var(--accent-mid);
-  transition: border-color 0.15s;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-mid) 86%, transparent 14%);
+  transition: border-color 0.15s, color 0.15s;
 }
-.markdown-body a:hover { border-color: var(--accent); }
+.markdown-body a:hover { border-color: var(--accent); color: color-mix(in srgb, var(--accent) 92%, white 8%); }
 
 /* Lists */
-.markdown-body ul, .markdown-body ol { padding-left: 1.8em; margin-bottom: 0.9em; }
-.markdown-body li { margin-bottom: 0.3em; }
+.markdown-body ul, .markdown-body ol { padding-left: 1.8em; margin: 1em 0 1.1em; }
+.markdown-body li { margin-bottom: 0.42em; padding-left: 0.08em; }
+.markdown-body li > ul,
+.markdown-body li > ol { margin-top: 0.4em; margin-bottom: 0.2em; }
 .markdown-body li::marker { color: var(--text-3); }
 
 /* Blockquote */
 .markdown-body blockquote {
   border-left: 2.5px solid var(--accent);
-  padding: 10px 18px;
-  margin: 1.4em 0;
+  padding: 12px 18px;
+  margin: 1.5em 0;
   background: var(--quote-bg);
-  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  border-radius: 0 14px 14px 0;
   color: var(--text-2);
 }
 .markdown-body blockquote p:last-child { margin-bottom: 0; }
@@ -937,10 +1030,10 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .markdown-body code {
   font-family: var(--font-mono);
   font-size: 0.84em;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-mid);
+  background: color-mix(in srgb, var(--accent-soft) 90%, var(--panel-bg) 10%);
+  border: 1px solid color-mix(in srgb, var(--accent-mid) 80%, transparent 20%);
   padding: 1px 5px;
-  border-radius: 4px;
+  border-radius: 6px;
   color: var(--accent);
 }
 
@@ -950,9 +1043,9 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   border: 1px solid var(--code-border);
   box-shadow: var(--code-shadow);
   border-radius: 16px;
-  padding: 16px 18px;
+  padding: 17px 18px;
   overflow-x: auto;
-  margin: 1.4em 0;
+  margin: 1.55em 0;
   position: relative;
 }
 .markdown-body pre::before {
@@ -973,11 +1066,13 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .markdown-body table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1.4em 0;
+  margin: 1.55em 0;
   font-size: 14px;
+  overflow: hidden;
+  border-radius: 14px;
 }
 .markdown-body th, .markdown-body td {
-  padding: 8px 13px;
+  padding: 10px 13px;
   border: 1px solid var(--border);
   text-align: left;
 }
@@ -989,7 +1084,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-.markdown-body tr:hover td { background: color-mix(in srgb, var(--panel-bg) 88%, white 12%); }
+.markdown-body tr:hover td { background: color-mix(in srgb, var(--panel-bg) 92%, white 8%); }
 
 /* HR — invisible, rely on heading margin */
 .markdown-body hr { display: none; }
@@ -997,6 +1092,12 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .markdown-body img { max-width: 100%; border-radius: var(--r); margin: 1.2em 0; display: block; }
 .markdown-body input[type="checkbox"] { margin-right: 5px; }
 .markdown-body .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; margin: 1.2em 0; }
+.markdown-body mark {
+  background: var(--mark-bg);
+  color: var(--mark-text);
+  border-radius: 4px;
+  padding: 0 3px;
+}
 
 .article-nav {
   display: grid;
@@ -1090,6 +1191,19 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   text-align: center;
   color: var(--text-3);
   font-size: 13px;
+}
+.empty-state strong,
+.error-state strong {
+  display: block;
+  font-size: 13px;
+  color: var(--text-2);
+  margin-bottom: 6px;
+}
+.empty-state small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-3);
+  line-height: 1.6;
 }
 .error-state { color: #EF4444; }
 .error-state small { display: block; margin-top: 6px; font-size: 11.5px; opacity: 0.7; }
