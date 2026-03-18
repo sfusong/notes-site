@@ -8,6 +8,7 @@ const CONFIG = {
 };
 
 const NOTE_PROGRESS_KEY = 'note-progress-v1';
+const READING_DENSITY_KEY = 'reading-density-v1';
 
 // ── Theme Definitions ─────────────────────────────────────────
 const THEMES = [
@@ -24,7 +25,7 @@ const THEMES = [
   { id: 'newspaper', name: '报纸',     group: 'paper', dark: false, bg: '#ffffff', ac: '#cc0000' },
   { id: 'cyberpunk', name: '赛博朋克', group: 'fun',   dark: true,  bg: '#0d0d1a', ac: '#ff2d78' },
   { id: 'terminal',  name: '绿色终端', group: 'fun',   dark: true,  bg: '#0d0d0d', ac: '#00ff41' },
-  { id: 'chinese',   name: '国风',     group: 'fun',   dark: false, bg: '#f5f0e0', ac: '#c0392b' },
+  { id: 'chinese',   name: '国风',     group: 'paper', dark: false, bg: '#f5f0e0', ac: '#c0392b' },
 ];
 
 const GROUP_LABELS = { tool: '产品 / 工具', paper: '纸质 / 人文', fun: '个性 / 有趣' };
@@ -43,6 +44,7 @@ const state = {
   noteRequestId: 0,
   hasToc: false,
   progressSaveTimer: null,
+  readingDensity: 'standard',
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const saved = localStorage.getItem('theme');
   const mapped = saved === 'light' ? 'claude' : saved === 'dark' ? 'linear' : saved;
   setTheme(mapped || 'claude', false);  // false = no transition on init
+  setReadingDensity(localStorage.getItem(READING_DENSITY_KEY) || 'standard');
   initThemePicker();
   setupEventListeners();
 
@@ -122,6 +125,7 @@ function renderSidebar() {
 function selectCategory(category) {
   state.currentCategory = category;
   state.currentNote = null;
+  history.replaceState(null, '', '#');
   setReadingState(false);
   setNoteListCollapsed(false);
 
@@ -315,6 +319,7 @@ async function loadNote({ file, category, title }) {
   state.currentNote = { file, category, title };
   setReadingState(true);
   history.replaceState(null, '', '#' + file);
+  state.hasToc = false;
 
   document.querySelectorAll('.note-card').forEach(c =>
     c.classList.toggle('active', c.dataset.file === file)
@@ -406,11 +411,17 @@ async function loadNote({ file, category, title }) {
     updateReadingProgress();
   } catch (err) {
     if (requestId !== state.noteRequestId) return;
+    state.hasToc = false;
+    closeToc();
+    $('tocFab').classList.add('hidden');
+    $('scrollTopBtn').classList.add('hidden');
     body.innerHTML = `<div class="error-state">笔记加载失败：${err.message}</div>`;
   }
 }
 
 function showWelcome() {
+  state.currentNote = null;
+  setReadingState(false);
   $('welcomeScreen').classList.remove('hidden');
   $('noteArticle').classList.add('hidden');
   closeToc();
@@ -541,6 +552,19 @@ function setTheme(id, animate = true) {
   document.querySelectorAll('.theme-option').forEach(btn =>
     btn.classList.toggle('active', btn.dataset.theme === theme.id)
   );
+}
+
+function setReadingDensity(density) {
+  const next = ['compact', 'standard', 'comfortable'].includes(density) ? density : 'standard';
+  state.readingDensity = next;
+  document.documentElement.setAttribute('data-density', next);
+  localStorage.setItem(READING_DENSITY_KEY, next);
+
+  document.querySelectorAll('.density-btn').forEach(btn => {
+    const active = btn.dataset.density === next;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
 }
 
 function initThemePicker() {
@@ -722,6 +746,11 @@ function setupEventListeners() {
   $('themePickerBtn').addEventListener('click', e => { e.stopPropagation(); togglePicker(); });
   document.addEventListener('click', () => closePicker());
   $('themePicker').addEventListener('click', e => e.stopPropagation());
+  $('densityControl').addEventListener('click', e => {
+    const btn = e.target.closest('.density-btn');
+    if (!btn) return;
+    setReadingDensity(btn.dataset.density);
+  });
 
   // Search
   const input = $('searchInput');
@@ -815,7 +844,17 @@ function setupEventListeners() {
 // ── Utilities ─────────────────────────────────────────────────
 // ── Focus Mode ────────────────────────────────────────────────
 function toggleFocusMode() {
-  document.querySelector('.app').classList.toggle('focus-mode');
+  const app = document.querySelector('.app');
+  const entering = !app.classList.contains('focus-mode');
+  app.classList.toggle('focus-mode');
+  if (entering) {
+    closeToc();
+    $('tocFab').classList.add('hidden');
+    $('scrollTopBtn').classList.add('hidden');
+  } else {
+    updateTocEntryPoints();
+    updateScrollTopEntry();
+  }
 }
 
 function exitFocusMode() {

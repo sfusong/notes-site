@@ -114,15 +114,22 @@
           <div class="breadcrumb" id="breadcrumb"></div>
           <h1 class="article-title" id="articleTitle"></h1>
           <div class="article-meta" id="articleMeta"></div>
-          <button class="toc-toggle hidden" id="tocToggle" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/>
-            </svg>
-            目录
-            <svg class="toc-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </button>
+          <div class="article-tools">
+            <div class="density-control" id="densityControl" role="group" aria-label="阅读密度">
+              <button class="density-btn" data-density="compact" aria-pressed="false" title="紧凑">紧</button>
+              <button class="density-btn" data-density="standard" aria-pressed="true" title="标准">标</button>
+              <button class="density-btn" data-density="comfortable" aria-pressed="false" title="舒展">舒</button>
+            </div>
+            <button class="toc-toggle hidden" id="tocToggle" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/>
+              </svg>
+              目录
+              <svg class="toc-chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="article-body markdown-body" id="articleBody"></div>
         <div class="article-nav hidden" id="articleNav"></div>
