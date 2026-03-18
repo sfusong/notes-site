@@ -559,15 +559,18 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 
 /* ── Reading Progress Bar ────────────────────────────────────── */
 .reading-progress-bar {
-  position: sticky;
+  position: fixed;
   top: 0;
   height: 2px;
-  width: 0%;
+  left: 0;
+  width: 100%;
   background: var(--accent);
-  z-index: 10;
-  transition: width 0.08s linear;
+  z-index: 100;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.08s linear;
   border-radius: 0 2px 2px 0;
-  flex-shrink: 0;
+  pointer-events: none;
 }
 
 /* ── Note Content ─────────────────────────────────────────────── */
@@ -904,7 +907,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 
 /* note-content becomes flex-row to host side TOC */
 .note-content { flex-direction: row !important; flex-wrap: nowrap; align-items: flex-start; }
-.note-content > .reading-progress-bar { position: fixed; top: 0; left: 0; height: 2px; }
+.note-content > .reading-progress-bar { top: 0; left: 0; }
 .note-content > .welcome-screen,
 .note-content > .focus-btn { order: 0; }
 .note-content > article { order: 0; flex: 1 1 0; min-width: 0; }

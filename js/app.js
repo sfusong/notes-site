@@ -495,8 +495,8 @@ function switchMobilePanel(panel) {
 function updateReadingProgress() {
   const el = $('noteContent');
   const total = el.scrollHeight - el.clientHeight;
-  const pct = total > 0 ? (el.scrollTop / total) * 100 : 0;
-  $('readingProgress').style.width = pct + '%';
+  const progress = total > 0 ? el.scrollTop / total : 0;
+  $('readingProgress').style.transform = `scaleX(${Math.max(0, Math.min(1, progress))})`;
 }
 
 // ── Event Listeners ───────────────────────────────────────────
