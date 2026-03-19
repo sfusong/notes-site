@@ -16,17 +16,77 @@ import os
 import re
 import json
 from datetime import datetime
+from typing import Optional
 
 NOTES_DIR         = "notes"
 OUTPUT_FILE       = os.path.join(NOTES_DIR, "index.json")
 SEARCH_INDEX_FILE = os.path.join(NOTES_DIR, "search-index.json")
 PREVIEW_CHARS = 120   # 预览文字最大长度
 
+LESSON_CATEGORIES = {
+    "基金从业资格证",
+    "宏观经济学",
+    "资管IT",
+    "资管IT学习（个人）",
+}
+
+
+def natural_key(value: str):
+    return [int(c) if c.isdigit() else c.lower() for c in re.split(r'(\d+)', value)]
+
+
+def parse_front_matter(content: str) -> tuple[dict, str]:
+    """只解析文件开头的 front matter，避免误伤正文里的 ---。"""
+    if not content.startswith("---\n") and not content.startswith("---\r\n"):
+        return {}, content
+
+    lines = content.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return {}, content
+
+    end_index = None
+    for i in range(1, len(lines)):
+        if lines[i].strip() == "---":
+            end_index = i
+            break
+
+    if end_index is None:
+        return {}, content
+
+    meta = {}
+    for line in lines[1:end_index]:
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        meta[key.strip().lower()] = value.strip().strip('"').strip("'")
+
+    body = "\n".join(lines[end_index + 1:]).lstrip("\n")
+    return meta, body
+
+
+def normalize_title_text(text: str) -> str:
+    text = text.strip()
+    text = re.sub(r"\s+", " ", text)
+    text = text.replace("——", "：")
+    text = text.replace("--", "：")
+    text = text.replace("｜", "：")
+    text = re.sub(r"\s*[|｜]\s*", "：", text)
+    text = re.sub(r"\s*·\s*", " · ", text)
+    text = re.sub(r"\s*[（(]\d+[）)]\s*$", "", text)
+    return text.strip(" _-")
+
+
+def extract_h1_titles(content: str) -> list[str]:
+    return [
+        normalize_title_text(line.strip()[2:])
+        for line in content.splitlines()
+        if line.strip().startswith("# ")
+    ]
+
 
 def strip_markdown(content: str) -> str:
     """将 Markdown 内容转为纯文本，用于全文搜索索引。"""
-    # 去掉 front matter
-    content = re.sub(r'^---[\s\S]*?---\s*\n', '', content, count=1)
+    _, content = parse_front_matter(content)
     # 去掉代码块
     content = re.sub(r'```[\s\S]*?```', ' ', content)
     # 去掉行内代码
@@ -57,15 +117,14 @@ def strip_markdown(content: str) -> str:
 
 def extract_title(content: str):
     """从 Markdown 内容中提取第一个 H1 标题。"""
-    for line in content.splitlines():
-        line = line.strip()
-        if line.startswith("# "):
-            return line[2:].strip()
-    return None
+    _, body = parse_front_matter(content)
+    headings = extract_h1_titles(body)
+    return headings[0] if headings else None
 
 
 def extract_preview(content: str) -> str:
     """提取正文预览（去掉 Markdown 语法，取第一段文字）。"""
+    _, content = parse_front_matter(content)
     in_code = False
     parts   = []
 
@@ -110,6 +169,119 @@ def extract_preview(content: str) -> str:
     return preview
 
 
+def clean_filename_stem(filename: str) -> str:
+    stem = os.path.splitext(filename)[0]
+    stem = stem.replace("_", " ")
+    stem = re.sub(r"\s+", " ", stem)
+    stem = re.sub(r"\s*[（(]\d+[）)]\s*$", "", stem)
+    return stem.strip()
+
+
+def extract_series_info(text: str) -> Optional[dict]:
+    if not text:
+        return None
+
+    raw = normalize_title_text(text)
+    patterns = [
+        re.compile(r"^第\s*0*(\d+)\s*([讲课节篇章])\s*[:：]\s*(.+)$"),
+        re.compile(r"^(.+?)\s*[（(]\s*第\s*0*(\d+)\s*([讲课节篇章])\s*[）)]$"),
+        re.compile(r"^.+?\b第\s*0*(\d+)\s*([讲课节篇章])\b[_\s:：-]*(.+)$"),
+        re.compile(r"^.+?[_\s]第\s*0*(\d+)\s*([讲课节篇章])[_\s]+(.+)$"),
+    ]
+
+    for idx, pattern in enumerate(patterns):
+        m = pattern.match(raw)
+        if not m:
+            continue
+        if idx == 1:
+            subject, order, unit = m.group(1), int(m.group(2)), m.group(3)
+        else:
+            order, unit, subject = int(m.group(1)), m.group(2), m.group(3)
+        subject = normalize_subject(subject)
+        if subject:
+            return {"order": order, "unit": unit, "subject": subject}
+    return None
+
+
+def normalize_subject(subject: str) -> str:
+    subject = normalize_title_text(subject)
+    subject = re.sub(r"\s*：\s*资管科技产品经理进阶课笔记\s*$", "", subject)
+    subject = re.sub(r"\s*资管科技产品经理进阶课笔记\s*$", "", subject)
+    subject = re.sub(r"^(公开版|完整版)\s*", "", subject)
+    subject = re.sub(r"\s*(公开版|完整版|可分享|含个人分析|私人留存)\s*$", "", subject)
+    subject = re.sub(r"\s*[·•]\s*(私密版|公开版|完整版.*)$", "", subject)
+    return subject.strip(" _-：")
+
+
+def resolve_note_metadata(category: str, filename: str, content: str) -> dict:
+    front_matter, body = parse_front_matter(content)
+    h1_titles = extract_h1_titles(body)
+    first_h1 = h1_titles[0] if h1_titles else None
+    second_h1 = h1_titles[1] if len(h1_titles) > 1 else None
+    filename_title = normalize_title_text(clean_filename_stem(filename))
+
+    raw_title = (
+        normalize_title_text(front_matter.get("title", ""))
+        or first_h1
+        or filename_title
+    )
+
+    order = None
+    unit = None
+    subject = None
+
+    for candidate in (
+        front_matter.get("title", ""),
+        first_h1 or "",
+        second_h1 or "",
+        filename_title,
+    ):
+        info = extract_series_info(candidate)
+        if info:
+            order = info["order"]
+            unit = info["unit"]
+            subject = info["subject"]
+            break
+
+    if subject is None and second_h1:
+        subject = normalize_subject(second_h1)
+
+    if subject is None and order is not None:
+        filename_match = re.search(rf"第\s*0*{order}\s*{unit}[_\s]+(.+)$", filename_title)
+        if filename_match:
+            subject = normalize_subject(filename_match.group(1))
+
+    title = raw_title
+    if category in LESSON_CATEGORIES and order is not None and unit and subject:
+        title = f"第{order}{unit}：{subject}"
+
+    explicit_order = front_matter.get("order", "").strip()
+    if explicit_order.isdigit():
+        order = int(explicit_order)
+
+    slug = normalize_slug(front_matter.get("slug", "") or f"{category}-{title}")
+    return {
+        "title": title,
+        "source_title": raw_title,
+        "order": order,
+        "unit": unit,
+        "slug": slug,
+        "body": body,
+    }
+
+
+def normalize_slug(value: str) -> str:
+    value = value.strip().lower()
+    value = value.replace("（", "-").replace("）", "-")
+    value = value.replace("(", "-").replace(")", "-")
+    value = value.replace("：", "-").replace(":", "-")
+    value = re.sub(r"[·•｜|/]+", "-", value)
+    value = re.sub(r"[\s_]+", "-", value)
+    value = re.sub(r"[^0-9a-z\u4e00-\u9fff-]+", "", value)
+    value = re.sub(r"-{2,}", "-", value).strip("-")
+    return value or "note"
+
+
 def process_notes_dir():
     if not os.path.isdir(NOTES_DIR):
         print(f"❌  找不到 '{NOTES_DIR}' 目录。")
@@ -118,6 +290,7 @@ def process_notes_dir():
 
     categories  = []
     total_notes = 0
+    used_slugs = set()
 
     for entry in sorted(os.listdir(NOTES_DIR)):
         entry_path = os.path.join(NOTES_DIR, entry)
@@ -130,8 +303,7 @@ def process_notes_dir():
         md_files = sorted(
             (f for f in os.listdir(entry_path)
              if f.endswith(".md") and not f.startswith(".")),
-            key=lambda f: [int(c) if c.isdigit() else c.lower()
-                           for c in re.split(r'(\d+)', f)],
+            key=natural_key,
         )
 
         for filename in md_files:
@@ -143,18 +315,35 @@ def process_notes_dir():
                 print(f"⚠️  跳过 {filepath}：{e}")
                 continue
 
-            title   = extract_title(content) or os.path.splitext(filename)[0]
+            meta    = resolve_note_metadata(entry, filename, content)
             preview = extract_preview(content)
             plain   = strip_markdown(content)
+            slug    = meta["slug"]
+            if slug in used_slugs:
+                suffix = 2
+                while f"{slug}-{suffix}" in used_slugs:
+                    suffix += 1
+                slug = f"{slug}-{suffix}"
+            used_slugs.add(slug)
 
             notes.append({
-                "title":    title,
+                "title":    meta["title"],
+                "source_title": meta["source_title"],
+                "order":    meta["order"],
+                "unit":     meta["unit"],
+                "slug":     slug,
                 "filename": filename,
                 "file":     f"{NOTES_DIR}/{entry}/{filename}",
                 "preview":  preview,
                 "_plain":   plain,
                 "_cat":     entry,
             })
+
+        notes.sort(key=lambda n: (
+            n["order"] is None,
+            n["order"] if n["order"] is not None else float("inf"),
+            natural_key(n["filename"]),
+        ))
 
         if notes:
             categories.append({"name": entry, "notes": notes})
@@ -182,6 +371,7 @@ def process_notes_dir():
             search_entries.append({
                 "title":    n["title"],
                 "category": n["_cat"],
+                "slug":     n["slug"],
                 "file":     n["file"],
                 "content":  n["_plain"],
             })

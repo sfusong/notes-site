@@ -180,6 +180,7 @@ function renderNoteList() {
     return `
     <div class="note-card ${state.currentNote?.file === n.file ? 'active' : ''} ${selectedIndex === index ? 'search-selected' : ''}"
          data-file="${escHtml(n.file)}"
+         data-slug="${escHtml(n.slug || '')}"
          data-category="${escHtml(n.category)}"
          data-title="${escHtml(n.title)}"
          data-index="${index}">
@@ -357,11 +358,25 @@ function openSelectedSearchResult() {
 }
 
 // ── Load & Render Note ────────────────────────────────────────
-async function loadNote({ file, category, title }) {
+function noteHash(note) {
+  return note?.slug ? `#note/${encodeURIComponent(note.slug)}` : `#${note.file}`;
+}
+
+function resolveHashNote(hash) {
+  const target = decodeURIComponent(hash.slice(1));
+  if (!target) return null;
+  if (target.startsWith('note/')) {
+    const slug = target.slice(5);
+    return state.allNotes.find(n => n.slug === slug) || null;
+  }
+  return state.allNotes.find(n => n.file === target) || null;
+}
+
+async function loadNote({ file, category, title, slug }) {
   const requestId = ++state.noteRequestId;
-  state.currentNote = { file, category, title };
+  state.currentNote = { file, category, title, slug };
   setReadingState(true);
-  history.replaceState(null, '', '#' + file);
+  history.replaceState(null, '', noteHash({ file, slug }));
   state.hasToc = false;
 
   document.querySelectorAll('.note-card').forEach(c =>
@@ -380,6 +395,7 @@ async function loadNote({ file, category, title }) {
   $('scrollTopBtn').classList.add('hidden');
 
   $('articleTitle').textContent = title;
+  document.title = `${title} · ${CONFIG.siteName}`;
   $('breadcrumb').innerHTML =
     `<span class="breadcrumb-item">${escHtml(category)}</span>
      <span class="breadcrumb-sep">›</span>
@@ -468,6 +484,7 @@ async function loadNote({ file, category, title }) {
 function showWelcome() {
   state.currentNote = null;
   setReadingState(false);
+  document.title = CONFIG.siteName;
   $('welcomeScreen').classList.remove('hidden');
   $('noteArticle').classList.add('hidden');
   closeToc();
@@ -563,17 +580,15 @@ function closeToc() {
 
 // ── URL Routing ───────────────────────────────────────────────
 function restoreFromHash() {
-  const file = decodeURIComponent(location.hash.slice(1));
-  if (!file) return;
-  const note = state.allNotes.find(n => n.file === file);
+  const note = resolveHashNote(location.hash);
   if (note) loadNote(note);
 }
 
 window.addEventListener('hashchange', () => {
-  const file = decodeURIComponent(location.hash.slice(1));
-  if (!file) { showWelcome(); return; }
-  const note = state.allNotes.find(n => n.file === file);
+  if (!location.hash) { showWelcome(); return; }
+  const note = resolveHashNote(location.hash);
   if (note && note.file !== state.currentNote?.file) loadNote(note);
+  if (!note) showWelcome();
 });
 
 // ── Theme ─────────────────────────────────────────────────────
@@ -768,6 +783,7 @@ function renderArticleNav(file) {
   nav.querySelectorAll('.article-nav-card[data-file]').forEach(card => {
     card.addEventListener('click', () => loadNote({
       file: card.dataset.file,
+      slug: card.dataset.slug,
       category: card.dataset.category,
       title: card.dataset.title,
     }));
@@ -782,6 +798,7 @@ function renderArticleNavCard(note, label) {
   return `
     <button class="article-nav-card"
             data-file="${escHtml(note.file)}"
+            data-slug="${escHtml(note.slug || '')}"
             data-category="${escHtml(note.category)}"
             data-title="${escHtml(note.title)}">
       <span class="article-nav-label">${label}</span>
