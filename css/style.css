@@ -1080,6 +1080,34 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   margin: 10px 10px 6px;
   flex-shrink: 0;
 }
+.search-scope {
+  margin: 0 10px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sb-hover) 86%, transparent 14%);
+  border: 1px solid var(--sb-border);
+  width: fit-content;
+}
+.search-scope-btn {
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: var(--sb-text);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  transition: color var(--motion-fast), background var(--motion-fast);
+}
+.search-scope-btn:hover {
+  color: var(--sb-text-hover);
+  background: var(--sb-hover);
+}
+.search-scope-btn.active {
+  color: var(--sb-text-active);
+  background: color-mix(in srgb, var(--accent-soft) 72%, white 28%);
+}
 .search-icon {
   position: absolute;
   left: 9px;
@@ -1121,11 +1149,12 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .search-clear:hover { color: var(--sb-text-hover); }
 .search-status {
   margin: 0 10px 8px;
-  min-height: 18px;
+  min-height: 26px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
   font-size: 10.5px;
   color: var(--sb-text);
   opacity: 0.72;
@@ -1331,7 +1360,37 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   -webkit-box-orient: vertical;
   line-height: 1.5;
 }
-.note-card mark { background: rgba(255,214,10,0.35); color: inherit; border-radius: 2px; padding: 0 2px; }
+.note-card.search-selected .note-card-preview,
+.note-card:not(.active) .note-card-preview {
+  text-wrap: pretty;
+}
+.note-card:has(.search-hit-badge) .note-card-preview {
+  -webkit-line-clamp: 4;
+}
+.note-card-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.note-card-meta-row .note-card-category { margin-bottom: 0; }
+.note-card mark {
+  background: var(--mark-bg);
+  color: var(--mark-text);
+  border-radius: 4px;
+  padding: 0 3px;
+}
+.search-hit-badge {
+  flex-shrink: 0;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent-mid) 72%, transparent 28%);
+}
 .app.reading-state .note-list-panel:not(.collapsed) {
   width: var(--list-w-reading);
   min-width: var(--list-w-reading);
@@ -1467,7 +1526,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .scroll-top-btn svg { width: 14px; height: 14px; }
 
 /* ── Focus Mode ──────────────────────────────────────────────── */
-.focus-mode .sidebar, .focus-mode .note-list-panel, .focus-mode .divider, .focus-mode .toc-fab, .focus-mode .scroll-top-btn, .focus-mode .toc-drawer { display: none !important; }
+.focus-mode .sidebar, .focus-mode .note-list-panel, .focus-mode .divider, .focus-mode .toc-fab, .focus-mode .scroll-top-btn, .focus-mode .toc-drawer, .focus-mode .search-match-nav { display: none !important; }
 .focus-mode .note-article { max-width: var(--article-max-w); }
 .focus-mode .focus-btn .focus-icon-enter { display: none; }
 .focus-mode .focus-btn .focus-icon-exit  { display: block; }
@@ -1564,6 +1623,66 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .density-btn.active {
   color: var(--accent);
   background: var(--accent-soft);
+}
+
+.search-match-nav {
+  position: fixed;
+  right: 24px;
+  bottom: 142px;
+  z-index: 29;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--glass-bg) 94%, transparent 6%);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(8px);
+  transition: transform var(--motion-base) var(--ease-soft), opacity var(--motion-fast), color var(--motion-fast), background var(--motion-fast), border-color var(--motion-fast);
+  will-change: transform, opacity;
+}
+
+.search-match-nav:not(.hidden) {
+  opacity: 1;
+}
+
+.search-match-nav:hover {
+  transform: translateY(-1px);
+}
+
+.search-match-btn {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--text-3);
+  transition: color var(--motion-fast), background var(--motion-fast), transform var(--motion-base) var(--ease-soft);
+}
+
+.search-match-btn:hover:not(:disabled) {
+  color: var(--text-2);
+  background: color-mix(in srgb, var(--accent-soft) 62%, transparent 38%);
+}
+
+.search-match-btn:disabled {
+  opacity: 0.42;
+  cursor: default;
+}
+
+.search-match-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.search-match-status {
+  min-width: 44px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-3);
 }
 
 /* ── Markdown Body ───────────────────────────────────────────── */
@@ -1713,6 +1832,11 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   border-radius: 4px;
   padding: 0 3px;
 }
+.markdown-body mark.search-target {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-mid) 84%, transparent 16%);
+  background: color-mix(in srgb, var(--mark-bg) 70%, var(--accent-soft) 30%);
+  scroll-margin-top: 112px;
+}
 
 .article-nav {
   display: grid;
@@ -1817,6 +1941,24 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   font-size: 11.5px;
   color: var(--text-3);
   line-height: 1.6;
+}
+.empty-action-btn {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-mid);
+  font-size: 11.5px;
+  font-weight: 600;
+  transition: transform var(--motion-base) var(--ease-soft), background var(--motion-fast), border-color var(--motion-fast);
+}
+.empty-action-btn:hover {
+  transform: translateY(-1px);
+  background: color-mix(in srgb, var(--accent-soft) 82%, white 18%);
 }
 .error-state { color: #EF4444; }
 .error-state small { display: block; margin-top: 6px; font-size: 11.5px; opacity: 0.7; }
@@ -2055,6 +2197,10 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   .scroll-top-btn {
     right: 22px;
     bottom: 124px;
+  }
+  .search-match-nav {
+    right: 16px;
+    bottom: 174px;
   }
   .toc-drawer {
     top: auto;

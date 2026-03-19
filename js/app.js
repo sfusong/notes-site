@@ -36,6 +36,7 @@ const state = {
   currentCategory: null,
   currentNote: null,
   searchQuery: '',
+  searchScope: 'context',
   searchSelection: -1,
   theme: 'claude',
   mobilePanel: 'sidebar',
@@ -45,6 +46,8 @@ const state = {
   hasToc: false,
   progressSaveTimer: null,
   readingDensity: 'standard',
+  searchMatches: [],
+  activeSearchMatchIndex: -1,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -143,18 +146,28 @@ function selectCategory(category) {
 
 // ── Note List ─────────────────────────────────────────────────
 function renderNoteList() {
-  const notes = filteredNotes();
-  $('panelTitle').textContent = state.currentCategory || '全部笔记';
-  $('noteCount').textContent  = `${notes.length} 篇`;
-  renderSearchStatus(notes);
+  const baseNotes = scopedNotes();
+  const results = state.searchQuery ? rankSearchResults(baseNotes) : baseNotes.map(note => ({ note, hitLabel: '', snippet: note.preview || '' }));
+  const notes = results.map(entry => entry.note);
+  $('panelTitle').textContent = state.searchQuery ? '搜索结果' : (state.currentCategory || '全部笔记');
+  $('noteCount').textContent  = state.searchQuery ? `${notes.length} 条` : `${notes.length} 篇`;
+  renderSearchStatus(notes, baseNotes.length);
 
   if (notes.length === 0) {
     state.searchSelection = -1;
+    const inContextScope = state.searchScope === 'context';
+    const canWidenScope = inContextScope && state.currentCategory;
     $('noteCards').innerHTML = `
       <div class="empty-state">
         <strong>${state.searchQuery ? '没有找到匹配的笔记' : '该分类暂无笔记'}</strong>
-        ${state.searchQuery ? '<small>试试换个关键词，或按 <kbd>Esc</kbd> 清空搜索。</small>' : ''}
+        ${state.searchQuery ? `
+          <small>当前在 <strong>${escHtml(searchScopeLabel())}</strong> 中搜索。试试换个关键词，或按 <kbd>Esc</kbd> 清空搜索。</small>
+          ${canWidenScope ? '<button class="empty-action-btn" id="expandSearchScopeBtn">改为搜索全部笔记</button>' : ''}
+        ` : ''}
       </div>`;
+    if (state.searchQuery && canWidenScope) {
+      $('expandSearchScopeBtn')?.addEventListener('click', () => setSearchScope('all'));
+    }
     return;
   }
 
@@ -163,8 +176,7 @@ function renderNoteList() {
     : -1;
   state.searchSelection = selectedIndex;
 
-  $('noteCards').innerHTML = notes.map((n, index) => {
-    const snippet = getSnippet(n);
+  $('noteCards').innerHTML = results.map(({ note: n, hitLabel, snippet }, index) => {
     return `
     <div class="note-card ${state.currentNote?.file === n.file ? 'active' : ''} ${selectedIndex === index ? 'search-selected' : ''}"
          data-file="${escHtml(n.file)}"
@@ -172,7 +184,10 @@ function renderNoteList() {
          data-title="${escHtml(n.title)}"
          data-index="${index}">
       <div class="note-card-title">${hilite(escHtml(n.title))}</div>
-      <div class="note-card-category">${hilite(escHtml(n.category))}</div>
+      <div class="note-card-meta-row">
+        <div class="note-card-category">${hilite(escHtml(n.category))}</div>
+        ${hitLabel ? `<span class="search-hit-badge">${escHtml(hitLabel)}</span>` : ''}
+      </div>
       ${snippet ? `<div class="note-card-preview">${hilite(escHtml(snippet))}</div>` : ''}
     </div>`;
   }).join('');
@@ -182,8 +197,19 @@ function renderNoteList() {
       if (!state.searchQuery) return;
       updateSearchSelection(Number(card.dataset.index));
     });
-    card.addEventListener('click', () => loadNote(card.dataset));
+    card.addEventListener('click', () => {
+      if (state.currentNote?.file === card.dataset.file) {
+        if (state.searchQuery) refreshOpenArticleSearchState('instant');
+        return;
+      }
+      loadNote(card.dataset);
+    });
   });
+}
+
+function scopedNotes() {
+  if (state.searchScope === 'all' || !state.currentCategory) return state.allNotes;
+  return state.allNotes.filter(n => n.category === state.currentCategory);
 }
 
 async function ensureSearchIndex() {
@@ -204,41 +230,35 @@ async function ensureSearchIndex() {
   state.searchIndexLoading = false;
 }
 
-function filteredNotes() {
-  let notes = state.currentCategory
-    ? state.allNotes.filter(n => n.category === state.currentCategory)
-    : state.allNotes;
-
-  if (!state.searchQuery) return notes;
-
+function rankSearchResults(notes) {
   const tokens = searchTokens(state.searchQuery);
-
   return notes
-    .map(note => ({ note, score: searchScore(note, tokens) }))
+    .map(note => searchScore(note, tokens))
     .filter(entry => entry.score > 0)
     .sort((a, b) => b.score - a.score || a.note.title.localeCompare(b.note.title, 'zh-CN'))
-    .map(entry => entry.note);
 }
 
-function getSnippet(note) {
-  if (!state.searchQuery) return note.preview || '';
+function filteredNotes() {
+  const notes = scopedNotes();
+  if (!state.searchQuery) return notes;
+  return rankSearchResults(notes).map(entry => entry.note);
+}
 
-  const tokens = searchTokens(state.searchQuery);
-  const fullText = state.searchIndex ? (state.searchIndex[note.file] || '') : '';
-
-  // Try full content first, fall back to preview
-  const source = fullText || note.preview || '';
+function getSnippetFromSource(source, tokens) {
   const lower = source.toLowerCase();
+  let matchedToken = tokens[0] || '';
   const idx = tokens.reduce((best, token) => {
     const current = lower.indexOf(token);
+    if (current !== -1 && (best === -1 || current < best)) matchedToken = token;
     return current !== -1 && (best === -1 || current < best) ? current : best;
   }, -1);
-  if (idx === -1) return note.preview || '';
+  if (idx === -1) return '';
 
-  const WINDOW = 65;
-  const start = Math.max(0, idx - WINDOW);
-  const tokenLength = tokens[0]?.length || 0;
-  const end   = Math.min(source.length, idx + tokenLength + WINDOW);
+  const WINDOW_BEFORE = 2;
+  const WINDOW_AFTER = 72;
+  const start = Math.max(0, idx - WINDOW_BEFORE);
+  const tokenLength = matchedToken.length || 0;
+  const end   = Math.min(source.length, idx + tokenLength + WINDOW_AFTER);
   let snippet = source.slice(start, end).replace(/\n/g, ' ');
   if (start > 0) snippet = '…' + snippet;
   if (end < source.length) snippet = snippet + '…';
@@ -258,25 +278,48 @@ function searchScore(note, tokens) {
 
   const title = note.title.toLowerCase();
   const category = note.category.toLowerCase();
-  const preview = (note.preview || '').toLowerCase();
+  const previewRaw = note.preview || '';
+  const preview = previewRaw.toLowerCase();
   const fullText = state.searchIndex ? (state.searchIndex[note.file] || '').toLowerCase() : '';
   const corpus = `${title}\n${category}\n${preview}\n${fullText}`;
 
   let score = 0;
+  let hitLabel = '';
   for (const token of tokens) {
     if (!corpus.includes(token)) return 0;
-    if (title.includes(token)) score += title.startsWith(token) ? 90 : 54;
-    if (category.includes(token)) score += 26;
-    if (preview.includes(token)) score += 20;
-    if (fullText.includes(token)) score += 14;
+    if (title.includes(token)) {
+      score += title.startsWith(token) ? 90 : 54;
+      hitLabel ||= '标题命中';
+    }
+    if (category.includes(token)) {
+      score += 26;
+      hitLabel ||= '分类命中';
+    }
+    if (preview.includes(token)) {
+      score += 20;
+      hitLabel ||= '摘要命中';
+    }
+    if (fullText.includes(token)) {
+      score += 14;
+      hitLabel ||= '正文命中';
+    }
   }
 
   if (tokens.length > 1) score += 12;
   if (title.includes(state.searchQuery.toLowerCase())) score += 36;
-  return score;
+
+  const source = (state.searchIndex ? (state.searchIndex[note.file] || '') : '') || previewRaw;
+  const snippet = source ? getSnippetFromSource(source, tokens) || previewRaw : previewRaw;
+
+  return { note, score, hitLabel, snippet };
 }
 
-function renderSearchStatus(notes) {
+function searchScopeLabel() {
+  if (state.searchScope === 'all' || !state.currentCategory) return '全部笔记';
+  return state.currentCategory;
+}
+
+function renderSearchStatus(notes, poolSize = notes.length) {
   const el = $('searchStatus');
   if (!state.searchQuery) {
     el.innerHTML = `<span>按 <kbd>/</kbd> 快速搜索</span>`;
@@ -284,12 +327,12 @@ function renderSearchStatus(notes) {
     return;
   }
 
-  const scope = state.currentCategory || '全部笔记';
+  const scope = searchScopeLabel();
   const loading = state.searchIndexLoading && state.searchIndex === null;
   el.classList.add('active');
   el.innerHTML = `
-    <span>在 <strong>${escHtml(scope)}</strong> 中找到 <strong>${notes.length}</strong> 篇</span>
-    <span class="search-status-hint">${loading ? '正在载入全文索引…' : '↑ ↓ 选择，Enter 打开，Esc 清空'}</span>`;
+    <span>在 <strong>${escHtml(scope)}</strong> 中找到 <strong>${notes.length}</strong> 条，已检索 <strong>${poolSize}</strong> 篇</span>
+    <span class="search-status-hint">${loading ? '正在载入全文索引…' : '结果已按相关度排序'}</span>`;
 }
 
 function updateSearchSelection(nextIndex) {
@@ -344,6 +387,7 @@ async function loadNote({ file, category, title }) {
   $('articleMeta').textContent = '加载中…';
   $('articleNav').classList.add('hidden');
   $('articleNav').innerHTML = '';
+  resetSearchMatches();
 
   body.innerHTML = `
     <div class="loading-placeholder">
@@ -407,7 +451,8 @@ async function loadNote({ file, category, title }) {
        <span>约 ${readMins} 分钟</span>`;
 
     renderArticleNav(file);
-    restoreNoteProgress(file);
+    const focusedSearchHit = refreshOpenArticleSearchState(state.searchQuery ? 'instant' : 'none');
+    if (!focusedSearchHit) restoreNoteProgress(file);
     updateReadingProgress();
   } catch (err) {
     if (requestId !== state.noteRequestId) return;
@@ -415,6 +460,7 @@ async function loadNote({ file, category, title }) {
     closeToc();
     $('tocFab').classList.add('hidden');
     $('scrollTopBtn').classList.add('hidden');
+    resetSearchMatches();
     body.innerHTML = `<div class="error-state">笔记加载失败：${err.message}</div>`;
   }
 }
@@ -428,6 +474,7 @@ function showWelcome() {
   $('tocToggle').classList.add('hidden');
   $('tocFab').classList.add('hidden');
   $('scrollTopBtn').classList.add('hidden');
+  resetSearchMatches();
   state.hasToc = false;
   updateReadingProgress();
 }
@@ -565,6 +612,19 @@ function setReadingDensity(density) {
     btn.classList.toggle('active', active);
     btn.setAttribute('aria-pressed', active ? 'true' : 'false');
   });
+}
+
+function setSearchScope(scope) {
+  const next = scope === 'all' ? 'all' : 'context';
+  state.searchScope = next;
+  document.querySelectorAll('.search-scope-btn').forEach(btn => {
+    const active = btn.dataset.scope === next;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  state.searchSelection = state.searchQuery ? 0 : -1;
+  refreshOpenArticleSearchState('none');
+  renderNoteList();
 }
 
 function initThemePicker() {
@@ -751,6 +811,11 @@ function setupEventListeners() {
     if (!btn) return;
     setReadingDensity(btn.dataset.density);
   });
+  $('searchScope').addEventListener('click', e => {
+    const btn = e.target.closest('.search-scope-btn');
+    if (!btn) return;
+    setSearchScope(btn.dataset.scope);
+  });
 
   // Search
   const input = $('searchInput');
@@ -760,11 +825,15 @@ function setupEventListeners() {
     state.searchQuery = input.value.trim();
     state.searchSelection = state.searchQuery ? 0 : -1;
     clear.style.display = state.searchQuery ? 'block' : 'none';
+    refreshOpenArticleSearchState('none');
     renderNoteList();
 
     if (state.searchQuery && state.searchIndex === null && !state.searchIndexLoading) {
       ensureSearchIndex().then(() => {
-        if (state.searchQuery) renderNoteList();
+        if (state.searchQuery) {
+          refreshOpenArticleSearchState('none');
+          renderNoteList();
+        }
       });
     }
   });
@@ -774,6 +843,7 @@ function setupEventListeners() {
     state.searchQuery = '';
     state.searchSelection = -1;
     clear.style.display = 'none';
+    refreshOpenArticleSearchState('none');
     renderNoteList();
     input.focus();
   });
@@ -827,6 +897,8 @@ function setupEventListeners() {
   $('scrollTopBtn').addEventListener('click', () => {
     $('noteContent').scrollTo({ top: 0, behavior: 'smooth' });
   });
+  $('searchMatchPrev').addEventListener('click', () => focusAdjacentSearchMatch(-1));
+  $('searchMatchNext').addEventListener('click', () => focusAdjacentSearchMatch(1));
 
   // Focus mode
   $('focusBtn').addEventListener('click', toggleFocusMode);
@@ -871,8 +943,168 @@ function escHtml(str) {
 
 function hilite(text) {
   if (!state.searchQuery) return text;
-  const escaped = state.searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+  const tokens = [...new Set(searchTokens(state.searchQuery))]
+    .sort((a, b) => b.length - a.length)
+    .map(token => token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+  if (!tokens.length) return text;
+  return text.replace(new RegExp(`(${tokens.join('|')})`, 'gi'), '<mark class="search-hit">$1</mark>');
+}
+
+function resetSearchMatches() {
+  state.searchMatches = [];
+  state.activeSearchMatchIndex = -1;
+  $('searchMatchNav').classList.add('hidden');
+  $('searchMatchStatus').textContent = '0 / 0';
+  $('searchMatchPrev').disabled = true;
+  $('searchMatchNext').disabled = true;
+}
+
+function setSearchMatches(matches) {
+  state.searchMatches = matches;
+  state.activeSearchMatchIndex = matches.length ? 0 : -1;
+  updateSearchMatchNav();
+}
+
+function updateSearchMatchNav() {
+  const total = state.searchMatches.length;
+  const nav = $('searchMatchNav');
+  const status = $('searchMatchStatus');
+  const prev = $('searchMatchPrev');
+  const next = $('searchMatchNext');
+
+  nav.classList.toggle('hidden', total <= 1);
+
+  if (!total) {
+    status.textContent = '0 / 0';
+    prev.disabled = true;
+    next.disabled = true;
+    return;
+  }
+
+  const index = Math.min(Math.max(state.activeSearchMatchIndex, 0), total - 1);
+  state.activeSearchMatchIndex = index;
+  status.textContent = `${index + 1} / ${total}`;
+  prev.disabled = total <= 1;
+  next.disabled = total <= 1;
+}
+
+function highlightSearchInContent(root) {
+  if (!state.searchQuery) return [];
+
+  const tokens = [...new Set(searchTokens(state.searchQuery))]
+    .sort((a, b) => b.length - a.length)
+    .map(token => token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+
+  if (!tokens.length) return [];
+
+  const regex = new RegExp(`(${tokens.join('|')})`, 'gi');
+  const testRegex = new RegExp(`(${tokens.join('|')})`, 'i');
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      if (!node.nodeValue?.trim()) return NodeFilter.FILTER_REJECT;
+      const parent = node.parentElement;
+      if (!parent) return NodeFilter.FILTER_REJECT;
+      if (parent.closest('pre, code, mark, .katex, .katex-display')) return NodeFilter.FILTER_REJECT;
+      return testRegex.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+
+  const textNodes = [];
+  let current;
+  while ((current = walker.nextNode())) textNodes.push(current);
+
+  const marks = [];
+
+  textNodes.forEach(node => {
+    const text = node.nodeValue;
+    if (!text) return;
+    regex.lastIndex = 0;
+    if (!regex.test(text)) return;
+
+    const frag = document.createDocumentFragment();
+    let lastIndex = 0;
+    text.replace(regex, (match, _group, offset) => {
+      if (offset > lastIndex) {
+        frag.appendChild(document.createTextNode(text.slice(lastIndex, offset)));
+      }
+      const mark = document.createElement('mark');
+      mark.className = 'search-hit';
+      mark.textContent = match;
+      marks.push(mark);
+      frag.appendChild(mark);
+      lastIndex = offset + match.length;
+      return match;
+    });
+
+    if (lastIndex < text.length) {
+      frag.appendChild(document.createTextNode(text.slice(lastIndex)));
+    }
+    node.parentNode.replaceChild(frag, node);
+  });
+
+  return marks;
+}
+
+function clearSearchHighlights(root) {
+  root.querySelectorAll('mark.search-hit').forEach(mark => {
+    mark.replaceWith(document.createTextNode(mark.textContent || ''));
+  });
+  root.normalize();
+}
+
+function focusSearchMatch(match, behavior = 'smooth') {
+  $('articleBody').querySelectorAll('mark.search-target').forEach(el => el.classList.remove('search-target'));
+  requestAnimationFrame(() => {
+    match.classList.add('search-target');
+    const container = $('noteContent');
+    const containerRect = container.getBoundingClientRect();
+    const matchRect = match.getBoundingClientRect();
+    const targetTop = container.scrollTop + (matchRect.top - containerRect.top) - container.clientHeight * 0.28;
+    container.scrollTo({ top: Math.max(0, targetTop), behavior });
+  });
+}
+
+function focusSearchMatchAt(index, mode = 'smooth') {
+  const total = state.searchMatches.length;
+  if (!total) return false;
+
+  const normalized = ((index % total) + total) % total;
+  state.activeSearchMatchIndex = normalized;
+  updateSearchMatchNav();
+
+  const match = state.searchMatches[normalized];
+  if (!match?.isConnected) return false;
+
+  $('articleBody').querySelectorAll('mark.search-target').forEach(el => el.classList.remove('search-target'));
+  if (mode === 'smooth' || mode === 'instant') {
+    focusSearchMatch(match, mode === 'instant' ? 'auto' : 'smooth');
+  } else {
+    match.classList.add('search-target');
+  }
+  return true;
+}
+
+function focusAdjacentSearchMatch(step) {
+  if (!state.searchMatches.length) return;
+  focusSearchMatchAt(state.activeSearchMatchIndex + step, 'smooth');
+}
+
+function refreshOpenArticleSearchState(mode = 'none') {
+  const article = $('noteArticle');
+  const body = $('articleBody');
+  if (article.classList.contains('hidden')) return false;
+
+  clearSearchHighlights(body);
+  resetSearchMatches();
+  if (!state.searchQuery) return false;
+
+  const matches = highlightSearchInContent(body);
+  if (!matches.length) return false;
+
+  setSearchMatches(matches);
+  focusSearchMatchAt(0, mode);
+  return true;
 }
 
 function sanitizeRenderedHtml(html) {
