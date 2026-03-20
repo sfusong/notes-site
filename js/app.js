@@ -9,6 +9,7 @@ const CONFIG = {
 
 const NOTE_PROGRESS_KEY = 'note-progress-v1';
 const READING_DENSITY_KEY = 'reading-density-v1';
+const LAST_OPEN_NOTE_KEY = 'last-open-note-v1';
 
 // ── Theme Definitions ─────────────────────────────────────────
 const THEMES = [
@@ -377,6 +378,7 @@ async function loadNote({ file, category, title, slug }) {
   state.currentNote = { file, category, title, slug };
   setReadingState(true);
   history.replaceState(null, '', noteHash({ file, slug }));
+  localStorage.setItem(LAST_OPEN_NOTE_KEY, JSON.stringify({ file, slug }));
   state.hasToc = false;
 
   document.querySelectorAll('.note-card').forEach(c =>
@@ -580,7 +582,18 @@ function closeToc() {
 
 // ── URL Routing ───────────────────────────────────────────────
 function restoreFromHash() {
-  const note = resolveHashNote(location.hash);
+  let note = resolveHashNote(location.hash);
+  if (!note && !location.hash) {
+    try {
+      const stored = JSON.parse(localStorage.getItem(LAST_OPEN_NOTE_KEY) || 'null');
+      if (stored?.slug) {
+        note = state.allNotes.find(n => n.slug === stored.slug) || null;
+      }
+      if (!note && stored?.file) {
+        note = state.allNotes.find(n => n.file === stored.file) || null;
+      }
+    } catch {}
+  }
   if (note) loadNote(note);
 }
 
