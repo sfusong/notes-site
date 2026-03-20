@@ -103,6 +103,7 @@
   --motion-fast: 140ms;
   --motion-base: 180ms;
   --motion-slow: 240ms;
+  --mobile-nav-h: 54px;
 }
 
 :root[data-density="compact"] {
@@ -891,11 +892,13 @@ html, body {
   color: var(--mark-text);
 }
 button { cursor: pointer; font-family: var(--font); border: none; background: none; }
+a, button, input, textarea, select { touch-action: manipulation; }
 
 /* ── Layout ─────────────────────────────────────────────────── */
 .app {
   display: flex;
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background: var(--page-glow), var(--page-wash);
 }
@@ -2136,7 +2139,13 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
 .mobile-nav { display: none; }
 
 @media (max-width: 860px) {
-  .app { position: relative; overflow: hidden; }
+  html, body { overscroll-behavior: none; }
+  .app {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+  }
   .divider { display: none; }
 
   .sidebar, .note-list-panel, .note-content {
@@ -2144,7 +2153,7 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
     inset: 0;
     width: 100% !important;
     min-width: 0 !important;
-    height: calc(100vh - 54px);
+    height: calc(100dvh - var(--mobile-nav-h) - env(safe-area-inset-bottom));
     display: none;
   }
   .sidebar.mobile-active,
@@ -2155,7 +2164,8 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
     display: flex;
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    height: 54px;
+    height: calc(var(--mobile-nav-h) + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
     background: var(--bg);
     border-top: 1px solid var(--border-soft);
     z-index: 100;
@@ -2191,22 +2201,22 @@ button { cursor: pointer; font-family: var(--font); border: none; background: no
   .focus-btn { right: 18px; top: 12px; }
   .toc-fab {
     right: 16px;
-    bottom: 72px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
     padding: 9px 13px;
   }
   .scroll-top-btn {
     right: 22px;
-    bottom: 124px;
+    bottom: calc(124px + env(safe-area-inset-bottom));
   }
   .search-match-nav {
     right: 16px;
-    bottom: 174px;
+    bottom: calc(174px + env(safe-area-inset-bottom));
   }
   .toc-drawer {
     top: auto;
     right: 12px;
     left: 12px;
-    bottom: 68px;
+    bottom: calc(68px + env(safe-area-inset-bottom));
     width: auto;
     max-height: min(52vh, 420px);
     border-radius: 18px;

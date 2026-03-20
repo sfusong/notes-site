@@ -1,0 +1,17 @@
+{
+  "name": "我的笔记",
+  "short_name": "我的笔记",
+  "description": "个人笔记与课程整理站点",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f9f7f4",
+  "theme_color": "#f9f7f4",
+  "icons": [
+    {
+      "src": "icons/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
