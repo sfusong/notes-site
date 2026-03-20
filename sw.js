@@ -6,6 +6,7 @@ const APP_SHELL_URLS = [
   './index.html',
   './css/style.css',
   './js/app.js',
+  './vendor/marked.min.js',
   './icons/app-icon.svg',
 ];
 
@@ -34,6 +35,7 @@ function isLocalContentRequest(url) {
     url.pathname.endsWith('/index.html') ||
     url.pathname.endsWith('/css/style.css') ||
     url.pathname.endsWith('/js/app.js') ||
+    url.pathname.endsWith('/vendor/marked.min.js') ||
     url.pathname.endsWith('/notes/index.json') ||
     url.pathname.endsWith('/notes/search-index.json') ||
     url.pathname.includes('/notes/') ||

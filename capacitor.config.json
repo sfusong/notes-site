@@ -1,0 +1,8 @@
+{
+  "appId": "io.github.sfusong.notes",
+  "appName": "我的笔记",
+  "webDir": "app-web",
+  "server": {
+    "androidScheme": "https"
+  }
+}

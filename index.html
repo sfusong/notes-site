@@ -7,7 +7,7 @@
   <title>我的笔记</title>
   <link rel="icon" href="icons/app-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+  <script src="vendor/marked.min.js"></script>
   <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css">
   <link id="hljs-dark"  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" disabled>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"
@@ -26,13 +26,23 @@
           <span class="logo-icon">✦</span>
           <span class="logo-text" id="siteTitle">我的笔记</span>
         </div>
-        <button class="icon-btn" id="themePickerBtn" title="切换主题" aria-label="切换主题">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="10"/>
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
-          </svg>
-        </button>
+        <div class="sidebar-actions">
+          <button class="icon-btn hidden" id="syncNotesBtn" title="同步最新笔记" aria-label="同步最新笔记">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M21 12a9 9 0 0 1-15.5 6.36L3 16"/>
+              <path d="M3 12A9 9 0 0 1 18.5 5.64L21 8"/>
+              <path d="M8 16H3v5"/>
+              <path d="M16 8h5V3"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="themePickerBtn" title="切换主题" aria-label="切换主题">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+            </svg>
+          </button>
+        </div>
       </div>
       <!-- Theme Picker Dropdown -->
       <div class="theme-picker" id="themePicker"></div>
@@ -92,7 +102,11 @@
       <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-icon">✦</div>
         <h2>选择一篇笔记开始阅读</h2>
-        <p>从左侧选择分类，点击笔记卡片即可阅读</p>
+        <p id="welcomeText">从左侧选择分类，点击笔记卡片即可阅读</p>
+        <div class="welcome-actions hidden" id="welcomeActions">
+          <button class="welcome-primary-btn" id="welcomeSyncBtn" type="button">同步我的笔记</button>
+          <small class="welcome-sync-note" id="welcomeSyncNote"></small>
+        </div>
       </div>
 
       <button class="focus-btn" id="focusBtn" title="专注阅读（ESC 退出）" aria-label="专注阅读">
@@ -195,7 +209,7 @@
 
   <script src="js/app.js"></script>
   <script>
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && !(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform())) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').catch(() => {});
       });

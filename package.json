@@ -1,0 +1,20 @@
+{
+  "name": "notes-site",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Personal notes site with optional Android shell via Capacitor.",
+  "scripts": {
+    "prepare:web": "sh ./scripts/prepare-capacitor-web.sh",
+    "cap:copy": "npm run prepare:web && npx cap copy",
+    "cap:sync": "npm run prepare:web && npx cap sync",
+    "android:open": "npx cap open android",
+    "android:build:debug": "npm run cap:sync && cd android && GRADLE_USER_HOME=/Users/shifusong/notes-site/.gradle-home ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.1.2"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/cli": "^6.1.2"
+  }
+}

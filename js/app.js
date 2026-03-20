@@ -4,12 +4,16 @@
 
 const CONFIG = {
   indexUrl: 'notes/index.json',
+  searchIndexUrl: 'notes/search-index.json',
+  remoteBaseUrl: 'https://sfusong.github.io/notes-site/',
   siteName: '我的笔记',
 };
 
 const NOTE_PROGRESS_KEY = 'note-progress-v1';
 const READING_DENSITY_KEY = 'reading-density-v1';
 const LAST_OPEN_NOTE_KEY = 'last-open-note-v1';
+const REMOTE_SYNC_META_KEY = 'remote-sync-meta-v1';
+const REMOTE_NOTES_CACHE = 'notes-remote-v1';
 
 // ── Theme Definitions ─────────────────────────────────────────
 const THEMES = [
@@ -49,6 +53,9 @@ const state = {
   readingDensity: 'standard',
   searchMatches: [],
   activeSearchMatchIndex: -1,
+  isNativeApp: false,
+  syncInProgress: false,
+  syncStatusText: '',
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -56,6 +63,8 @@ const $ = id => document.getElementById(id);
 
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
+  state.isNativeApp = isNativeApp();
+  document.documentElement.toggleAttribute('data-native-app', state.isNativeApp);
   // Resolve saved theme (remap old 'light'/'dark' values)
   const saved = localStorage.getItem('theme');
   const mapped = saved === 'light' ? 'claude' : saved === 'dark' ? 'linear' : saved;
@@ -70,29 +79,112 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadIndex();
 });
 
+function isNativeApp() {
+  try {
+    return !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform());
+  } catch {
+    return false;
+  }
+}
+
+function remoteUrl(path) {
+  return new URL(path, CONFIG.remoteBaseUrl).toString();
+}
+
+async function openRemoteNotesCache() {
+  if (!('caches' in window)) throw new Error('当前运行环境不支持离线缓存');
+  return caches.open(REMOTE_NOTES_CACHE);
+}
+
+async function readCachedResponse(path) {
+  const cache = await openRemoteNotesCache();
+  return cache.match(remoteUrl(path));
+}
+
+async function readCachedJson(path) {
+  const res = await readCachedResponse(path);
+  return res ? res.json() : null;
+}
+
+async function readCachedText(path) {
+  const res = await readCachedResponse(path);
+  return res ? res.text() : null;
+}
+
+async function cacheRemoteText(path, text, contentType) {
+  const cache = await openRemoteNotesCache();
+  await cache.put(remoteUrl(path), new Response(text, {
+    headers: { 'Content-Type': contentType },
+  }));
+}
+
+async function fetchRemoteText(path) {
+  const res = await fetch(remoteUrl(path), { cache: 'no-store' });
+  if (!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+  return res.text();
+}
+
+async function fetchRemoteJson(path) {
+  return JSON.parse(await fetchRemoteText(path));
+}
+
+function getRemoteSyncMeta() {
+  try {
+    return JSON.parse(localStorage.getItem(REMOTE_SYNC_META_KEY) || 'null');
+  } catch {
+    return null;
+  }
+}
+
+function setRemoteSyncMeta(meta) {
+  localStorage.setItem(REMOTE_SYNC_META_KEY, JSON.stringify(meta));
+}
+
+async function loadIndexData() {
+  if (state.isNativeApp) {
+    return readCachedJson(CONFIG.indexUrl);
+  }
+
+  const res = await fetch(CONFIG.indexUrl);
+  if (!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
+  return res.json();
+}
+
 // ── Load Notes Index ─────────────────────────────────────────
 async function loadIndex() {
   try {
-    const res = await fetch(CONFIG.indexUrl);
-    if (!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
-    const data = await res.json();
+    const data = await loadIndexData();
+    if (!data) {
+      applyIndexData({ categories: [] });
+      renderSidebar();
+      renderNoteList();
+      updateAppSyncUi();
+      showWelcome();
+      if (state.isNativeApp && isMobile()) switchMobilePanel('content');
+      return;
+    }
 
-    state.categories = data.categories || [];
-    state.allNotes   = state.categories.flatMap(cat =>
-      cat.notes.map(n => ({ ...n, category: cat.name }))
-    );
-
+    applyIndexData(data);
     renderSidebar();
     renderNoteList();
+    updateAppSyncUi();
     restoreFromHash();
   } catch (err) {
     $('categoryNav').innerHTML = `
       <div class="error-state">
         <strong>加载失败</strong>
         <small>${err.message}</small>
-        <p>请先运行 <code>python3 scripts/generate-index.py</code><br>生成索引文件，然后刷新页面</p>
+        <p>${state.isNativeApp ? '请先联网后点击“同步我的笔记”，然后重试' : '请先运行 <code>python3 scripts/generate-index.py</code><br>生成索引文件，然后刷新页面'}</p>
       </div>`;
+    updateAppSyncUi(err.message);
   }
+}
+
+function applyIndexData(data) {
+  state.categories = data.categories || [];
+  state.allNotes = state.categories.flatMap(cat =>
+    cat.notes.map(n => ({ ...n, category: cat.name }))
+  );
 }
 
 // ── Sidebar ───────────────────────────────────────────────────
@@ -127,22 +219,24 @@ function renderSidebar() {
 }
 
 function selectCategory(category) {
-  state.currentCategory = category;
+  syncCurrentCategory(category);
   state.currentNote = null;
   history.replaceState(null, '', '#');
   setReadingState(false);
   setNoteListCollapsed(false);
 
-  // Update active class
-  document.querySelectorAll('.cat-item').forEach(el => {
-    const elCat = el.dataset.cat || null;
-    el.classList.toggle('active', elCat === category);
-  });
-
   renderNoteList();
   showWelcome();
 
   if (isMobile()) switchMobilePanel('list');
+}
+
+function syncCurrentCategory(category) {
+  state.currentCategory = category;
+  document.querySelectorAll('.cat-item').forEach(el => {
+    const elCat = el.dataset.cat || null;
+    el.classList.toggle('active', elCat === category);
+  });
 }
 
 // ── Note List ─────────────────────────────────────────────────
@@ -158,16 +252,23 @@ function renderNoteList() {
     state.searchSelection = -1;
     const inContextScope = state.searchScope === 'context';
     const canWidenScope = inContextScope && state.currentCategory;
+    const needsFirstSync = state.isNativeApp && !state.allNotes.length && !state.searchQuery;
     $('noteCards').innerHTML = `
       <div class="empty-state">
-        <strong>${state.searchQuery ? '没有找到匹配的笔记' : '该分类暂无笔记'}</strong>
+        <strong>${state.searchQuery ? '没有找到匹配的笔记' : (needsFirstSync ? '还没有本地笔记' : '该分类暂无笔记')}</strong>
         ${state.searchQuery ? `
           <small>当前在 <strong>${escHtml(searchScopeLabel())}</strong> 中搜索。试试换个关键词，或按 <kbd>Esc</kbd> 清空搜索。</small>
           ${canWidenScope ? '<button class="empty-action-btn" id="expandSearchScopeBtn">改为搜索全部笔记</button>' : ''}
-        ` : ''}
+        ` : (needsFirstSync ? `
+          <small>这是 Android 空壳模式。先同步一次线上笔记，后续就会优先读取本地缓存。</small>
+          <button class="empty-action-btn" id="syncEmptyNotesBtn">同步我的笔记</button>
+        ` : '')}
       </div>`;
     if (state.searchQuery && canWidenScope) {
       $('expandSearchScopeBtn')?.addEventListener('click', () => setSearchScope('all'));
+    }
+    if (needsFirstSync) {
+      $('syncEmptyNotesBtn')?.addEventListener('click', () => syncRemoteNotes());
     }
     return;
   }
@@ -210,7 +311,8 @@ function renderNoteList() {
 }
 
 function scopedNotes() {
-  if (state.searchScope === 'all' || !state.currentCategory) return state.allNotes;
+  if (!state.currentCategory) return state.allNotes;
+  if (state.searchQuery && state.searchScope === 'all') return state.allNotes;
   return state.allNotes.filter(n => n.category === state.currentCategory);
 }
 
@@ -218,9 +320,14 @@ async function ensureSearchIndex() {
   if (state.searchIndex !== null || state.searchIndexLoading) return;
   state.searchIndexLoading = true;
   try {
-    const res = await fetch('notes/search-index.json');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const data = state.isNativeApp
+      ? await readCachedJson(CONFIG.searchIndexUrl)
+      : await fetch(CONFIG.searchIndexUrl).then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.json();
+        });
+
+    if (!data) throw new Error('未找到已同步的全文索引');
     // Map file → content for quick lookup
     state.searchIndex = {};
     for (const entry of data) {
@@ -324,7 +431,17 @@ function searchScopeLabel() {
 function renderSearchStatus(notes, poolSize = notes.length) {
   const el = $('searchStatus');
   if (!state.searchQuery) {
-    el.innerHTML = `<span>按 <kbd>/</kbd> 快速搜索</span>`;
+    if (state.isNativeApp) {
+      const meta = getRemoteSyncMeta();
+      const hint = state.syncInProgress
+        ? state.syncStatusText || '正在同步…'
+        : meta?.updatedAt
+          ? `上次同步：${new Date(meta.updatedAt).toLocaleString('zh-CN')}`
+          : '首次使用请先同步笔记';
+      el.innerHTML = `<span>${escHtml(hint)}</span>`;
+    } else {
+      el.innerHTML = `<span>按 <kbd>/</kbd> 快速搜索</span>`;
+    }
     el.classList.remove('active');
     return;
   }
@@ -376,6 +493,9 @@ function resolveHashNote(hash) {
 async function loadNote({ file, category, title, slug }) {
   const requestId = ++state.noteRequestId;
   state.currentNote = { file, category, title, slug };
+  if (!state.searchQuery && category) {
+    syncCurrentCategory(category);
+  }
   setReadingState(true);
   history.replaceState(null, '', noteHash({ file, slug }));
   localStorage.setItem(LAST_OPEN_NOTE_KEY, JSON.stringify({ file, slug }));
@@ -419,9 +539,14 @@ async function loadNote({ file, category, title, slug }) {
   if (isMobile()) switchMobilePanel('content');
 
   try {
-    const res = await fetch(file);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const md = await res.text();
+    const md = state.isNativeApp
+      ? await readCachedText(file)
+      : await fetch(file).then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.text();
+        });
+
+    if (!md) throw new Error(state.isNativeApp ? '这篇笔记还没有同步到本地，请先同步最新笔记' : '笔记内容为空');
     if (requestId !== state.noteRequestId) return;
 
     body.innerHTML = sanitizeRenderedHtml(marked.parse(md));
@@ -496,6 +621,138 @@ function showWelcome() {
   resetSearchMatches();
   state.hasToc = false;
   updateReadingProgress();
+  updateWelcomeState();
+  if (state.isNativeApp && !state.allNotes.length && isMobile()) {
+    switchMobilePanel('content');
+  }
+}
+
+function updateWelcomeState() {
+  const titleEl = $('welcomeScreen').querySelector('h2');
+  const textEl = $('welcomeText');
+  const actionsEl = $('welcomeActions');
+  const noteEl = $('welcomeSyncNote');
+  const buttonEl = $('welcomeSyncBtn');
+  const meta = getRemoteSyncMeta();
+
+  if (!state.isNativeApp) {
+    titleEl.textContent = '选择一篇笔记开始阅读';
+    textEl.textContent = '从左侧选择分类，点击笔记卡片即可阅读';
+    actionsEl.classList.add('hidden');
+    return;
+  }
+
+  actionsEl.classList.remove('hidden');
+  buttonEl.disabled = state.syncInProgress;
+  buttonEl.textContent = state.syncInProgress ? '同步中…' : (state.allNotes.length ? '同步最新笔记' : '同步我的笔记');
+
+  if (!state.allNotes.length) {
+    titleEl.textContent = '先把线上笔记同步到本地';
+    textEl.textContent = '这个 Android 版默认不内置书库。首次同步后，你的笔记会缓存到本地，之后离线也能阅读。';
+  } else {
+    titleEl.textContent = '选择一篇笔记开始阅读';
+    textEl.textContent = '本地书库已就绪。你可以继续阅读，也可以随时手动同步线上最新笔记。';
+  }
+
+  if (state.syncStatusText) {
+    noteEl.textContent = state.syncStatusText;
+  } else if (meta?.updatedAt) {
+    noteEl.textContent = `上次同步：${new Date(meta.updatedAt).toLocaleString('zh-CN')} · ${meta.noteCount || state.allNotes.length} 篇`;
+  } else {
+    noteEl.textContent = '首次同步需要联网，完成后会优先读取本地缓存。';
+  }
+}
+
+function updateAppSyncUi(message = '') {
+  const syncBtn = $('syncNotesBtn');
+  const meta = getRemoteSyncMeta();
+  const label = state.syncInProgress ? '同步中…' : '同步最新笔记';
+
+  syncBtn.classList.toggle('hidden', !state.isNativeApp);
+  syncBtn.disabled = state.syncInProgress;
+  syncBtn.setAttribute('title', label);
+  syncBtn.setAttribute('aria-label', label);
+  syncBtn.classList.toggle('is-syncing', state.syncInProgress);
+
+  if (message) {
+    state.syncStatusText = message;
+  }
+
+  updateWelcomeState();
+  renderSearchStatus(filteredNotes(), scopedNotes().length);
+}
+
+async function syncRemoteNotes() {
+  if (state.syncInProgress) return;
+
+  state.syncInProgress = true;
+  updateAppSyncUi('正在获取线上索引…');
+
+  try {
+    const indexData = await fetchRemoteJson(CONFIG.indexUrl);
+    const searchData = await fetchRemoteJson(CONFIG.searchIndexUrl);
+    const noteFiles = [...new Set(
+      (indexData.categories || []).flatMap(cat => (cat.notes || []).map(note => note.file)).filter(Boolean)
+    )];
+
+    await cacheRemoteText(CONFIG.indexUrl, JSON.stringify(indexData), 'application/json; charset=utf-8');
+    await cacheRemoteText(CONFIG.searchIndexUrl, JSON.stringify(searchData), 'application/json; charset=utf-8');
+
+    let completed = 0;
+    const total = noteFiles.length;
+    const concurrency = 4;
+    let cursor = 0;
+
+    const worker = async () => {
+      while (cursor < noteFiles.length) {
+        const file = noteFiles[cursor++];
+        const text = await fetchRemoteText(file);
+        await cacheRemoteText(file, text, 'text/markdown; charset=utf-8');
+        completed += 1;
+        updateAppSyncUi(`正在同步笔记… ${completed}/${total}`);
+      }
+    };
+
+    await Promise.all(Array.from({ length: Math.min(concurrency, total || 1) }, () => worker()));
+
+    setRemoteSyncMeta({
+      updatedAt: Date.now(),
+      noteCount: total,
+    });
+
+    state.searchIndex = Object.fromEntries(searchData.map(entry => [entry.file, entry.content]));
+    applyIndexData(indexData);
+    renderSidebar();
+    renderNoteList();
+
+    if (state.currentNote) {
+      const refreshed = state.allNotes.find(note =>
+        note.file === state.currentNote.file || (state.currentNote.slug && note.slug === state.currentNote.slug)
+      );
+      if (refreshed) {
+        await loadNote(refreshed);
+      } else {
+        if (isMobile()) switchMobilePanel('list');
+        showWelcome();
+      }
+    } else {
+      restoreFromHash();
+      if (!$('noteArticle').classList.contains('hidden')) {
+        // restoreFromHash may have opened the last note; nothing else to do.
+      } else {
+        if (isMobile()) switchMobilePanel('list');
+        showWelcome();
+      }
+    }
+
+    state.syncStatusText = `同步完成：已更新 ${total} 篇笔记`;
+  } catch (err) {
+    state.syncStatusText = `同步失败：${err.message}`;
+    if (!state.allNotes.length) showWelcome();
+  } finally {
+    state.syncInProgress = false;
+    updateAppSyncUi();
+  }
 }
 
 // ── Table of Contents ────────────────────────────────────────
@@ -594,7 +851,15 @@ function restoreFromHash() {
       }
     } catch {}
   }
-  if (note) loadNote(note);
+  if (note) {
+    loadNote(note);
+    return;
+  }
+
+  if (state.isNativeApp && state.allNotes.length) {
+    if (isMobile()) switchMobilePanel('list');
+    showWelcome();
+  }
 }
 
 window.addEventListener('hashchange', () => {
@@ -821,12 +1086,17 @@ function renderArticleNavCard(note, label) {
 }
 
 function updateTocEntryPoints() {
-  const showFab = state.hasToc && !$('noteArticle').classList.contains('hidden') && $('noteContent').scrollTop > 220;
+  const showFab = state.hasToc
+    && !$('noteArticle').classList.contains('hidden')
+    && $('noteContent').scrollTop > 220
+    && state.searchMatches.length <= 1;
   $('tocFab').classList.toggle('hidden', !showFab);
 }
 
 function updateScrollTopEntry() {
-  const show = !$('noteArticle').classList.contains('hidden') && $('noteContent').scrollTop > window.innerHeight * 1.2;
+  const show = !$('noteArticle').classList.contains('hidden')
+    && $('noteContent').scrollTop > window.innerHeight * 1.2
+    && state.searchMatches.length <= 1;
   $('scrollTopBtn').classList.toggle('hidden', !show);
 }
 
@@ -834,6 +1104,8 @@ function updateScrollTopEntry() {
 function setupEventListeners() {
   // Theme picker
   $('themePickerBtn').addEventListener('click', e => { e.stopPropagation(); togglePicker(); });
+  $('syncNotesBtn').addEventListener('click', () => syncRemoteNotes());
+  $('welcomeSyncBtn').addEventListener('click', () => syncRemoteNotes());
   document.addEventListener('click', () => closePicker());
   $('themePicker').addEventListener('click', e => e.stopPropagation());
   $('densityControl').addEventListener('click', e => {
