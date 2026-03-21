@@ -56,6 +56,8 @@ const state = {
   isNativeApp: false,
   syncInProgress: false,
   syncStatusText: '',
+  mobileTransitionTimer: null,
+  toastTimer: null,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -72,6 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   setReadingDensity(localStorage.getItem(READING_DENSITY_KEY) || 'standard');
   initThemePicker();
   setupEventListeners();
+  if (isMobile()) switchMobilePanel(state.mobilePanel);
 
   // Configure marked
   marked.setOptions({ gfm: true, breaks: true });
@@ -746,8 +749,10 @@ async function syncRemoteNotes() {
     }
 
     state.syncStatusText = `同步完成：已更新 ${total} 篇笔记`;
+    showToast(state.syncStatusText);
   } catch (err) {
     state.syncStatusText = `同步失败：${err.message}`;
+    showToast(state.syncStatusText, 2800);
     if (!state.allNotes.length) showWelcome();
   } finally {
     state.syncInProgress = false;
@@ -956,12 +961,32 @@ function closePicker()  { $('themePicker').classList.remove('open'); }
 function isMobile() { return window.innerWidth <= 860; }
 
 function switchMobilePanel(panel) {
+  const app = document.querySelector('.app');
+  const previous = state.mobilePanel;
   state.mobilePanel = panel;
   const sidebar  = $('sidebar');
   const listPanel = $('noteListPanel');
   const content  = $('noteContent');
+  const panels = { sidebar, list: listPanel, content };
 
-  [sidebar, listPanel, content].forEach(el => el.classList.remove('mobile-active'));
+  clearTimeout(state.mobileTransitionTimer);
+  [sidebar, listPanel, content].forEach(el => el.classList.remove('mobile-active', 'mobile-before'));
+
+  if (isMobile()) {
+    const order = ['sidebar', 'list', 'content'];
+    const toIndex = order.indexOf(panel);
+    Object.entries(panels).forEach(([name, el]) => {
+      if (name === panel) return;
+      if (order.indexOf(name) < toIndex) el.classList.add('mobile-before');
+    });
+
+    if (previous !== panel) {
+      app.dataset.mobileTransition = 'true';
+      state.mobileTransitionTimer = setTimeout(() => {
+        delete app.dataset.mobileTransition;
+      }, 260);
+    }
+  }
 
   if (panel === 'sidebar') sidebar.classList.add('mobile-active');
   if (panel === 'list')    listPanel.classList.add('mobile-active');
@@ -1289,6 +1314,26 @@ function updateSearchMatchNav() {
   status.textContent = `${index + 1} / ${total}`;
   prev.disabled = total <= 1;
   next.disabled = total <= 1;
+  updateTocEntryPoints();
+  updateScrollTopEntry();
+}
+
+function showToast(message, duration = 2200) {
+  const toast = $('toast');
+  if (!toast || !message) return;
+
+  clearTimeout(state.toastTimer);
+  toast.textContent = message;
+  toast.classList.remove('hidden');
+
+  requestAnimationFrame(() => {
+    toast.classList.add('visible');
+  });
+
+  state.toastTimer = setTimeout(() => {
+    toast.classList.remove('visible');
+    setTimeout(() => toast.classList.add('hidden'), 220);
+  }, duration);
 }
 
 function highlightSearchInContent(root) {

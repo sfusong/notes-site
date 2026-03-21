@@ -1517,11 +1517,22 @@ a, button, input, textarea, select { touch-action: manipulation; }
 .focus-btn svg { width: 14px; height: 14px; }
 .focus-btn .focus-icon-exit { display: none; }
 .note-content:has(#noteArticle:not(.hidden)) .focus-btn { display: flex; }
-.toc-fab {
+.context-tools {
   position: fixed;
   right: 24px;
   bottom: 24px;
   z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+.context-tools > * {
+  pointer-events: auto;
+}
+.toc-fab {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1538,10 +1549,7 @@ a, button, input, textarea, select { touch-action: manipulation; }
 .toc-fab:hover { color: var(--accent); transform: translateY(-1px); }
 .toc-fab svg { width: 14px; height: 14px; }
 .scroll-top-btn {
-  position: fixed;
-  right: 32px;
-  bottom: 82px;
-  z-index: 28;
+  position: relative;
   width: 38px;
   height: 38px;
   display: inline-flex;
@@ -1667,10 +1675,7 @@ a, button, input, textarea, select { touch-action: manipulation; }
 }
 
 .search-match-nav {
-  position: fixed;
-  right: 24px;
-  bottom: 142px;
-  z-index: 29;
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1724,6 +1729,31 @@ a, button, input, textarea, select { touch-action: manipulation; }
   font-size: 11px;
   font-weight: 600;
   color: var(--text-3);
+}
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  z-index: 120;
+  transform: translateX(-50%) translateY(10px);
+  min-width: min(320px, calc(100vw - 32px));
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 11px 14px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--drawer-bg) 94%, transparent 6%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-fast), transform var(--motion-base) var(--ease-soft);
+}
+.toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* ── Markdown Body ───────────────────────────────────────────── */
@@ -2193,6 +2223,11 @@ a, button, input, textarea, select { touch-action: manipulation; }
     height: 100vh;
     height: 100dvh;
   }
+  .app[data-mobile-transition='true'] .sidebar,
+  .app[data-mobile-transition='true'] .note-list-panel,
+  .app[data-mobile-transition='true'] .note-content {
+    transition: opacity 0.2s var(--ease-soft), transform 0.24s var(--ease-soft);
+  }
   .divider { display: none; }
 
   .sidebar, .note-list-panel, .note-content {
@@ -2201,11 +2236,27 @@ a, button, input, textarea, select { touch-action: manipulation; }
     width: 100% !important;
     min-width: 0 !important;
     height: calc(100dvh - var(--mobile-nav-h) - env(safe-area-inset-bottom));
-    display: none;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateX(12px);
   }
   .sidebar.mobile-active,
   .note-list-panel.mobile-active,
-  .note-content.mobile-active { display: flex; }
+  .note-content.mobile-active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  .sidebar.mobile-before {
+    transform: translateX(-12px);
+  }
+  .note-list-panel.mobile-before,
+  .note-content.mobile-before {
+    transform: translateX(12px);
+  }
 
   .mobile-nav {
     display: flex;
@@ -2250,19 +2301,12 @@ a, button, input, textarea, select { touch-action: manipulation; }
   .density-btn { min-width: 28px; padding: 5px 8px; }
   .article-nav { grid-template-columns: 1fr; }
   .focus-btn { right: 18px; top: calc(12px + env(safe-area-inset-top)); }
-  .toc-fab {
+  .context-tools {
     right: 16px;
     bottom: calc(72px + env(safe-area-inset-bottom));
-    padding: 9px 13px;
+    gap: 8px;
   }
-  .scroll-top-btn {
-    right: 22px;
-    bottom: calc(124px + env(safe-area-inset-bottom));
-  }
-  .search-match-nav {
-    right: 16px;
-    bottom: calc(72px + env(safe-area-inset-bottom));
-  }
+  .toc-fab { padding: 9px 13px; }
   .toc-drawer {
     top: auto;
     right: 12px;
@@ -2272,6 +2316,11 @@ a, button, input, textarea, select { touch-action: manipulation; }
     max-height: min(52vh, 420px);
     border-radius: 18px;
     transform: translateY(18px);
+  }
+  .toast {
+    bottom: calc(78px + env(safe-area-inset-bottom));
+    min-width: min(340px, calc(100vw - 24px));
+    max-width: min(420px, calc(100vw - 24px));
   }
 }
 

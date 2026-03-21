@@ -117,29 +117,31 @@
           <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
         </svg>
       </button>
-      <button class="toc-fab hidden" id="tocFab" aria-expanded="false" title="打开目录">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/>
-        </svg>
-        目录
-      </button>
-      <button class="scroll-top-btn hidden" id="scrollTopBtn" title="回到顶部" aria-label="回到顶部">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <polyline points="18 15 12 9 6 15"/>
-        </svg>
-      </button>
-      <div class="search-match-nav hidden" id="searchMatchNav" aria-label="搜索命中导航">
-        <button class="search-match-btn" id="searchMatchPrev" type="button" aria-label="上一个命中" title="上一个命中">
+      <div class="context-tools" id="contextTools" aria-live="polite">
+        <button class="scroll-top-btn hidden" id="scrollTopBtn" title="回到顶部" aria-label="回到顶部">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polyline points="15 18 9 12 15 6"/>
+            <polyline points="18 15 12 9 6 15"/>
           </svg>
         </button>
-        <span class="search-match-status" id="searchMatchStatus">1 / 1</span>
-        <button class="search-match-btn" id="searchMatchNext" type="button" aria-label="下一个命中" title="下一个命中">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <polyline points="9 18 15 12 9 6"/>
+        <button class="toc-fab hidden" id="tocFab" aria-expanded="false" title="打开目录">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/>
           </svg>
+          目录
         </button>
+        <div class="search-match-nav hidden" id="searchMatchNav" aria-label="搜索命中导航">
+          <button class="search-match-btn" id="searchMatchPrev" type="button" aria-label="上一个命中" title="上一个命中">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+          <span class="search-match-status" id="searchMatchStatus">1 / 1</span>
+          <button class="search-match-btn" id="searchMatchNext" type="button" aria-label="下一个命中" title="下一个命中">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <article class="note-article hidden" id="noteArticle">
@@ -206,6 +208,8 @@
       阅读
     </button>
   </nav>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script src="js/app.js"></script>
   <script>
