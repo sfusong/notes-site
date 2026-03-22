@@ -1399,6 +1399,12 @@ function setupEventListeners() {
   $('tocToggle').addEventListener('click', toggleToc);
   $('tocFab').addEventListener('click', toggleToc);
   $('tocCloseBtn').addEventListener('click', closeToc);
+  document.addEventListener('click', e => {
+    if (!isMobile()) return;
+    if (!$('tocPanel').classList.contains('open')) return;
+    if (e.target.closest('#tocPanel, #tocFab, #tocToggle')) return;
+    closeToc();
+  });
   $('scrollTopBtn').addEventListener('click', () => {
     $('noteContent').scrollTo({ top: 0, behavior: 'smooth' });
   });
