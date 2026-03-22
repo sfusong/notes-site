@@ -14,6 +14,14 @@ const READING_DENSITY_KEY = 'reading-density-v1';
 const LAST_OPEN_NOTE_KEY = 'last-open-note-v1';
 const REMOTE_SYNC_META_KEY = 'remote-sync-meta-v1';
 const REMOTE_NOTES_CACHE = 'notes-remote-v1';
+const OPTIONAL_ASSETS = {
+  hljsLightCss: 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css',
+  hljsDarkCss: 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css',
+  hljsScript: 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js',
+  katexCss: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',
+  katexScript: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js',
+  katexAutoRenderScript: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js',
+};
 
 // ── Theme Definitions ─────────────────────────────────────────
 const THEMES = [
@@ -61,28 +69,58 @@ const state = {
   lastScrollTop: 0,
   navHidden: false,
   nativeBackCleanup: null,
+  optionalAssetsBooted: false,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
 const $ = id => document.getElementById(id);
 
+function renderBootError(error) {
+  const message = error instanceof Error ? error.message : String(error || '未知错误');
+  document.title = CONFIG.siteName;
+  $('noteArticle')?.classList.add('hidden');
+  $('welcomeScreen')?.classList.remove('hidden');
+  $('welcomeText').textContent = `应用启动失败：${message}`;
+  $('categoryNav').innerHTML = `
+    <div class="error-state">
+      <strong>启动失败</strong>
+      <small>${escHtml(message)}</small>
+      <p>请先回到上一版 APK，或把这个错误发给我，我会继续修。</p>
+    </div>`;
+  if (isMobile()) switchMobilePanel('content');
+}
+
 // ── Init ─────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  state.isNativeApp = isNativeApp();
-  document.documentElement.toggleAttribute('data-native-app', state.isNativeApp);
-  // Resolve saved theme (remap old 'light'/'dark' values)
-  const saved = localStorage.getItem('theme');
-  const mapped = saved === 'light' ? 'claude' : saved === 'dark' ? 'linear' : saved;
-  setTheme(mapped || 'claude', false);  // false = no transition on init
-  setReadingDensity(localStorage.getItem(READING_DENSITY_KEY) || 'standard');
-  initThemePicker();
-  setupEventListeners();
-  if (isMobile()) switchMobilePanel(state.mobilePanel);
+  try {
+    state.isNativeApp = isNativeApp();
+    if (state.isNativeApp) {
+      document.documentElement.setAttribute('data-native-app', '');
+    } else {
+      document.documentElement.removeAttribute('data-native-app');
+    }
 
-  // Configure marked
-  marked.setOptions({ gfm: true, breaks: true });
+    // Fail open on mobile: show a panel before any heavier init runs.
+    if (isMobile()) switchMobilePanel('sidebar');
 
-  await loadIndex();
+    // Resolve saved theme (remap old 'light'/'dark' values)
+    const saved = localStorage.getItem('theme');
+    const mapped = saved === 'light' ? 'claude' : saved === 'dark' ? 'linear' : saved;
+    setTheme(mapped || 'claude', false);
+    setReadingDensity(localStorage.getItem(READING_DENSITY_KEY) || 'standard');
+    initThemePicker();
+    setupEventListeners();
+
+    if (window.marked?.setOptions) {
+      marked.setOptions({ gfm: true, breaks: true });
+    }
+
+    await loadIndex();
+    bootOptionalAssets();
+  } catch (error) {
+    console.error('App boot failed', error);
+    renderBootError(error);
+  }
 });
 
 function isNativeApp() {
@@ -170,6 +208,114 @@ async function loadIndexData() {
   const res = await fetch(CONFIG.indexUrl);
   if (!res.ok) throw new Error(`HTTP ${res.status} — ${res.statusText}`);
   return res.json();
+}
+
+function ensureStylesheet(id, href, disabled = false) {
+  let link = document.getElementById(id);
+  if (link) {
+    link.disabled = disabled;
+    return link;
+  }
+
+  link = document.createElement('link');
+  link.id = id;
+  link.rel = 'stylesheet';
+  link.href = href;
+  link.disabled = disabled;
+  document.head.appendChild(link);
+  return link;
+}
+
+function loadScriptOnce(id, src, onErrorFlag) {
+  const existing = document.getElementById(id);
+  if (existing?.dataset.loaded === 'true') return Promise.resolve();
+  if (existing?.dataset.loading === 'true') {
+    return new Promise((resolve, reject) => {
+      existing.addEventListener('load', () => resolve(), { once: true });
+      existing.addEventListener('error', () => reject(new Error(`Failed to load ${src}`)), { once: true });
+    });
+  }
+
+  const script = existing || document.createElement('script');
+  script.id = id;
+  script.src = src;
+  script.async = true;
+  script.dataset.loading = 'true';
+
+  return new Promise((resolve, reject) => {
+    script.addEventListener('load', () => {
+      script.dataset.loading = 'false';
+      script.dataset.loaded = 'true';
+      resolve();
+    }, { once: true });
+    script.addEventListener('error', () => {
+      script.dataset.loading = 'false';
+      if (onErrorFlag) window[onErrorFlag] = true;
+      reject(new Error(`Failed to load ${src}`));
+    }, { once: true });
+    if (!existing) document.head.appendChild(script);
+  });
+}
+
+function enhanceArticleBody(body) {
+  if (!body) return;
+
+  if (typeof hljs !== 'undefined') {
+    body.querySelectorAll('pre code:not(.hljs)').forEach(el => {
+      hljs.highlightElement(el);
+    });
+  }
+
+  if (!window._katexFailed && typeof renderMathInElement !== 'undefined') {
+    renderMathInElement(body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true  },
+        { left: '$',  right: '$',  display: false },
+        { left: '\\[', right: '\\]', display: true  },
+        { left: '\\(', right: '\\)', display: false },
+      ],
+      throwOnError: false,
+    });
+  }
+}
+
+function refreshCurrentArticleEnhancements() {
+  const article = $('noteArticle');
+  if (!article || article.classList.contains('hidden')) return;
+  enhanceArticleBody($('articleBody'));
+}
+
+function bootOptionalAssets() {
+  if (state.optionalAssetsBooted) return;
+  state.optionalAssetsBooted = true;
+
+  const boot = async () => {
+    try {
+      const currentTheme = THEMES.find(t => t.id === state.theme) || THEMES[0];
+      ensureStylesheet('hljs-light', OPTIONAL_ASSETS.hljsLightCss, currentTheme.dark);
+      ensureStylesheet('hljs-dark', OPTIONAL_ASSETS.hljsDarkCss, !currentTheme.dark);
+      ensureStylesheet('katex-css', OPTIONAL_ASSETS.katexCss, false);
+
+      await Promise.allSettled([
+        loadScriptOnce('hljs-script', OPTIONAL_ASSETS.hljsScript, '_hljsFailed'),
+        loadScriptOnce('katex-script', OPTIONAL_ASSETS.katexScript, '_katexFailed'),
+      ]);
+
+      if (!window._katexFailed) {
+        await loadScriptOnce('katex-auto-render-script', OPTIONAL_ASSETS.katexAutoRenderScript, '_katexFailed');
+      }
+    } catch (error) {
+      console.warn('Optional asset boot failed', error);
+    } finally {
+      refreshCurrentArticleEnhancements();
+    }
+  };
+
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => { void boot(); }, { timeout: 1800 });
+  } else {
+    window.setTimeout(() => { void boot(); }, 0);
+  }
 }
 
 // ── Load Notes Index ─────────────────────────────────────────
@@ -584,25 +730,7 @@ async function loadNote({ file, category, title, slug }) {
     void body.offsetWidth;
     body.classList.add('fade-in');
 
-    // Syntax highlight — only if hljs loaded successfully
-    if (typeof hljs !== 'undefined') {
-      body.querySelectorAll('pre code:not(.hljs)').forEach(el => {
-        hljs.highlightElement(el);
-      });
-    }
-
-    // Render math — only if KaTeX loaded successfully
-    if (!window._katexFailed && typeof renderMathInElement !== 'undefined') {
-      renderMathInElement(body, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true  },
-          { left: '$',  right: '$',  display: false },
-          { left: '\\[', right: '\\]', display: true  },
-          { left: '\\(', right: '\\)', display: false },
-        ],
-        throwOnError: false,
-      });
-    }
+    enhanceArticleBody(body);
 
     // TOC
     buildToc();
@@ -1075,7 +1203,17 @@ function closePicker()  { $('themePicker').classList.remove('open'); }
 function isMobile() { return window.innerWidth <= 860; }
 
 function switchMobilePanel(panel) {
-  if (state.mobilePanel === panel) return;
+  document.body.classList.add('mobile-js-ready');
+  if (state.mobilePanel === panel) {
+    document.querySelectorAll('.mobile-nav-btn').forEach(btn =>
+      btn.classList.toggle('active', btn.dataset.panel === panel)
+    );
+    $('sidebar')?.classList.toggle('mobile-active', panel === 'sidebar');
+    $('noteListPanel')?.classList.toggle('mobile-active', panel === 'list');
+    $('noteContent')?.classList.toggle('mobile-active', panel === 'content');
+    if (panel !== 'content') setMobileNavHidden(false);
+    return;
+  }
   state.mobilePanel = panel;
   const sidebar  = $('sidebar');
   const listPanel = $('noteListPanel');

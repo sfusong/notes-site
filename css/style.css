@@ -2364,13 +2364,32 @@ a, button, input, textarea, select, .cat-item, .note-card, .mobile-nav-btn {
     min-width: 0 !important;
     height: calc(100dvh - var(--mobile-nav-h) - env(safe-area-inset-bottom));
     display: flex;
+  }
+
+  /* Fail-open fallback: if mobile JS does not finish booting,
+     keep the reading pane visible instead of rendering a blank app. */
+  .sidebar,
+  .note-list-panel {
     opacity: 0;
     pointer-events: none;
     visibility: hidden;
   }
-  .sidebar.mobile-active,
-  .note-list-panel.mobile-active,
-  .note-content.mobile-active {
+  .note-content {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  body.mobile-js-ready .sidebar,
+  body.mobile-js-ready .note-list-panel,
+  body.mobile-js-ready .note-content {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  body.mobile-js-ready .sidebar.mobile-active,
+  body.mobile-js-ready .note-list-panel.mobile-active,
+  body.mobile-js-ready .note-content.mobile-active {
     opacity: 1;
     pointer-events: auto;
     visibility: visible;
