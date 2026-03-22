@@ -58,6 +58,9 @@ const state = {
   syncStatusText: '',
   mobileTransitionTimer: null,
   toastTimer: null,
+  lastScrollTop: 0,
+  navHidden: false,
+  nativeBackCleanup: null,
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -136,6 +139,22 @@ function getRemoteSyncMeta() {
     return JSON.parse(localStorage.getItem(REMOTE_SYNC_META_KEY) || 'null');
   } catch {
     return null;
+  }
+}
+
+function getStoredLastOpenNote() {
+  try {
+    return JSON.parse(localStorage.getItem(LAST_OPEN_NOTE_KEY) || 'null');
+  } catch {
+    return null;
+  }
+}
+
+function getNoteProgressStore() {
+  try {
+    return JSON.parse(localStorage.getItem(NOTE_PROGRESS_KEY) || '{}');
+  } catch {
+    return {};
   }
 }
 
@@ -503,6 +522,8 @@ async function loadNote({ file, category, title, slug }) {
   history.replaceState(null, '', noteHash({ file, slug }));
   localStorage.setItem(LAST_OPEN_NOTE_KEY, JSON.stringify({ file, slug }));
   state.hasToc = false;
+  state.lastScrollTop = 0;
+  setMobileNavHidden(false);
 
   document.querySelectorAll('.note-card').forEach(c =>
     c.classList.toggle('active', c.dataset.file === file)
@@ -625,9 +646,88 @@ function showWelcome() {
   state.hasToc = false;
   updateReadingProgress();
   updateWelcomeState();
+  setMobileNavHidden(false);
   if (state.isNativeApp && !state.allNotes.length && isMobile()) {
     switchMobilePanel('content');
   }
+}
+
+function renderWelcomeHome() {
+  const home = $('welcomeHome');
+  const recentSection = $('welcomeRecentSection');
+  const recentList = $('welcomeRecentList');
+  const recentMoreBtn = $('welcomeRecentMoreBtn');
+  const freshSection = $('welcomeFreshSection');
+  const freshList = $('welcomeFreshList');
+  const categorySection = $('welcomeCategorySection');
+  const categoryGrid = $('welcomeCategoryGrid');
+
+  if (!state.isNativeApp || !state.allNotes.length) {
+    home.classList.add('hidden');
+    recentSection.classList.add('hidden');
+    freshSection.classList.add('hidden');
+    categorySection.classList.add('hidden');
+    return;
+  }
+
+  const progress = getNoteProgressStore();
+  const recentNotes = Object.entries(progress)
+    .map(([file, meta]) => {
+      const note = state.allNotes.find(item => item.file === file);
+      return note && meta?.updatedAt ? { note, meta } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.meta.updatedAt - a.meta.updatedAt)
+    .slice(0, 4);
+
+  recentList.innerHTML = recentNotes.map(({ note, meta }) => `
+    <button class="welcome-home-card" data-file="${escHtml(note.file)}" data-slug="${escHtml(note.slug || '')}">
+      <strong>${escHtml(note.title)}</strong>
+      <small>${escHtml(note.category)}</small>
+      <div class="welcome-card-meta">上次阅读：${new Date(meta.updatedAt).toLocaleDateString('zh-CN')}</div>
+    </button>
+  `).join('');
+  recentSection.classList.toggle('hidden', recentNotes.length === 0);
+  recentMoreBtn.classList.toggle('hidden', recentNotes.length === 0);
+
+  const recentCourseNotes = state.allNotes
+    .filter(note => Number.isFinite(note.order))
+    .sort((a, b) => (b.order ?? -Infinity) - (a.order ?? -Infinity) || a.category.localeCompare(b.category, 'zh-CN'))
+    .slice(0, 6);
+
+  freshList.innerHTML = recentCourseNotes.map(note => `
+    <button class="welcome-home-card" data-file="${escHtml(note.file)}" data-slug="${escHtml(note.slug || '')}">
+      <strong>${escHtml(note.title)}</strong>
+      <small>${escHtml(note.category)}</small>
+    </button>
+  `).join('');
+  freshSection.classList.toggle('hidden', recentCourseNotes.length === 0);
+
+  categoryGrid.innerHTML = state.categories.map(category => `
+    <button class="welcome-category-card" data-category="${escHtml(category.name)}">
+      <strong>${escHtml(category.name)}</strong>
+      <small>${category.notes.length} 篇笔记</small>
+    </button>
+  `).join('');
+  categorySection.classList.toggle('hidden', !state.categories.length);
+  home.classList.remove('hidden');
+
+  home.querySelectorAll('.welcome-home-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const note = state.allNotes.find(item =>
+        item.file === card.dataset.file || (card.dataset.slug && item.slug === card.dataset.slug)
+      );
+      if (note) loadNote(note);
+    });
+  });
+
+  categoryGrid.querySelectorAll('.welcome-category-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectCategory(card.dataset.category || null);
+    });
+  });
+
+  recentMoreBtn.onclick = () => switchMobilePanel('list');
 }
 
 function updateWelcomeState() {
@@ -636,25 +736,39 @@ function updateWelcomeState() {
   const actionsEl = $('welcomeActions');
   const noteEl = $('welcomeSyncNote');
   const buttonEl = $('welcomeSyncBtn');
+  const continueBtn = $('welcomeContinueBtn');
+  const libraryBtn = $('welcomeLibraryBtn');
   const meta = getRemoteSyncMeta();
+  const stored = getStoredLastOpenNote();
+  const resumeNote = stored
+    ? state.allNotes.find(note => (stored.slug && note.slug === stored.slug) || note.file === stored.file)
+    : null;
 
   if (!state.isNativeApp) {
     titleEl.textContent = '选择一篇笔记开始阅读';
     textEl.textContent = '从左侧选择分类，点击笔记卡片即可阅读';
     actionsEl.classList.add('hidden');
+    $('welcomeHome').classList.add('hidden');
     return;
   }
 
   actionsEl.classList.remove('hidden');
   buttonEl.disabled = state.syncInProgress;
   buttonEl.textContent = state.syncInProgress ? '同步中…' : (state.allNotes.length ? '同步最新笔记' : '同步我的笔记');
+  continueBtn.classList.toggle('hidden', !resumeNote);
+  libraryBtn.classList.toggle('hidden', !state.allNotes.length);
 
   if (!state.allNotes.length) {
     titleEl.textContent = '先把线上笔记同步到本地';
     textEl.textContent = '这个 Android 版默认不内置书库。首次同步后，你的笔记会缓存到本地，之后离线也能阅读。';
+    continueBtn.classList.add('hidden');
+    libraryBtn.classList.add('hidden');
+  } else if (resumeNote) {
+    titleEl.textContent = '继续上次的阅读';
+    textEl.textContent = `你上次停留在《${resumeNote.title}》。继续阅读，或者先进入书库看看最近同步的内容。`;
   } else {
-    titleEl.textContent = '选择一篇笔记开始阅读';
-    textEl.textContent = '本地书库已就绪。你可以继续阅读，也可以随时手动同步线上最新笔记。';
+    titleEl.textContent = '本地书库已准备好';
+    textEl.textContent = '先进入书库挑一篇笔记开始阅读，或者先同步一下线上最新内容。';
   }
 
   if (state.syncStatusText) {
@@ -664,6 +778,8 @@ function updateWelcomeState() {
   } else {
     noteEl.textContent = '首次同步需要联网，完成后会优先读取本地缓存。';
   }
+
+  renderWelcomeHome();
 }
 
 function updateAppSyncUi(message = '') {
@@ -846,15 +962,13 @@ function closeToc() {
 function restoreFromHash() {
   let note = resolveHashNote(location.hash);
   if (!note && !location.hash) {
-    try {
-      const stored = JSON.parse(localStorage.getItem(LAST_OPEN_NOTE_KEY) || 'null');
-      if (stored?.slug) {
-        note = state.allNotes.find(n => n.slug === stored.slug) || null;
-      }
-      if (!note && stored?.file) {
-        note = state.allNotes.find(n => n.file === stored.file) || null;
-      }
-    } catch {}
+    const stored = getStoredLastOpenNote();
+    if (stored?.slug) {
+      note = state.allNotes.find(n => n.slug === stored.slug) || null;
+    }
+    if (!note && stored?.file) {
+      note = state.allNotes.find(n => n.file === stored.file) || null;
+    }
   }
   if (note) {
     loadNote(note);
@@ -961,32 +1075,14 @@ function closePicker()  { $('themePicker').classList.remove('open'); }
 function isMobile() { return window.innerWidth <= 860; }
 
 function switchMobilePanel(panel) {
-  const app = document.querySelector('.app');
-  const previous = state.mobilePanel;
+  if (state.mobilePanel === panel) return;
   state.mobilePanel = panel;
   const sidebar  = $('sidebar');
   const listPanel = $('noteListPanel');
   const content  = $('noteContent');
-  const panels = { sidebar, list: listPanel, content };
 
   clearTimeout(state.mobileTransitionTimer);
   [sidebar, listPanel, content].forEach(el => el.classList.remove('mobile-active', 'mobile-before'));
-
-  if (isMobile()) {
-    const order = ['sidebar', 'list', 'content'];
-    const toIndex = order.indexOf(panel);
-    Object.entries(panels).forEach(([name, el]) => {
-      if (name === panel) return;
-      if (order.indexOf(name) < toIndex) el.classList.add('mobile-before');
-    });
-
-    if (previous !== panel) {
-      app.dataset.mobileTransition = 'true';
-      state.mobileTransitionTimer = setTimeout(() => {
-        delete app.dataset.mobileTransition;
-      }, 260);
-    }
-  }
 
   if (panel === 'sidebar') sidebar.classList.add('mobile-active');
   if (panel === 'list')    listPanel.classList.add('mobile-active');
@@ -995,10 +1091,12 @@ function switchMobilePanel(panel) {
   document.querySelectorAll('.mobile-nav-btn').forEach(btn =>
     btn.classList.toggle('active', btn.dataset.panel === panel)
   );
+  if (panel !== 'content') setMobileNavHidden(false);
 }
 
 function setReadingState(active) {
   document.querySelector('.app').classList.toggle('reading-state', active);
+  if (!active) setMobileNavHidden(false);
 }
 
 function setNoteListCollapsed(collapsed) {
@@ -1014,7 +1112,73 @@ function updateReadingProgress() {
   $('readingProgress').style.transform = `scaleX(${Math.max(0, Math.min(1, progress))})`;
   updateTocEntryPoints();
   updateScrollTopEntry();
+  updateMobileChrome(el.scrollTop);
   queueSaveNoteProgress();
+}
+
+function setMobileNavHidden(hidden) {
+  state.navHidden = hidden;
+  $('mobileNav')?.classList.toggle('mobile-hidden', hidden);
+  document.body.classList.toggle('mobile-nav-hidden', hidden);
+}
+
+function updateMobileChrome(scrollTop) {
+  if (!isMobile()) return;
+  const isReading = state.mobilePanel === 'content' && !$('noteArticle').classList.contains('hidden');
+  if (!isReading) {
+    state.lastScrollTop = scrollTop;
+    setMobileNavHidden(false);
+    return;
+  }
+
+  const delta = scrollTop - state.lastScrollTop;
+  if (scrollTop < 48 || delta < -10) {
+    setMobileNavHidden(false);
+  } else if (delta > 14) {
+    setMobileNavHidden(true);
+  }
+  state.lastScrollTop = scrollTop;
+}
+
+function setupNativeBackHandler() {
+  if (!state.isNativeApp) return;
+  const handleBack = () => {
+    if ($('tocPanel').classList.contains('open')) {
+      closeToc();
+      return true;
+    }
+    if (document.querySelector('.app').classList.contains('focus-mode')) {
+      exitFocusMode();
+      return true;
+    }
+    if (isMobile()) {
+      if (state.mobilePanel === 'content' && !$('noteArticle').classList.contains('hidden')) {
+        switchMobilePanel('list');
+        return true;
+      }
+      if (state.mobilePanel === 'list') {
+        switchMobilePanel('sidebar');
+        return true;
+      }
+    }
+    if (state.currentNote) {
+      showWelcome();
+      return true;
+    }
+    return false;
+  };
+
+  const appPlugin = window.Capacitor?.Plugins?.App;
+  if (appPlugin?.addListener) {
+    state.nativeBackCleanup = appPlugin.addListener('backButton', () => {
+      if (!handleBack()) appPlugin.exitApp?.();
+    });
+    return;
+  }
+
+  document.addEventListener('backbutton', e => {
+    if (handleBack()) e.preventDefault?.();
+  });
 }
 
 function queueSaveNoteProgress() {
@@ -1111,17 +1275,22 @@ function renderArticleNavCard(note, label) {
 }
 
 function updateTocEntryPoints() {
+  const articleVisible = !$('noteArticle').classList.contains('hidden');
+  const searchOwnsTools = state.searchMatches.length > 1;
   const showFab = state.hasToc
-    && !$('noteArticle').classList.contains('hidden')
-    && $('noteContent').scrollTop > 220
-    && state.searchMatches.length <= 1;
+    && articleVisible
+    && !searchOwnsTools
+    && (isMobile() || $('noteContent').scrollTop > 220);
   $('tocFab').classList.toggle('hidden', !showFab);
 }
 
 function updateScrollTopEntry() {
-  const show = !$('noteArticle').classList.contains('hidden')
-    && $('noteContent').scrollTop > window.innerHeight * 1.2
-    && state.searchMatches.length <= 1;
+  const articleVisible = !$('noteArticle').classList.contains('hidden');
+  const searchOwnsTools = state.searchMatches.length > 1;
+  const threshold = isMobile() ? 160 : window.innerHeight * 1.2;
+  const show = articleVisible
+    && $('noteContent').scrollTop > threshold
+    && !searchOwnsTools;
   $('scrollTopBtn').classList.toggle('hidden', !show);
 }
 
@@ -1131,6 +1300,14 @@ function setupEventListeners() {
   $('themePickerBtn').addEventListener('click', e => { e.stopPropagation(); togglePicker(); });
   $('syncNotesBtn').addEventListener('click', () => syncRemoteNotes());
   $('welcomeSyncBtn').addEventListener('click', () => syncRemoteNotes());
+  $('welcomeLibraryBtn').addEventListener('click', () => switchMobilePanel('list'));
+  $('welcomeContinueBtn').addEventListener('click', () => {
+    const stored = getStoredLastOpenNote();
+    const note = stored
+      ? state.allNotes.find(n => (stored.slug && n.slug === stored.slug) || n.file === stored.file)
+      : null;
+    if (note) loadNote(note);
+  });
   document.addEventListener('click', () => closePicker());
   $('themePicker').addEventListener('click', e => e.stopPropagation());
   $('densityControl').addEventListener('click', e => {
@@ -1213,6 +1390,7 @@ function setupEventListeners() {
   document.querySelectorAll('.mobile-nav-btn').forEach(btn =>
     btn.addEventListener('click', () => switchMobilePanel(btn.dataset.panel))
   );
+  setupNativeBackHandler();
 
   // Reading progress bar
   $('noteContent').addEventListener('scroll', updateReadingProgress);
@@ -1228,7 +1406,9 @@ function setupEventListeners() {
   $('searchMatchNext').addEventListener('click', () => focusAdjacentSearchMatch(1));
 
   // Focus mode
-  $('focusBtn').addEventListener('click', toggleFocusMode);
+  if (!state.isNativeApp) {
+    $('focusBtn').addEventListener('click', toggleFocusMode);
+  }
 
   // Keyboard shortcuts
   document.addEventListener('keydown', e => {

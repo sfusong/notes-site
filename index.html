@@ -104,8 +104,31 @@
         <h2>选择一篇笔记开始阅读</h2>
         <p id="welcomeText">从左侧选择分类，点击笔记卡片即可阅读</p>
         <div class="welcome-actions hidden" id="welcomeActions">
+          <button class="welcome-secondary-btn hidden" id="welcomeContinueBtn" type="button">继续阅读</button>
+          <button class="welcome-ghost-btn hidden" id="welcomeLibraryBtn" type="button">进入书库</button>
           <button class="welcome-primary-btn" id="welcomeSyncBtn" type="button">同步我的笔记</button>
           <small class="welcome-sync-note" id="welcomeSyncNote"></small>
+        </div>
+        <div class="welcome-home hidden" id="welcomeHome">
+          <section class="welcome-section hidden" id="welcomeRecentSection">
+            <div class="welcome-section-head">
+              <h3>最近阅读</h3>
+              <button class="welcome-link-btn hidden" id="welcomeRecentMoreBtn" type="button">查看书库</button>
+            </div>
+            <div class="welcome-card-grid" id="welcomeRecentList"></div>
+          </section>
+          <section class="welcome-section hidden" id="welcomeFreshSection">
+            <div class="welcome-section-head">
+              <h3>最近课程</h3>
+            </div>
+            <div class="welcome-card-grid compact" id="welcomeFreshList"></div>
+          </section>
+          <section class="welcome-section hidden" id="welcomeCategorySection">
+            <div class="welcome-section-head">
+              <h3>分类浏览</h3>
+            </div>
+            <div class="welcome-category-grid" id="welcomeCategoryGrid"></div>
+          </section>
         </div>
       </div>
 
