@@ -1,0 +1,126 @@
+# BOCI 问答题库：短版
+
+## How To Use
+
+- Use short answers first.
+- If the interviewer wants more detail, then expand.
+- Keep each answer clear and calm.
+- Do not try to use difficult words.
+
+## 1. Tell me about yourself.
+
+I am currently a Financial Technology Product Manager at BNB Wealth Management. My work focuses on business system delivery, including requirements analysis, vendor coordination, UAT, go-live, and post-live support in a regulated wealth management environment.
+
+## 2. Why do you want to join BOCI?
+
+I am interested in BOCI because the role combines financial technology, project delivery, and cross-functional coordination in a larger and more complex financial institution. It is highly relevant to my current experience and also a strong next step for my project management development.
+
+## 3. Why do you want to leave your current company?
+
+I have gained solid experience in regulated wealth management technology delivery. At this stage, I would like to broaden my exposure, work on more complex business systems, and continue growing in a stronger project management role.
+
+## 4. Why are you applying for a Project Manager role if your title is Product Manager?
+
+Although my title is Product Manager, a large part of my actual work is project-delivery-oriented. I spend much of my time on requirements alignment, scope control, vendor coordination, UAT, go-live, and post-live support.
+
+## 5. What is your biggest project?
+
+My biggest project was a greenfield Product Management System covering 10 departments and 6 modules. I coordinated the project from requirements gathering to vendor selection, UAT, production launch, and trial operation support.
+
+## 6. What was your role in that project?
+
+My role included requirements gathering, scope management, vendor evaluation, UAT coordination, production release, historical data migration, and post-live follow-up.
+
+## 7. What was the business value of that project?
+
+It improved product data consistency and operational efficiency. It also enabled new product setup and template-based document generation within five minutes per product.
+
+## 8. How do you manage stakeholders with different priorities?
+
+I first clarify the business objective behind each request, then compare urgency, dependency, and delivery impact. My goal is to help stakeholders reach practical agreement while protecting timeline and delivery quality.
+
+## 9. How do you manage scope creep?
+
+I make sure the original scope and delivery milestones are clear first. When new requests come in, I assess business value, dependency, delivery risk, and whether they should be included in the current release or moved to a later phase.
+
+## 10. Tell me about your vendor management experience.
+
+In the Product Management System project, we evaluated more than five vendors through research, presentations, and POC validation. I participated in requirement clarification, evaluation support, scope alignment, and delivery follow-up after vendor selection.
+
+## 11. What is your experience with UAT?
+
+I work with business users to define test scenarios based on real workflows, track defects by severity, and coordinate closure with development teams and vendors. I also link UAT preparation with go-live readiness.
+
+## 12. What is your go-live experience?
+
+I have supported production release planning, rollback preparation, issue tracking, historical data migration, and post-live support. In one project, I also coordinated two batches of historical data migration after launch.
+
+## 13. What is your experience with TA systems?
+
+I have worked on TA-related delivery, including custodian bank onboarding, distributor integrations, interface upgrade and cutover, business rule adaptation, and regulatory-driven changes.
+
+## 14. Tell me about the custodian bank onboarding.
+
+I coordinated onboarding of six external custodian banks into the TA system. This involved specification alignment, testing coordination, and production go-live support.
+
+## 15. Tell me about the distribution partner integrations.
+
+I supported onboarding of around twenty new distribution partners and participated in two interface upgrade and cutover programmes. This required close coordination across internal teams and external institutions.
+
+## 16. What regulatory change projects have you handled?
+
+I have worked on T+0.5 redemption advance payment support, liquidity-related changes, and compliance retrofits for historical performance disclosure of wealth management products.
+
+## 17. What is the AOP platform?
+
+It is a pre-settlement control platform set up before formal TA clearing. It identifies key risks before overnight batch processing and helps reduce overnight manual intervention and abnormal escalation.
+
+## 18. Why is the AOP platform important?
+
+It improves decision timing. Instead of finding issues too late during overnight processing, the business can identify and handle risks earlier at the pre-batch stage.
+
+## 19. What are your strengths?
+
+My strengths are stakeholder coordination, delivery discipline, and hands-on experience in regulated financial system implementation, especially in UAT, go-live, and regulatory-driven change.
+
+## 20. What is your development area?
+
+I am still building broader exposure across more business domains and larger institution-wide delivery structures. That is also why I am interested in this opportunity.
+
+## 21. How do you handle pressure?
+
+I try to break pressure into scope, owners, deadlines, and risks. Once responsibilities and next steps are clear, it becomes much easier to move things forward.
+
+## 22. What if a project is delayed?
+
+I first identify the real cause, assess the delivery impact, and then propose recovery options with clear trade-offs. The priority is to make the issue visible early and avoid hidden delivery risk.
+
+## 23. How do you define project success?
+
+Project success means not only on-time delivery, but also controlled scope, aligned stakeholders, stable go-live, and real business value after launch.
+
+## 24. Why should we hire you?
+
+Because I already have hands-on experience in business system delivery, stakeholder coordination, vendor management, UAT, go-live support, and regulatory-driven implementation in a regulated financial environment.
+
+## 25. You do not have 7+ years. Why are you still suitable?
+
+I understand the role is positioned at a senior level, and I do not want to overstate my experience. What I can offer is hands-on delivery experience, ownership, and a strong learning curve in the core areas required by the role.
+
+## Backup Phrases
+
+- Let me explain briefly.
+- In my current role, I mainly focus on...
+- The key challenge was...
+- My responsibility was...
+- The business value was...
+- We handled it by...
+- From a delivery perspective...
+- From a business perspective...
+- If I may summarise...
+
+## Questions You Can Ask Back
+
+- Could you share more about the main systems this role would support?
+- What would success look like for this role in the first six to twelve months?
+- How is project ownership usually shared between business users, technology teams, and project managers?

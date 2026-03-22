@@ -1,0 +1,66 @@
+# BOCI 自我介绍：短版
+
+## Version 1
+
+Good morning, and thank you for the opportunity.
+
+My name is Fusong Shi. I am currently working as a Financial Technology Product Manager at BNB Wealth Management, a licensed wealth management subsidiary of Bank of Ningbo.
+
+In my current role, I focus on business system delivery in a regulated wealth management environment. My work covers requirements analysis, vendor coordination, UAT, production go-live, and post-live support.
+
+My key project was a greenfield Product Management System covering 10 business departments and 6 modules. I coordinated the project from requirements gathering to vendor selection, UAT, go-live, and trial operation support. The system improved product data management and enabled new product setup and document generation within five minutes per product.
+
+I also worked on TA-related delivery, including external custodian bank onboarding, distributor integrations, and regulatory-driven system changes such as T+0.5 redemption advance payment and liquidity-related enhancements.
+
+In addition, I led the setup of a pre-settlement control platform before overnight batch clearing, which reduced overnight manual intervention and abnormal escalation significantly.
+
+I am interested in this role at BOCI because it combines financial technology, project delivery, and cross-functional coordination. I believe my experience in regulated financial systems and business application implementation would allow me to contribute well and continue growing in project management.
+
+Thank you.
+
+## Version 2
+
+Good morning, and thank you for the opportunity.
+
+My name is Fusong Shi. I am currently a Financial Technology Product Manager at BNB Wealth Management, a licensed wealth management subsidiary of Bank of Ningbo.
+
+My work mainly focuses on business system delivery, including requirements analysis, vendor coordination, UAT, go-live, and post-live support.
+
+My biggest project was a greenfield Product Management System covering 10 departments and 6 modules. I coordinated the project from requirements gathering to production launch. I also worked on TA system integration, regulatory-driven changes, and a pre-settlement control platform for risk warning before overnight batch processing.
+
+I am interested in BOCI because the role is highly relevant to my experience in financial technology delivery and cross-functional coordination, and it is also a strong next step for my project management development.
+
+Thank you.
+
+## Chinese Cue Version
+
+- 先打招呼
+- 介绍姓名和当前公司岗位
+- 说你现在主要做什么: business system delivery
+- 说主项目: Product Management System, 10 departments, 6 modules
+- 说第二主线: TA integration + regulatory change
+- 说亮点: pre-settlement control platform
+- 说 why BOCI
+- 结束 thank you
+
+## Key Words To Practice
+
+- regulated wealth management environment
+- requirements analysis
+- vendor coordination
+- UAT
+- production go-live
+- post-live support
+- TA-related delivery
+- regulatory-driven changes
+- pre-settlement control platform
+- overnight batch clearing
+- cross-functional coordination
+
+## Speaking Tips
+
+- Keep your speed slow.
+- Use short pauses after each sentence.
+- If you forget one line, jump to the next point.
+- Do not try to sound fancy. Clear is better than advanced.
+- If needed, use Version 2 in the real interview. It is safer.

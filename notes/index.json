@@ -599,6 +599,26 @@
           "preview": "这类问题看起来很技术，但其实考的是你的项目管理意识："
         },
         {
+          "title": "BOCI 自我介绍：短版",
+          "source_title": "BOCI 自我介绍：短版",
+          "order": null,
+          "unit": null,
+          "slug": "面试学习-boci-自我介绍-短版",
+          "filename": "BOCI自我介绍_短版.md",
+          "file": "notes/面试学习/BOCI自我介绍_短版.md",
+          "preview": "Good morning, and thank you for the opportunity."
+        },
+        {
+          "title": "BOCI 问答题库：短版",
+          "source_title": "BOCI 问答题库：短版",
+          "order": null,
+          "unit": null,
+          "slug": "面试学习-boci-问答题库-短版",
+          "filename": "BOCI问答题库_短版.md",
+          "file": "notes/面试学习/BOCI问答题库_短版.md",
+          "preview": "Use short answers first. If the interviewer wants more detail, then expand. Keep each answer clear and calm. Do not try…"
+        },
+        {
           "title": "BOCI 面试题库：完整问答手册",
           "source_title": "BOCI 面试题库：完整问答手册",
           "order": null,
@@ -611,6 +631,6 @@
       ]
     }
   ],
-  "total": 58,
-  "generated": "2026-03-23T02:41:07"
+  "total": 60,
+  "generated": "2026-03-23T02:46:25"
 }
