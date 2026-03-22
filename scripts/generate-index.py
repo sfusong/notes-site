@@ -28,6 +28,7 @@ LESSON_CATEGORIES = {
     "宏观经济学",
     "资管IT",
     "资管IT学习（个人）",
+    "面试学习",
 }
 
 
@@ -200,6 +201,20 @@ def extract_series_info(text: str) -> Optional[dict]:
         subject = normalize_subject(subject)
         if subject:
             return {"order": order, "unit": unit, "subject": subject}
+
+    day_patterns = [
+        re.compile(r"^day\s*0*(\d+)\s*(?:课件)?\s*[:：]\s*(.+)$", re.IGNORECASE),
+        re.compile(r"^day\s*0*(\d+)[_\s-]+(.+)$", re.IGNORECASE),
+    ]
+
+    for pattern in day_patterns:
+        m = pattern.match(raw)
+        if not m:
+            continue
+        order = int(m.group(1))
+        subject = normalize_subject(m.group(2))
+        if subject:
+            return {"order": order, "unit": "day", "subject": subject}
     return None
 
 
@@ -253,7 +268,10 @@ def resolve_note_metadata(category: str, filename: str, content: str) -> dict:
 
     title = raw_title
     if category in LESSON_CATEGORIES and order is not None and unit and subject:
-        title = f"第{order}{unit}：{subject}"
+        if unit == "day":
+            title = f"Day {order}：{subject}"
+        else:
+            title = f"第{order}{unit}：{subject}"
 
     explicit_order = front_matter.get("order", "").strip()
     if explicit_order.isdigit():
