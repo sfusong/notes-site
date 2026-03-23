@@ -1,6 +1,91 @@
 {
   "categories": [
     {
+      "name": "ICBC_GS_Project_Interview_Packs",
+      "notes": [
+        {
+          "title": "产品生命周期管理系统面试资料",
+          "source_title": "产品生命周期管理系统面试资料",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-产品生命周期管理系统面试资料",
+          "filename": "01_产品生命周期管理系统.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/01_产品生命周期管理系统.md",
+          "preview": "这是一个内部业务系统，主要解决两类产品生命周期事件管理问题："
+        },
+        {
+          "title": "Apprentice（学徒）面试资料",
+          "source_title": "Apprentice（学徒）面试资料",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-apprentice-学徒-面试资料",
+          "filename": "02_Apprentice_学徒.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/02_Apprentice_学徒.md",
+          "preview": "Apprentice 是一个面向企业系统的、配置驱动的 AI 操作层。 它不是简单的聊天机器人，而是想验证一条完整闭环："
+        },
+        {
+          "title": "产品文档按模板生成工具面试资料",
+          "source_title": "产品文档按模板生成工具面试资料",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-产品文档按模板生成工具面试资料",
+          "filename": "03_产品文档按模板生成工具.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/03_产品文档按模板生成工具.md",
+          "preview": "这是一个我在宁银理财做的轻量级 Python 自动化工具，用来解决产品说明书生成效率低的问题。 在产品管理系统正式上线前，业务同事已经有文档生成需求，所以我先做了一个基于模板和字段映射的一键生成工具，减少手工整理和复制粘贴工作。"
+        },
+        {
+          "title": "嘉实基金数字资产托管平台面试资料",
+          "source_title": "嘉实基金数字资产托管平台面试资料",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-嘉实基金数字资产托管平台面试资料",
+          "filename": "04_嘉实基金_数字资产托管平台.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/04_嘉实基金_数字资产托管平台.md",
+          "preview": "这是一个数字资产托管平台原型项目，采用前后端分离架构。 我在里面做了两块："
+        },
+        {
+          "title": "广发基金 Orange 多用户平台面试资料",
+          "source_title": "广发基金 Orange 多用户平台面试资料",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-广发基金-orange-多用户平台面试资料",
+          "filename": "05_广发基金_Orange多用户平台.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/05_广发基金_Orange多用户平台.md",
+          "preview": "这是一个基于 Linux 的多用户 Orange 数据挖掘平台，目标是让团队成员通过浏览器直接使用可视化数据挖掘环境，而不需要每个人在本地单独安装环境。 我在里面主要做了："
+        },
+        {
+          "title": "广发证券授信变动查询面试资料",
+          "source_title": "广发证券授信变动查询面试资料",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-广发证券授信变动查询面试资料",
+          "filename": "06_广发证券_授信变动查询.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/06_广发证券_授信变动查询.md",
+          "preview": "这是客户授信管理系统中的一个后端功能开发项目，核心是做“授信变动查询”。 目标是让风控人员更直观地看到某个客户当前生效授信额度最近一次变动的方向和结果，并支持查询、统计和 CSV 导出。"
+        },
+        {
+          "title": "小红书 CAT 监控平台面试资料",
+          "source_title": "小红书 CAT 监控平台面试资料",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-小红书-cat-监控平台面试资料",
+          "filename": "07_小红书_CAT监控平台.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/07_小红书_CAT监控平台.md",
+          "preview": "这是一个基于开源 CAT 的分布式应用监控平台适配与后端开发项目。 我在里面参与的是 Java / Maven 多模块监控平台里的升级适配和后端模块开发，接触到了监控消息采集、报表聚合、后台展示和告警链路等可观测性能力。"
+        },
+        {
+          "title": "工银高盛项目面试资料包",
+          "source_title": "工银高盛项目面试资料包",
+          "order": null,
+          "unit": null,
+          "slug": "icbc-gs-project-interview-packs-工银高盛项目面试资料包",
+          "filename": "README.md",
+          "file": "notes/ICBC_GS_Project_Interview_Packs/README.md",
+          "preview": "这个文件夹包含 7 份项目专属面试材料，按你的简历主线拆开："
+        }
+      ]
+    },
+    {
       "name": "基金从业资格证",
       "notes": [
         {
@@ -631,6 +716,6 @@
       ]
     }
   ],
-  "total": 60,
-  "generated": "2026-03-23T02:46:25"
+  "total": 68,
+  "generated": "2026-03-24T02:00:51"
 }
