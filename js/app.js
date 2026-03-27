@@ -46,7 +46,7 @@ const GROUP_LABELS = { tool: '产品 / 工具', paper: '纸质 / 人文', fun: '
 const state = {
   categories: [],
   allNotes: [],
-  currentCategory: null,
+  currentCategoryKey: null,
   currentNote: null,
   searchQuery: '',
   searchScope: 'context',
@@ -70,6 +70,8 @@ const state = {
   navHidden: false,
   nativeBackCleanup: null,
   optionalAssetsBooted: false,
+  categoryMap: {},
+  expandedCategoryKeys: new Set(),
 };
 
 // ── DOM helpers ──────────────────────────────────────────────
@@ -349,10 +351,70 @@ async function loadIndex() {
 }
 
 function applyIndexData(data) {
-  state.categories = data.categories || [];
-  state.allNotes = state.categories.flatMap(cat =>
-    cat.notes.map(n => ({ ...n, category: cat.name }))
-  );
+  state.categories = data.categoryTree || data.categories || [];
+  state.allNotes = data.allNotes || flattenCategoryTreeNotes(state.categories);
+  state.categoryMap = buildCategoryMap(state.categories);
+
+  if (state.currentCategoryKey && !state.categoryMap[state.currentCategoryKey]) {
+    state.currentCategoryKey = null;
+  }
+
+  const expanded = new Set();
+  state.categories.forEach(node => expanded.add(node.key));
+  for (const key of state.expandedCategoryKeys) {
+    if (state.categoryMap[key]) expanded.add(key);
+  }
+  if (state.currentCategoryKey) addExpandedPathKeys(expanded, state.currentCategoryKey);
+  state.expandedCategoryKeys = expanded;
+}
+
+function flattenCategoryTreeNotes(nodes) {
+  const notes = [];
+  for (const node of nodes || []) {
+    if (node.notes?.length) notes.push(...node.notes);
+    if (node.children?.length) notes.push(...flattenCategoryTreeNotes(node.children));
+  }
+  return notes;
+}
+
+function buildCategoryMap(nodes, map = {}) {
+  for (const node of nodes || []) {
+    map[node.key] = node;
+    if (node.children?.length) buildCategoryMap(node.children, map);
+  }
+  return map;
+}
+
+function addExpandedPathKeys(target, categoryKey) {
+  const parts = (categoryKey || '').split('/').filter(Boolean);
+  const acc = [];
+  for (const part of parts) {
+    acc.push(part);
+    target.add(acc.join('/'));
+  }
+}
+
+function getCurrentCategoryNode() {
+  return state.currentCategoryKey ? state.categoryMap[state.currentCategoryKey] || null : null;
+}
+
+function currentCategoryLabel() {
+  return getCurrentCategoryNode()?.pathLabel || null;
+}
+
+function isCurrentCategoryAncestor(key) {
+  return !!state.currentCategoryKey && state.currentCategoryKey !== key && state.currentCategoryKey.startsWith(`${key}/`);
+}
+
+function toggleCategoryExpanded(categoryKey) {
+  if (!categoryKey) return;
+  if (state.expandedCategoryKeys.has(categoryKey)) {
+    state.expandedCategoryKeys.delete(categoryKey);
+  } else {
+    state.expandedCategoryKeys.add(categoryKey);
+  }
+  if (state.currentCategoryKey) addExpandedPathKeys(state.expandedCategoryKeys, state.currentCategoryKey);
+  renderSidebar();
 }
 
 // ── Sidebar ───────────────────────────────────────────────────
@@ -361,33 +423,64 @@ function renderSidebar() {
   let html = '';
 
   html += `
-    <div class="cat-item ${state.currentCategory === null ? 'active' : ''}" data-cat="">
-      <span class="cat-name">全部笔记</span>
-      <span class="cat-count">${total}</span>
+    <div class="cat-item ${state.currentCategoryKey === null ? 'active' : ''}" style="--cat-depth:0">
+      <span class="cat-item-spacer" aria-hidden="true"></span>
+      <button class="cat-item-main" data-key="">
+        <span class="cat-name">全部笔记</span>
+        <span class="cat-count">${total}</span>
+      </button>
     </div>`;
 
   if (state.categories.length > 0) {
     html += `<div class="cat-section-label">分类</div>`;
-    for (const cat of state.categories) {
-      const active = state.currentCategory === cat.name ? 'active' : '';
-      html += `
-        <div class="cat-item ${active}" data-cat="${escHtml(cat.name)}">
-          <span class="cat-name">${escHtml(cat.name)}</span>
-          <span class="cat-count">${cat.notes.length}</span>
-        </div>`;
-    }
+    html += state.categories.map(renderCategoryNode).join('');
   }
 
   const nav = $('categoryNav');
   nav.innerHTML = html;
 
-  nav.querySelectorAll('.cat-item').forEach(el => {
-    el.addEventListener('click', () => selectCategory(el.dataset.cat || null));
+  nav.querySelectorAll('.cat-item-main').forEach(el => {
+    el.addEventListener('click', () => selectCategory(el.dataset.key || null));
+  });
+  nav.querySelectorAll('.cat-item-toggle').forEach(el => {
+    el.addEventListener('click', event => {
+      event.stopPropagation();
+      toggleCategoryExpanded(el.dataset.key || '');
+    });
   });
 }
 
-function selectCategory(category) {
-  syncCurrentCategory(category);
+function renderCategoryNode(node) {
+  const hasChildren = (node.children || []).length > 0;
+  const expanded = state.expandedCategoryKeys.has(node.key);
+  const isActive = state.currentCategoryKey === node.key;
+  const isAncestor = isCurrentCategoryAncestor(node.key);
+
+  return `
+    <div class="cat-tree-node">
+      <div class="cat-item ${isActive ? 'active' : ''} ${isAncestor ? 'ancestor' : ''}" style="--cat-depth:${node.depth}">
+        ${hasChildren ? `
+          <button class="cat-item-toggle ${expanded ? 'expanded' : ''}" data-key="${escHtml(node.key)}" aria-label="${expanded ? '收起子分类' : '展开子分类'}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polyline points="9 6 15 12 9 18"/>
+            </svg>
+          </button>
+        ` : '<span class="cat-item-spacer" aria-hidden="true"></span>'}
+        <button class="cat-item-main" data-key="${escHtml(node.key)}" title="${escHtml(node.pathLabel)}">
+          <span class="cat-name">${escHtml(node.name)}</span>
+          <span class="cat-count">${node.totalNoteCount}</span>
+        </button>
+      </div>
+      ${hasChildren && expanded ? `
+        <div class="cat-children">
+          ${node.children.map(renderCategoryNode).join('')}
+        </div>
+      ` : ''}
+    </div>`;
+}
+
+function selectCategory(categoryKey) {
+  syncCurrentCategory(categoryKey);
   state.currentNote = null;
   history.replaceState(null, '', '#');
   setReadingState(false);
@@ -399,12 +492,10 @@ function selectCategory(category) {
   if (isMobile()) switchMobilePanel('list');
 }
 
-function syncCurrentCategory(category) {
-  state.currentCategory = category;
-  document.querySelectorAll('.cat-item').forEach(el => {
-    const elCat = el.dataset.cat || null;
-    el.classList.toggle('active', elCat === category);
-  });
+function syncCurrentCategory(categoryKey) {
+  state.currentCategoryKey = categoryKey || null;
+  if (state.currentCategoryKey) addExpandedPathKeys(state.expandedCategoryKeys, state.currentCategoryKey);
+  renderSidebar();
 }
 
 // ── Note List ─────────────────────────────────────────────────
@@ -412,18 +503,18 @@ function renderNoteList() {
   const baseNotes = scopedNotes();
   const results = state.searchQuery ? rankSearchResults(baseNotes) : baseNotes.map(note => ({ note, hitLabel: '', snippet: note.preview || '' }));
   const notes = results.map(entry => entry.note);
-  $('panelTitle').textContent = state.searchQuery ? '搜索结果' : (state.currentCategory || '全部笔记');
+  $('panelTitle').textContent = state.searchQuery ? '搜索结果' : (currentCategoryLabel() || '全部笔记');
   $('noteCount').textContent  = state.searchQuery ? `${notes.length} 条` : `${notes.length} 篇`;
   renderSearchStatus(notes, baseNotes.length);
 
   if (notes.length === 0) {
     state.searchSelection = -1;
     const inContextScope = state.searchScope === 'context';
-    const canWidenScope = inContextScope && state.currentCategory;
+    const canWidenScope = inContextScope && state.currentCategoryKey;
     const needsFirstSync = state.isNativeApp && !state.allNotes.length && !state.searchQuery;
     $('noteCards').innerHTML = `
       <div class="empty-state">
-        <strong>${state.searchQuery ? '没有找到匹配的笔记' : (needsFirstSync ? '还没有本地笔记' : '该分类暂无笔记')}</strong>
+        <strong>${state.searchQuery ? '没有找到匹配的笔记' : (needsFirstSync ? '还没有本地笔记' : '该节点暂无笔记')}</strong>
         ${state.searchQuery ? `
           <small>当前在 <strong>${escHtml(searchScopeLabel())}</strong> 中搜索。试试换个关键词，或按 <kbd>Esc</kbd> 清空搜索。</small>
           ${canWidenScope ? '<button class="empty-action-btn" id="expandSearchScopeBtn">改为搜索全部笔记</button>' : ''}
@@ -451,12 +542,13 @@ function renderNoteList() {
     <div class="note-card ${state.currentNote?.file === n.file ? 'active' : ''} ${selectedIndex === index ? 'search-selected' : ''}"
          data-file="${escHtml(n.file)}"
          data-slug="${escHtml(n.slug || '')}"
-         data-category="${escHtml(n.category)}"
+         data-category="${escHtml(n.categoryPathLabel || n.category)}"
+         data-category-key="${escHtml(n.categoryKey || '')}"
          data-title="${escHtml(n.title)}"
          data-index="${index}">
       <div class="note-card-title">${hilite(escHtml(n.title))}</div>
       <div class="note-card-meta-row">
-        <div class="note-card-category">${hilite(escHtml(n.category))}</div>
+        <div class="note-card-category">${hilite(escHtml(n.categoryPathLabel || n.category))}</div>
         ${hitLabel ? `<span class="search-hit-badge">${escHtml(hitLabel)}</span>` : ''}
       </div>
       ${snippet ? `<div class="note-card-preview">${hilite(escHtml(snippet))}</div>` : ''}
@@ -469,19 +561,20 @@ function renderNoteList() {
       updateSearchSelection(Number(card.dataset.index));
     });
     card.addEventListener('click', () => {
+      const note = state.allNotes.find(item => item.file === card.dataset.file) || card.dataset;
       if (state.currentNote?.file === card.dataset.file) {
         if (state.searchQuery) refreshOpenArticleSearchState('instant');
         return;
       }
-      loadNote(card.dataset);
+      loadNote(note);
     });
   });
 }
 
 function scopedNotes() {
-  if (!state.currentCategory) return state.allNotes;
+  if (!state.currentCategoryKey) return state.allNotes;
   if (state.searchQuery && state.searchScope === 'all') return state.allNotes;
-  return state.allNotes.filter(n => n.category === state.currentCategory);
+  return state.allNotes.filter(note => note.categoryKey === state.currentCategoryKey || note.categoryKey.startsWith(`${state.currentCategoryKey}/`));
 }
 
 async function ensureSearchIndex() {
@@ -554,7 +647,7 @@ function searchScore(note, tokens) {
   if (!tokens.length) return 0;
 
   const title = note.title.toLowerCase();
-  const category = note.category.toLowerCase();
+  const category = (note.categoryPathLabel || note.category || '').toLowerCase();
   const previewRaw = note.preview || '';
   const preview = previewRaw.toLowerCase();
   const fullText = state.searchIndex ? (state.searchIndex[note.file] || '').toLowerCase() : '';
@@ -592,8 +685,8 @@ function searchScore(note, tokens) {
 }
 
 function searchScopeLabel() {
-  if (state.searchScope === 'all' || !state.currentCategory) return '全部笔记';
-  return state.currentCategory;
+  if (state.searchScope === 'all' || !state.currentCategoryKey) return '全部笔记';
+  return currentCategoryLabel() || '全部笔记';
 }
 
 function renderSearchStatus(notes, poolSize = notes.length) {
@@ -658,11 +751,23 @@ function resolveHashNote(hash) {
   return state.allNotes.find(n => n.file === target) || null;
 }
 
-async function loadNote({ file, category, title, slug }) {
+async function loadNote(noteLike) {
+  const resolved = state.allNotes.find(note =>
+    note.file === noteLike.file || (noteLike.slug && note.slug === noteLike.slug)
+  ) || noteLike;
+  const {
+    file,
+    category,
+    categoryKey,
+    categoryPath,
+    categoryPathLabel,
+    title,
+    slug,
+  } = resolved;
   const requestId = ++state.noteRequestId;
-  state.currentNote = { file, category, title, slug };
-  if (!state.searchQuery && category) {
-    syncCurrentCategory(category);
+  state.currentNote = resolved;
+  if (!state.searchQuery && categoryKey) {
+    syncCurrentCategory(categoryKey);
   }
   setReadingState(true);
   history.replaceState(null, '', noteHash({ file, slug }));
@@ -688,10 +793,12 @@ async function loadNote({ file, category, title, slug }) {
 
   $('articleTitle').textContent = title;
   document.title = `${title} · ${CONFIG.siteName}`;
-  $('breadcrumb').innerHTML =
-    `<span class="breadcrumb-item">${escHtml(category)}</span>
-     <span class="breadcrumb-sep">›</span>
-     <span class="breadcrumb-item">${escHtml(title)}</span>`;
+  const breadcrumbParts = categoryPath?.length ? categoryPath : (category ? [category] : []);
+  const breadcrumbHtml = breadcrumbParts.map((part, index) => {
+    const sep = index === 0 ? '' : '<span class="breadcrumb-sep">›</span>';
+    return `${sep}<span class="breadcrumb-item">${escHtml(part)}</span>`;
+  }).join('');
+  $('breadcrumb').innerHTML = `${breadcrumbHtml ? `${breadcrumbHtml}<span class="breadcrumb-sep">›</span>` : ''}<span class="breadcrumb-item">${escHtml(title)}</span>`;
   $('articleMeta').textContent = '加载中…';
   $('articleNav').classList.add('hidden');
   $('articleNav').innerHTML = '';
@@ -739,7 +846,7 @@ async function loadNote({ file, category, title, slug }) {
     const chars    = md.replace(/\s/g, '').length;
     const readMins = Math.max(1, Math.ceil(chars / 400));
     $('articleMeta').innerHTML =
-      `<span>${escHtml(category)}</span>
+      `<span>${escHtml(categoryPathLabel || category || '')}</span>
        <span class="meta-sep">·</span>
        <span>${chars.toLocaleString()} 字</span>
        <span class="meta-sep">·</span>
@@ -811,7 +918,7 @@ function renderWelcomeHome() {
   recentList.innerHTML = recentNotes.map(({ note, meta }) => `
     <button class="welcome-home-card" data-file="${escHtml(note.file)}" data-slug="${escHtml(note.slug || '')}">
       <strong>${escHtml(note.title)}</strong>
-      <small>${escHtml(note.category)}</small>
+      <small>${escHtml(note.categoryPathLabel || note.category)}</small>
       <div class="welcome-card-meta">上次阅读：${new Date(meta.updatedAt).toLocaleDateString('zh-CN')}</div>
     </button>
   `).join('');
@@ -826,15 +933,15 @@ function renderWelcomeHome() {
   freshList.innerHTML = recentCourseNotes.map(note => `
     <button class="welcome-home-card" data-file="${escHtml(note.file)}" data-slug="${escHtml(note.slug || '')}">
       <strong>${escHtml(note.title)}</strong>
-      <small>${escHtml(note.category)}</small>
+      <small>${escHtml(note.categoryPathLabel || note.category)}</small>
     </button>
   `).join('');
   freshSection.classList.toggle('hidden', recentCourseNotes.length === 0);
 
   categoryGrid.innerHTML = state.categories.map(category => `
-    <button class="welcome-category-card" data-category="${escHtml(category.name)}">
+    <button class="welcome-category-card" data-category-key="${escHtml(category.key)}">
       <strong>${escHtml(category.name)}</strong>
-      <small>${category.notes.length} 篇笔记</small>
+      <small>${category.totalNoteCount} 篇笔记</small>
     </button>
   `).join('');
   categorySection.classList.toggle('hidden', !state.categories.length);
@@ -851,7 +958,7 @@ function renderWelcomeHome() {
 
   categoryGrid.querySelectorAll('.welcome-category-card').forEach(card => {
     card.addEventListener('click', () => {
-      selectCategory(card.dataset.category || null);
+      selectCategory(card.dataset.categoryKey || null);
     });
   });
 
@@ -938,9 +1045,9 @@ async function syncRemoteNotes() {
   try {
     const indexData = await fetchRemoteJson(CONFIG.indexUrl);
     const searchData = await fetchRemoteJson(CONFIG.searchIndexUrl);
-    const noteFiles = [...new Set(
-      (indexData.categories || []).flatMap(cat => (cat.notes || []).map(note => note.file)).filter(Boolean)
-    )];
+    const remoteNotes = indexData.allNotes
+      || flattenCategoryTreeNotes(indexData.categoryTree || indexData.categories || []);
+    const noteFiles = [...new Set(remoteNotes.map(note => note.file).filter(Boolean))];
 
     await cacheRemoteText(CONFIG.indexUrl, JSON.stringify(indexData), 'application/json; charset=utf-8');
     await cacheRemoteText(CONFIG.searchIndexUrl, JSON.stringify(searchData), 'application/json; charset=utf-8');
@@ -1404,11 +1511,11 @@ function renderArticleNavCard(note, label) {
     <button class="article-nav-card"
             data-file="${escHtml(note.file)}"
             data-slug="${escHtml(note.slug || '')}"
-            data-category="${escHtml(note.category)}"
+            data-category="${escHtml(note.categoryPathLabel || note.category)}"
             data-title="${escHtml(note.title)}">
       <span class="article-nav-label">${label}</span>
       <strong>${escHtml(note.title)}</strong>
-      <small>${escHtml(note.category)}</small>
+      <small>${escHtml(note.categoryPathLabel || note.category)}</small>
     </button>`;
 }
 

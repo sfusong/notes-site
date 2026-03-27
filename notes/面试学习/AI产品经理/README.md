@@ -1,0 +1,206 @@
+# AI 产品经理课程主入口
+
+这份 `README` 现在是这个目录的唯一主入口。  
+后面你进入这个目录，优先只看这一份。
+
+这套资料已经重构成：
+
+1. `正式课程`
+2. `补充专题`
+3. `规划文件`
+
+最重要的变化有两个：
+
+- 课程编号已经整理成连续主线，不再出现“第 6 课补充”这种插层
+- `Apprentice` 和“说明书抽取”两条线已经拆成更适合复习的结构
+
+---
+
+## 一、正式课程主线
+
+建议按这条顺序学：
+
+1. [第1课_AI产品经理和传统产品经理的区别.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第1课_AI产品经理和传统产品经理的区别.md)
+2. [第2课_什么样的场景适合做AI产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第2课_什么样的场景适合做AI产品.md)
+3. [第3课_理财子内部AI平台一期怎么规划.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第3课_理财子内部AI平台一期怎么规划.md)
+4. [第4课_AI产品经理如何推进一个PoC.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第4课_AI产品经理如何推进一个PoC.md)
+5. [第5课_AI产品怎么做效果评估.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第5课_AI产品怎么做效果评估.md)
+6. [第6课_AI产品的人机协同、权限边界与风险控制.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第6课_AI产品的人机协同、权限边界与风险控制.md)
+7. [第7课_AI产品经理如何和技术团队一起定方案.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第7课_AI产品经理如何和技术团队一起定方案.md)
+8. [第8课_企业内部AI平台的常见架构与治理.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第8课_企业内部AI平台的常见架构与治理.md)
+9. [第9课_AI产品经理如何设计一个内部员工AI助手.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第9课_AI产品经理如何设计一个内部员工AI助手.md)
+10. [第10课_AI产品经理如何设计一个非结构化文档抽取产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第10课_AI产品经理如何设计一个非结构化文档抽取产品.md)
+11. [第11课_Apprentice项目主讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第11课_Apprentice项目主讲法.md)
+12. [第12课_Apprentice项目速查版.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
+13. [第13课_说明书抽取和数据迁移评估项目讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
+
+这条主线的逻辑是：
+
+- 先补判断框架
+- 再补平台与落地逻辑
+- 再补产品形态
+- 最后把你的两个核心项目讲顺
+
+---
+
+## 二、最小复习集
+
+如果快面试了，只看下面这 8 份：
+
+1. [第1课_AI产品经理和传统产品经理的区别.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第1课_AI产品经理和传统产品经理的区别.md)
+2. [专题_大模型RAGWorkflowAgent到底是什么.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_大模型RAGWorkflowAgent到底是什么.md)
+3. [第2课_什么样的场景适合做AI产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第2课_什么样的场景适合做AI产品.md)
+4. [第4课_AI产品经理如何推进一个PoC.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第4课_AI产品经理如何推进一个PoC.md)
+5. [第6课_AI产品的人机协同、权限边界与风险控制.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第6课_AI产品的人机协同、权限边界与风险控制.md)
+6. [第7课_AI产品经理如何和技术团队一起定方案.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第7课_AI产品经理如何和技术团队一起定方案.md)
+7. [第12课_Apprentice项目速查版.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
+8. [第13课_说明书抽取和数据迁移评估项目讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
+
+---
+
+## 三、Apprentice 这条线现在怎么用
+
+这条线现在已经明确拆成“主讲法 + 速查版”。
+
+### 1. [第11课_Apprentice项目主讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第11课_Apprentice项目主讲法.md)
+
+适合什么时候看：
+
+- 你想真正理解 `Apprentice` 这个项目应该怎么定位
+- 你想把项目主线、产品判断、风险边界讲顺
+- 你要准备二面、业务面、深聊项目
+
+它解决的是：
+
+- 这个项目到底是什么
+- 为什么不是纯 Agent
+- 为什么先学、再辅、再逐步放大自治能力
+
+### 2. [第12课_Apprentice项目速查版.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
+
+适合什么时候看：
+
+- 面试前 10 分钟快速翻
+- 准备 1 分钟 / 3 分钟项目讲法
+- 复习高频追问和不同面试场景下的讲法
+
+它解决的是：
+
+- 怎么快速说
+- 怎么被追问时接住
+- 怎么按 HR 面 / 业务面 / 交叉面调节技术密度
+
+一句话理解：
+
+- 第 11 课是“想明白”
+- 第 12 课是“拿去说”
+
+---
+
+## 四、说明书抽取这条线现在怎么用
+
+这条线现在已经明确拆成“方法课 + 技术专题 + 项目讲法”三层。
+
+### 1. [第10课_AI产品经理如何设计一个非结构化文档抽取产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第10课_AI产品经理如何设计一个非结构化文档抽取产品.md)
+
+适合什么时候看：
+
+- 你想理解“文档抽取产品”这个产品形态本身
+- 你想知道字段 schema、校验、人审、Workflow 这些方法论
+
+它解决的是：
+
+- 这类产品怎么设计
+- 为什么更像 Workflow
+- 处理链路通常长什么样
+
+### 2. [专题_说明书解析Workflow一般怎么编排.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_说明书解析Workflow一般怎么编排.md)
+
+适合什么时候看：
+
+- 你被追问到更偏技术的工作流编排问题
+- 你想知道 Dify、LangGraph、Airflow、Camunda、Temporal 各自像什么
+
+它解决的是：
+
+- 说明书解析 Workflow 一般怎么落地编排
+- 轻量编排、AI workflow、企业流程引擎分别适合什么阶段
+
+### 3. [第13课_说明书抽取和数据迁移评估项目讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
+
+适合什么时候看：
+
+- 你要把你自己的这段经历讲给面试官听
+- 你要准备 1 分钟 / 90 秒项目讲法
+- 你要回答“这到底是做产品还是做技术验证”
+
+它解决的是：
+
+- 怎么把这段经历放进产品管理系统建设和数据迁移背景里讲
+- 怎么讲成 AI 产品方案评估项目
+
+一句话理解：
+
+- 第 10 课是“怎么做这类产品”
+- 技术专题是“这条链路技术上一般怎么编排”
+- 第 13 课是“你自己的项目怎么讲”
+
+---
+
+## 五、补充专题什么时候看
+
+这些不是主线课，但很适合在被追问时补充。
+
+### 1. [专题_大模型RAGWorkflowAgent到底是什么.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_大模型RAGWorkflowAgent到底是什么.md)
+
+适合：
+
+- 补 AI 基础判断
+- 准备技术概念题
+
+### 2. [专题_Embedding_ToolCalling_StructuredOutput是什么.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_Embedding_ToolCalling_StructuredOutput是什么.md)
+
+适合：
+
+- 被问到更偏技术基础的概念时
+
+### 3. [专题_Workflow一般用什么作为载体.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_Workflow一般用什么作为载体.md)
+
+适合：
+
+- 被问到 workflow 载体、编排引擎、编辑器组件时
+
+---
+
+## 六、这几个规划文件现在分别是什么角色
+
+### 1. [README.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/README.md)
+
+唯一主入口。
+
+### 2. [AI产品经理_学习路线图.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/AI产品经理_学习路线图.md)
+
+早期整体规划文件，现在主要作为补充说明。
+
+### 3. [AI产品经理_后续系统学习建议.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/AI产品经理_后续系统学习建议.md)
+
+后续扩展课程规划，现在不当主导航使用。
+
+---
+
+## 七、你接下来最自然的下一步
+
+现在课程线已经重排顺了。  
+接下来最自然的下一步是二选一：
+
+### 1. 进入 AI 产品经理模拟面试
+
+适合你开始练答题。
+
+### 2. 继续补平台型课程
+
+最值得补的是：
+
+- 金融行业里哪些场景适合问答、抽取、Copilot、Agent
+
+如果你想往“内部 AI 平台岗”更进一步，这个方向会很有帮助。

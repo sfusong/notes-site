@@ -1234,17 +1234,22 @@ a, button, input, textarea, select, .cat-item, .note-card, .mobile-nav-btn {
   position: relative;
   display: flex;
   align-items: center;
-  padding: 7px 8px;
+  gap: 4px;
+  padding: 0;
   border-radius: var(--r-sm);
-  cursor: pointer;
   transition: background 0.12s, color 0.12s;
   color: var(--sb-text);
   user-select: none;
+  padding-left: calc(4px + var(--cat-depth, 0) * 12px);
 }
 .cat-item:hover { background: var(--sb-hover); color: var(--sb-text-hover); }
 .cat-item.active {
   background: var(--sb-active-bg);
   color: var(--sb-text-active);
+}
+.cat-item.ancestor {
+  background: color-mix(in srgb, var(--sb-active-bg) 42%, transparent);
+  color: var(--sb-text-hover);
 }
 .cat-item.active::before {
   content: '';
@@ -1257,6 +1262,46 @@ a, button, input, textarea, select, .cat-item, .note-card, .mobile-nav-btn {
   border-radius: 0 2px 2px 0;
 }
 
+.cat-tree-node + .cat-tree-node { margin-top: 2px; }
+
+.cat-item-main {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px 7px 4px;
+  color: inherit;
+  text-align: left;
+}
+
+.cat-item-toggle,
+.cat-item-spacer {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sb-text);
+  opacity: 0.6;
+}
+
+.cat-item-toggle {
+  border-radius: 999px;
+  transition: background var(--motion-fast), color var(--motion-fast), transform var(--motion-fast);
+}
+.cat-item-toggle:hover {
+  background: color-mix(in srgb, var(--sb-hover) 86%, transparent);
+  color: var(--sb-text-hover);
+}
+.cat-item-toggle svg {
+  width: 11px;
+  height: 11px;
+  transition: transform var(--motion-fast) var(--ease-soft);
+}
+.cat-item-toggle.expanded svg { transform: rotate(90deg); }
+
 .cat-name {
   flex: 1;
   font-size: 13px;
@@ -1267,6 +1312,7 @@ a, button, input, textarea, select, .cat-item, .note-card, .mobile-nav-btn {
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif;
 }
 .cat-item.active .cat-name { font-weight: 600; }
+.cat-item.ancestor .cat-name { font-weight: 500; }
 
 .cat-count {
   font-size: 11px;
@@ -1275,6 +1321,10 @@ a, button, input, textarea, select, .cat-item, .note-card, .mobile-nav-btn {
   margin-left: 6px;
   font-variant-numeric: tabular-nums;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.cat-children {
+  margin-top: 2px;
 }
 
 /* ── Note List Panel ─────────────────────────────────────────── */
