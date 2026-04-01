@@ -262,6 +262,8 @@ function loadScriptOnce(id, src, onErrorFlag) {
 function enhanceArticleBody(body) {
   if (!body) return;
 
+  wireArticleLinks(body);
+
   if (typeof hljs !== 'undefined') {
     body.querySelectorAll('pre code:not(.hljs)').forEach(el => {
       hljs.highlightElement(el);
@@ -279,6 +281,117 @@ function enhanceArticleBody(body) {
       throwOnError: false,
     });
   }
+}
+
+function normalizeNotePath(path) {
+  const normalized = path.replace(/\\/g, '/');
+  const parts = normalized.split('/');
+  const stack = [];
+
+  for (const part of parts) {
+    if (!part || part === '.') continue;
+    if (part === '..') {
+      stack.pop();
+      continue;
+    }
+    stack.push(part);
+  }
+
+  return stack.join('/');
+}
+
+function mapLegacySourcePathToNoteFile(path) {
+  const decoded = decodeURIComponent(path || '').replace(/\\/g, '/');
+  const siteNotesPrefix = '/Users/shifusong/notes-site/notes/';
+  if (decoded.startsWith(siteNotesPrefix)) {
+    return `notes/${decoded.slice(siteNotesPrefix.length)}`;
+  }
+
+  const legacyRoot = '/Users/shifusong/Projects/找工作/面试学习/';
+  if (!decoded.startsWith(legacyRoot)) return null;
+
+  const relative = decoded.slice(legacyRoot.length);
+  if (relative === 'README.md') return 'notes/面试学习/README.md';
+  if (relative.startsWith('开发/')) {
+    return `notes/面试学习/开发岗/开发课程/${relative.slice('开发/'.length)}`;
+  }
+  if (relative.startsWith('AI产品经理/')) {
+    return `notes/面试学习/AI产品经理/${relative.slice('AI产品经理/'.length)}`;
+  }
+  if (relative.startsWith('项目管理产品经理/')) {
+    return `notes/面试学习/产品经理_项目经理/${relative.slice('项目管理产品经理/'.length)}`;
+  }
+  return `notes/面试学习/${relative}`;
+}
+
+function resolveNoteHref(href) {
+  const trimmed = (href || '').trim();
+  if (!trimmed || trimmed.startsWith('#')) return null;
+
+  const [rawPath, rawFragment = ''] = trimmed.split('#');
+  if (!rawPath) return null;
+
+  const candidate = decodeURIComponent(rawPath);
+  if (/^[a-z][a-z0-9+.-]*:/i.test(candidate)) return null;
+
+  let noteFile = mapLegacySourcePathToNoteFile(candidate);
+  if (!noteFile) {
+    if (candidate.startsWith('/notes/')) {
+      noteFile = candidate.slice(1);
+    } else if (candidate.startsWith('notes/')) {
+      noteFile = candidate;
+    } else if (candidate.startsWith('/')) {
+      return null;
+    } else if (candidate.endsWith('.md') && state.currentNote?.file) {
+      const baseDir = state.currentNote.file.split('/').slice(0, -1).join('/');
+      noteFile = normalizeNotePath(`${baseDir}/${candidate}`);
+    } else {
+      return null;
+    }
+  }
+
+  const note = state.allNotes.find(entry => entry.file === noteFile);
+  if (!note) return null;
+  return { note, fragment: decodeURIComponent(rawFragment) };
+}
+
+function focusArticleFragment(fragment, behavior = 'smooth') {
+  if (!fragment) return;
+  const escaped = window.CSS?.escape ? CSS.escape(fragment) : fragment.replace(/["\\]/g, '\\$&');
+  const target = $('articleBody')?.querySelector(`#${escaped}`);
+  if (!target) return;
+
+  const container = $('noteContent');
+  const containerRect = container.getBoundingClientRect();
+  const targetRect = target.getBoundingClientRect();
+  const top = container.scrollTop + (targetRect.top - containerRect.top) - container.clientHeight * 0.16;
+  container.scrollTo({ top: Math.max(0, top), behavior });
+}
+
+function wireArticleLinks(body) {
+  body.querySelectorAll('a[href]').forEach(anchor => {
+    if (anchor.dataset.noteLinkResolved === 'true') return;
+
+    const resolved = resolveNoteHref(anchor.getAttribute('href'));
+    if (!resolved) return;
+
+    anchor.dataset.noteLinkResolved = 'true';
+    anchor.dataset.noteTarget = resolved.note.file;
+    anchor.dataset.noteFragment = resolved.fragment || '';
+    anchor.setAttribute('href', noteHash(resolved.note));
+
+    anchor.addEventListener('click', event => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      event.preventDefault();
+      loadNote(resolved.note).then(() => {
+        if (resolved.fragment) {
+          requestAnimationFrame(() => focusArticleFragment(resolved.fragment, 'smooth'));
+        }
+      });
+    });
+  });
 }
 
 function refreshCurrentArticleEnhancements() {
@@ -746,7 +859,7 @@ function resolveHashNote(hash) {
   if (!target) return null;
   if (target.startsWith('note/')) {
     const slug = target.slice(5);
-    return state.allNotes.find(n => n.slug === slug) || null;
+    return state.allNotes.find(n => n.slug === slug || n.legacySlugs?.includes(slug)) || null;
   }
   return state.allNotes.find(n => n.file === target) || null;
 }

@@ -232,6 +232,15 @@ def normalize_slug(value: str) -> str:
     return value or "note"
 
 
+def path_based_slug(path_parts: list[str], filename: str) -> str:
+    stem = os.path.splitext(filename)[0]
+    if stem.lower() == "readme":
+        source = "/".join(path_parts)
+    else:
+        source = "/".join(path_parts + [stem])
+    return normalize_slug(source)
+
+
 def resolve_note_metadata(root_category: str, path_parts: list[str], filename: str, content: str) -> dict:
     front_matter, body = parse_front_matter(content)
     h1_titles = extract_h1_titles(body)
@@ -277,14 +286,18 @@ def resolve_note_metadata(root_category: str, path_parts: list[str], filename: s
     if explicit_order.isdigit():
         order = int(explicit_order)
 
-    default_slug_source = "-".join(path_parts + [title])
-    slug = normalize_slug(front_matter.get("slug", "") or default_slug_source)
+    legacy_slug = normalize_slug("-".join(path_parts + [title]))
+    slug = normalize_slug(front_matter.get("slug", "") or path_based_slug(path_parts, filename))
+    legacy_slugs = []
+    if legacy_slug and legacy_slug != slug:
+        legacy_slugs.append(legacy_slug)
     return {
         "title": title,
         "source_title": raw_title,
         "order": order,
         "unit": unit,
         "slug": slug,
+        "legacy_slugs": legacy_slugs,
         "body": body,
     }
 
@@ -293,6 +306,7 @@ def sort_notes(notes: list[dict]) -> list[dict]:
     return sorted(
         notes,
         key=lambda note: (
+            note["filename"].lower() != "readme.md",
             note["order"] is None,
             note["order"] if note["order"] is not None else float("inf"),
             natural_key(note["filename"]),
@@ -323,6 +337,7 @@ def build_note_entry(dir_parts: list[str], filename: str, content: str, used_slu
         "order": meta["order"],
         "unit": meta["unit"],
         "slug": slug,
+        "legacySlugs": meta["legacy_slugs"],
         "filename": filename,
         "file": f"{NOTES_DIR}/{'/'.join(dir_parts)}/{filename}",
         "preview": preview,

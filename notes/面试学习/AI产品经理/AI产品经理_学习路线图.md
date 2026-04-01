@@ -1,7 +1,7 @@
 # AI 产品经理学习路线图
 
 > 说明：这份文件现在是“补充规划文件”，不是主入口。  
-> 请优先从 [README.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/README.md) 进入整套资料。
+> 请优先从 [README.md](notes/面试学习/AI产品经理/README.md) 进入整套资料。
 
 这份路线图是基于你当前的背景定制的：
 

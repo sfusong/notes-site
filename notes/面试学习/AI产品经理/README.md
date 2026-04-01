@@ -20,19 +20,19 @@
 
 建议按这条顺序学：
 
-1. [第1课_AI产品经理和传统产品经理的区别.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第1课_AI产品经理和传统产品经理的区别.md)
-2. [第2课_什么样的场景适合做AI产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第2课_什么样的场景适合做AI产品.md)
-3. [第3课_理财子内部AI平台一期怎么规划.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第3课_理财子内部AI平台一期怎么规划.md)
-4. [第4课_AI产品经理如何推进一个PoC.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第4课_AI产品经理如何推进一个PoC.md)
-5. [第5课_AI产品怎么做效果评估.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第5课_AI产品怎么做效果评估.md)
-6. [第6课_AI产品的人机协同、权限边界与风险控制.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第6课_AI产品的人机协同、权限边界与风险控制.md)
-7. [第7课_AI产品经理如何和技术团队一起定方案.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第7课_AI产品经理如何和技术团队一起定方案.md)
-8. [第8课_企业内部AI平台的常见架构与治理.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第8课_企业内部AI平台的常见架构与治理.md)
-9. [第9课_AI产品经理如何设计一个内部员工AI助手.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第9课_AI产品经理如何设计一个内部员工AI助手.md)
-10. [第10课_AI产品经理如何设计一个非结构化文档抽取产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第10课_AI产品经理如何设计一个非结构化文档抽取产品.md)
-11. [第11课_Apprentice项目主讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第11课_Apprentice项目主讲法.md)
-12. [第12课_Apprentice项目速查版.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
-13. [第13课_说明书抽取和数据迁移评估项目讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
+1. [第1课_AI产品经理和传统产品经理的区别.md](notes/面试学习/AI产品经理/第1课_AI产品经理和传统产品经理的区别.md)
+2. [第2课_什么样的场景适合做AI产品.md](notes/面试学习/AI产品经理/第2课_什么样的场景适合做AI产品.md)
+3. [第3课_理财子内部AI平台一期怎么规划.md](notes/面试学习/AI产品经理/第3课_理财子内部AI平台一期怎么规划.md)
+4. [第4课_AI产品经理如何推进一个PoC.md](notes/面试学习/AI产品经理/第4课_AI产品经理如何推进一个PoC.md)
+5. [第5课_AI产品怎么做效果评估.md](notes/面试学习/AI产品经理/第5课_AI产品怎么做效果评估.md)
+6. [第6课_AI产品的人机协同、权限边界与风险控制.md](notes/面试学习/AI产品经理/第6课_AI产品的人机协同、权限边界与风险控制.md)
+7. [第7课_AI产品经理如何和技术团队一起定方案.md](notes/面试学习/AI产品经理/第7课_AI产品经理如何和技术团队一起定方案.md)
+8. [第8课_企业内部AI平台的常见架构与治理.md](notes/面试学习/AI产品经理/第8课_企业内部AI平台的常见架构与治理.md)
+9. [第9课_AI产品经理如何设计一个内部员工AI助手.md](notes/面试学习/AI产品经理/第9课_AI产品经理如何设计一个内部员工AI助手.md)
+10. [第10课_AI产品经理如何设计一个非结构化文档抽取产品.md](notes/面试学习/AI产品经理/第10课_AI产品经理如何设计一个非结构化文档抽取产品.md)
+11. [第11课_Apprentice项目主讲法.md](notes/面试学习/AI产品经理/第11课_Apprentice项目主讲法.md)
+12. [第12课_Apprentice项目速查版.md](notes/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
+13. [第13课_说明书抽取和数据迁移评估项目讲法.md](notes/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
 
 这条主线的逻辑是：
 
@@ -47,14 +47,14 @@
 
 如果快面试了，只看下面这 8 份：
 
-1. [第1课_AI产品经理和传统产品经理的区别.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第1课_AI产品经理和传统产品经理的区别.md)
-2. [专题_大模型RAGWorkflowAgent到底是什么.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_大模型RAGWorkflowAgent到底是什么.md)
-3. [第2课_什么样的场景适合做AI产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第2课_什么样的场景适合做AI产品.md)
-4. [第4课_AI产品经理如何推进一个PoC.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第4课_AI产品经理如何推进一个PoC.md)
-5. [第6课_AI产品的人机协同、权限边界与风险控制.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第6课_AI产品的人机协同、权限边界与风险控制.md)
-6. [第7课_AI产品经理如何和技术团队一起定方案.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第7课_AI产品经理如何和技术团队一起定方案.md)
-7. [第12课_Apprentice项目速查版.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
-8. [第13课_说明书抽取和数据迁移评估项目讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
+1. [第1课_AI产品经理和传统产品经理的区别.md](notes/面试学习/AI产品经理/第1课_AI产品经理和传统产品经理的区别.md)
+2. [专题_大模型RAGWorkflowAgent到底是什么.md](notes/面试学习/AI产品经理/专题_大模型RAGWorkflowAgent到底是什么.md)
+3. [第2课_什么样的场景适合做AI产品.md](notes/面试学习/AI产品经理/第2课_什么样的场景适合做AI产品.md)
+4. [第4课_AI产品经理如何推进一个PoC.md](notes/面试学习/AI产品经理/第4课_AI产品经理如何推进一个PoC.md)
+5. [第6课_AI产品的人机协同、权限边界与风险控制.md](notes/面试学习/AI产品经理/第6课_AI产品的人机协同、权限边界与风险控制.md)
+6. [第7课_AI产品经理如何和技术团队一起定方案.md](notes/面试学习/AI产品经理/第7课_AI产品经理如何和技术团队一起定方案.md)
+7. [第12课_Apprentice项目速查版.md](notes/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
+8. [第13课_说明书抽取和数据迁移评估项目讲法.md](notes/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
 
 ---
 
@@ -62,7 +62,7 @@
 
 这条线现在已经明确拆成“主讲法 + 速查版”。
 
-### 1. [第11课_Apprentice项目主讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第11课_Apprentice项目主讲法.md)
+### 1. [第11课_Apprentice项目主讲法.md](notes/面试学习/AI产品经理/第11课_Apprentice项目主讲法.md)
 
 适合什么时候看：
 
@@ -76,7 +76,7 @@
 - 为什么不是纯 Agent
 - 为什么先学、再辅、再逐步放大自治能力
 
-### 2. [第12课_Apprentice项目速查版.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
+### 2. [第12课_Apprentice项目速查版.md](notes/面试学习/AI产品经理/第12课_Apprentice项目速查版.md)
 
 适合什么时候看：
 
@@ -101,7 +101,7 @@
 
 这条线现在已经明确拆成“方法课 + 技术专题 + 项目讲法”三层。
 
-### 1. [第10课_AI产品经理如何设计一个非结构化文档抽取产品.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第10课_AI产品经理如何设计一个非结构化文档抽取产品.md)
+### 1. [第10课_AI产品经理如何设计一个非结构化文档抽取产品.md](notes/面试学习/AI产品经理/第10课_AI产品经理如何设计一个非结构化文档抽取产品.md)
 
 适合什么时候看：
 
@@ -114,7 +114,7 @@
 - 为什么更像 Workflow
 - 处理链路通常长什么样
 
-### 2. [专题_说明书解析Workflow一般怎么编排.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_说明书解析Workflow一般怎么编排.md)
+### 2. [专题_说明书解析Workflow一般怎么编排.md](notes/面试学习/AI产品经理/专题_说明书解析Workflow一般怎么编排.md)
 
 适合什么时候看：
 
@@ -126,7 +126,7 @@
 - 说明书解析 Workflow 一般怎么落地编排
 - 轻量编排、AI workflow、企业流程引擎分别适合什么阶段
 
-### 3. [第13课_说明书抽取和数据迁移评估项目讲法.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
+### 3. [第13课_说明书抽取和数据迁移评估项目讲法.md](notes/面试学习/AI产品经理/第13课_说明书抽取和数据迁移评估项目讲法.md)
 
 适合什么时候看：
 
@@ -151,20 +151,20 @@
 
 这些不是主线课，但很适合在被追问时补充。
 
-### 1. [专题_大模型RAGWorkflowAgent到底是什么.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_大模型RAGWorkflowAgent到底是什么.md)
+### 1. [专题_大模型RAGWorkflowAgent到底是什么.md](notes/面试学习/AI产品经理/专题_大模型RAGWorkflowAgent到底是什么.md)
 
 适合：
 
 - 补 AI 基础判断
 - 准备技术概念题
 
-### 2. [专题_Embedding_ToolCalling_StructuredOutput是什么.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_Embedding_ToolCalling_StructuredOutput是什么.md)
+### 2. [专题_Embedding_ToolCalling_StructuredOutput是什么.md](notes/面试学习/AI产品经理/专题_Embedding_ToolCalling_StructuredOutput是什么.md)
 
 适合：
 
 - 被问到更偏技术基础的概念时
 
-### 3. [专题_Workflow一般用什么作为载体.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/专题_Workflow一般用什么作为载体.md)
+### 3. [专题_Workflow一般用什么作为载体.md](notes/面试学习/AI产品经理/专题_Workflow一般用什么作为载体.md)
 
 适合：
 
@@ -174,15 +174,15 @@
 
 ## 六、这几个规划文件现在分别是什么角色
 
-### 1. [README.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/README.md)
+### 1. [README.md](notes/面试学习/AI产品经理/README.md)
 
 唯一主入口。
 
-### 2. [AI产品经理_学习路线图.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/AI产品经理_学习路线图.md)
+### 2. [AI产品经理_学习路线图.md](notes/面试学习/AI产品经理/AI产品经理_学习路线图.md)
 
 早期整体规划文件，现在主要作为补充说明。
 
-### 3. [AI产品经理_后续系统学习建议.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/AI产品经理_后续系统学习建议.md)
+### 3. [AI产品经理_后续系统学习建议.md](notes/面试学习/AI产品经理/AI产品经理_后续系统学习建议.md)
 
 后续扩展课程规划，现在不当主导航使用。
 

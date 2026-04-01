@@ -1,7 +1,7 @@
 # AI 产品经理后续系统学习建议
 
 > 说明：这份文件现在主要用于“后续扩展课程规划”，不是主入口。  
-> 请优先从 [README.md](/Users/shifusong/Projects/找工作/面试学习/AI产品经理/README.md) 进入整套资料。
+> 请优先从 [README.md](notes/面试学习/AI产品经理/README.md) 进入整套资料。
 
 ## 一、先讲一句话结论
 
