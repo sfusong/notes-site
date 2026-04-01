@@ -385,7 +385,7 @@ function wireArticleLinks(body) {
         return;
       }
       event.preventDefault();
-      loadNote(resolved.note).then(() => {
+      loadNote(resolved.note, { historyMode: 'push' }).then(() => {
         if (resolved.fragment) {
           requestAnimationFrame(() => focusArticleFragment(resolved.fragment, 'smooth'));
         }
@@ -679,7 +679,7 @@ function renderNoteList() {
         if (state.searchQuery) refreshOpenArticleSearchState('instant');
         return;
       }
-      loadNote(note);
+      loadNote(note, { historyMode: 'push' });
     });
   });
 }
@@ -864,7 +864,8 @@ function resolveHashNote(hash) {
   return state.allNotes.find(n => n.file === target) || null;
 }
 
-async function loadNote(noteLike) {
+async function loadNote(noteLike, options = {}) {
+  const historyMode = options.historyMode || 'push';
   const resolved = state.allNotes.find(note =>
     note.file === noteLike.file || (noteLike.slug && note.slug === noteLike.slug)
   ) || noteLike;
@@ -883,7 +884,12 @@ async function loadNote(noteLike) {
     syncCurrentCategory(categoryKey);
   }
   setReadingState(true);
-  history.replaceState(null, '', noteHash({ file, slug }));
+  const nextHash = noteHash({ file, slug });
+  if (historyMode === 'push') {
+    if (location.hash !== nextHash) history.pushState(null, '', nextHash);
+  } else if (historyMode === 'replace') {
+    if (location.hash !== nextHash) history.replaceState(null, '', nextHash);
+  }
   localStorage.setItem(LAST_OPEN_NOTE_KEY, JSON.stringify({ file, slug }));
   state.hasToc = false;
   state.lastScrollTop = 0;
@@ -1065,7 +1071,7 @@ function renderWelcomeHome() {
       const note = state.allNotes.find(item =>
         item.file === card.dataset.file || (card.dataset.slug && item.slug === card.dataset.slug)
       );
-      if (note) loadNote(note);
+      if (note) loadNote(note, { historyMode: 'push' });
     });
   });
 
@@ -1197,7 +1203,7 @@ async function syncRemoteNotes() {
         note.file === state.currentNote.file || (state.currentNote.slug && note.slug === state.currentNote.slug)
       );
       if (refreshed) {
-        await loadNote(refreshed);
+        await loadNote(refreshed, { historyMode: 'none' });
       } else {
         if (isMobile()) switchMobilePanel('list');
         showWelcome();
@@ -1319,7 +1325,7 @@ function restoreFromHash() {
     }
   }
   if (note) {
-    loadNote(note);
+    loadNote(note, { historyMode: location.hash ? 'none' : 'replace' });
     return;
   }
 
@@ -1332,7 +1338,7 @@ function restoreFromHash() {
 window.addEventListener('hashchange', () => {
   if (!location.hash) { showWelcome(); return; }
   const note = resolveHashNote(location.hash);
-  if (note && note.file !== state.currentNote?.file) loadNote(note);
+  if (note && note.file !== state.currentNote?.file) loadNote(note, { historyMode: 'none' });
   if (!note) showWelcome();
 });
 
@@ -1611,7 +1617,7 @@ function renderArticleNav(file) {
       slug: card.dataset.slug,
       category: card.dataset.category,
       title: card.dataset.title,
-    }));
+    }, { historyMode: 'push' }));
   });
 }
 
@@ -1664,7 +1670,7 @@ function setupEventListeners() {
     const note = stored
       ? state.allNotes.find(n => (stored.slug && n.slug === stored.slug) || n.file === stored.file)
       : null;
-    if (note) loadNote(note);
+    if (note) loadNote(note, { historyMode: 'push' });
   });
   document.addEventListener('click', () => closePicker());
   $('themePicker').addEventListener('click', e => e.stopPropagation());
