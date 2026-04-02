@@ -511,8 +511,25 @@ function getCurrentCategoryNode() {
   return state.currentCategoryKey ? state.categoryMap[state.currentCategoryKey] || null : null;
 }
 
+function getCategoryGuideNote(categoryKey = state.currentCategoryKey) {
+  if (!categoryKey) return null;
+  return state.allNotes.find(note =>
+    note.categoryKey === categoryKey && String(note.filename || '').toLowerCase() === 'readme.md'
+  ) || null;
+}
+
 function currentCategoryLabel() {
   return getCurrentCategoryNode()?.pathLabel || null;
+}
+
+function categoryGuideSummary(node) {
+  if (!node) return '';
+  const childCount = (node.children || []).length;
+  const parts = [];
+  if (childCount) parts.push(`${childCount} 个子分类`);
+  if (node.directNoteCount) parts.push(`${node.directNoteCount} 篇直属笔记`);
+  if (!parts.length && node.totalNoteCount) parts.push(`${node.totalNoteCount} 篇笔记`);
+  return parts.join(' · ');
 }
 
 function isCurrentCategoryAncestor(key) {
@@ -614,8 +631,13 @@ function syncCurrentCategory(categoryKey) {
 // ── Note List ─────────────────────────────────────────────────
 function renderNoteList() {
   const baseNotes = scopedNotes();
-  const results = state.searchQuery ? rankSearchResults(baseNotes) : baseNotes.map(note => ({ note, hitLabel: '', snippet: note.preview || '' }));
-  const notes = results.map(entry => entry.note);
+  const currentNode = getCurrentCategoryNode();
+  const guideNote = !state.searchQuery ? getCategoryGuideNote() : null;
+  const rawResults = state.searchQuery ? rankSearchResults(baseNotes) : baseNotes.map(note => ({ note, hitLabel: '', snippet: note.preview || '' }));
+  const results = guideNote
+    ? rawResults.filter(entry => entry.note.file !== guideNote.file)
+    : rawResults;
+  const notes = rawResults.map(entry => entry.note);
   $('panelTitle').textContent = state.searchQuery ? '搜索结果' : (currentCategoryLabel() || '全部笔记');
   $('noteCount').textContent  = state.searchQuery ? `${notes.length} 条` : `${notes.length} 篇`;
   renderSearchStatus(notes, baseNotes.length);
@@ -650,7 +672,19 @@ function renderNoteList() {
     : -1;
   state.searchSelection = selectedIndex;
 
-  $('noteCards').innerHTML = results.map(({ note: n, hitLabel, snippet }, index) => {
+  const guideCardHtml = guideNote ? `
+    <button class="note-guide-card" id="categoryGuideCard"
+            data-file="${escHtml(guideNote.file)}"
+            data-slug="${escHtml(guideNote.slug || '')}">
+      <div class="note-guide-pill">本节点导航页</div>
+      <strong>${escHtml(guideNote.title)}</strong>
+      ${categoryGuideSummary(currentNode) ? `<div class="note-guide-meta">${escHtml(categoryGuideSummary(currentNode))}</div>` : ''}
+      <p>${escHtml(guideNote.preview || '先从这页开始，看当前分类的结构、课程总纲和推荐阅读顺序。')}</p>
+      <span class="note-guide-link">打开导航页</span>
+    </button>
+  ` : '';
+
+  $('noteCards').innerHTML = `${guideCardHtml}${results.map(({ note: n, hitLabel, snippet }, index) => {
     return `
     <div class="note-card ${state.currentNote?.file === n.file ? 'active' : ''} ${selectedIndex === index ? 'search-selected' : ''}"
          data-file="${escHtml(n.file)}"
@@ -666,7 +700,11 @@ function renderNoteList() {
       </div>
       ${snippet ? `<div class="note-card-preview">${hilite(escHtml(snippet))}</div>` : ''}
     </div>`;
-  }).join('');
+  }).join('')}`;
+
+  $('categoryGuideCard')?.addEventListener('click', () => {
+    loadNote(guideNote, { historyMode: 'push' });
+  });
 
   $('noteCards').querySelectorAll('.note-card').forEach(card => {
     card.addEventListener('mouseenter', () => {
@@ -1016,7 +1054,7 @@ function renderWelcomeHome() {
   const categorySection = $('welcomeCategorySection');
   const categoryGrid = $('welcomeCategoryGrid');
 
-  if (!state.isNativeApp || !state.allNotes.length) {
+  if (!state.isNativeApp || !state.allNotes.length || state.currentCategoryKey) {
     home.classList.add('hidden');
     recentSection.classList.add('hidden');
     freshSection.classList.add('hidden');
@@ -1090,6 +1128,7 @@ function updateWelcomeState() {
   const actionsEl = $('welcomeActions');
   const noteEl = $('welcomeSyncNote');
   const buttonEl = $('welcomeSyncBtn');
+  const guideBtn = $('welcomeGuideBtn');
   const continueBtn = $('welcomeContinueBtn');
   const libraryBtn = $('welcomeLibraryBtn');
   const meta = getRemoteSyncMeta();
@@ -1097,39 +1136,80 @@ function updateWelcomeState() {
   const resumeNote = stored
     ? state.allNotes.find(note => (stored.slug && note.slug === stored.slug) || note.file === stored.file)
     : null;
+  const currentNode = getCurrentCategoryNode();
+  const guideNote = getCategoryGuideNote();
+  const hasCategoryContext = !!currentNode;
+  const canReturnToReading = !!resumeNote && hasCategoryContext;
+  const structureHint = currentNode
+    ? `当前节点：${currentNode.pathLabel} · ${categoryGuideSummary(currentNode) || `${currentNode.totalNoteCount} 篇笔记`}`
+    : '';
 
   if (!state.isNativeApp) {
-    titleEl.textContent = '选择一篇笔记开始阅读';
-    textEl.textContent = '从左侧选择分类，点击笔记卡片即可阅读';
-    actionsEl.classList.add('hidden');
+    continueBtn.textContent = '返回刚才阅读';
+    continueBtn.classList.toggle('hidden', !canReturnToReading);
+    if (currentNode && guideNote) {
+      titleEl.textContent = `${currentNode.name} 导航页`;
+      textEl.textContent = `这个节点有一页整理好的导航说明。先从导航页进入，会比直接在列表里找更高效。`;
+      actionsEl.classList.remove('hidden');
+      guideBtn.classList.remove('hidden');
+    } else {
+      titleEl.textContent = currentNode ? `进入 ${currentNode.name}` : '选择一篇笔记开始阅读';
+      textEl.textContent = currentNode
+        ? `这个节点下共有 ${currentNode.totalNoteCount} 篇笔记。从左侧列表选择一篇，或先打开它的导航页。`
+        : '从左侧选择分类，点击笔记卡片即可阅读';
+      actionsEl.classList.toggle('hidden', !currentNode || (!guideNote && !canReturnToReading));
+      guideBtn.classList.toggle('hidden', !guideNote);
+    }
+    buttonEl.classList.add('hidden');
+    libraryBtn.classList.add('hidden');
     $('welcomeHome').classList.add('hidden');
+    noteEl.textContent = structureHint;
     return;
   }
 
   actionsEl.classList.remove('hidden');
+  continueBtn.textContent = hasCategoryContext ? '返回刚才阅读' : '继续阅读';
+  guideBtn.classList.toggle('hidden', !guideNote);
   buttonEl.disabled = state.syncInProgress;
   buttonEl.textContent = state.syncInProgress ? '同步中…' : (state.allNotes.length ? '同步最新笔记' : '同步我的笔记');
-  continueBtn.classList.toggle('hidden', !resumeNote);
+  continueBtn.classList.toggle('hidden', hasCategoryContext ? !canReturnToReading : !resumeNote);
   libraryBtn.classList.toggle('hidden', !state.allNotes.length);
+  libraryBtn.textContent = hasCategoryContext ? '查看本节点笔记' : '进入书库';
+  buttonEl.classList.remove('hidden');
 
-  if (!state.allNotes.length) {
+  if (currentNode && guideNote) {
+    titleEl.textContent = `${currentNode.name} 导航页`;
+    textEl.textContent = `先从这页整理好的导航说明进入，再按课程结构继续阅读，会比直接在当前节点里逐篇翻找更顺。`;
+    libraryBtn.classList.remove('hidden');
+    noteEl.textContent = structureHint;
+  } else if (!state.allNotes.length) {
     titleEl.textContent = '先把线上笔记同步到本地';
     textEl.textContent = '这个 Android 版默认不内置书库。首次同步后，你的笔记会缓存到本地，之后离线也能阅读。';
+    guideBtn.classList.add('hidden');
     continueBtn.classList.add('hidden');
     libraryBtn.classList.add('hidden');
+    noteEl.textContent = state.syncStatusText || '首次同步需要联网，完成后会优先读取本地缓存。';
+  } else if (currentNode) {
+    titleEl.textContent = `进入 ${currentNode.name}`;
+    textEl.textContent = guideNote
+      ? `先看导航页，再按当前节点的课程结构继续阅读。`
+      : `这个节点下共有 ${currentNode.totalNoteCount} 篇笔记。你可以先浏览列表，或返回刚才阅读的笔记继续看。`;
+    noteEl.textContent = structureHint;
   } else if (resumeNote) {
     titleEl.textContent = '继续上次的阅读';
     textEl.textContent = `你上次停留在《${resumeNote.title}》。继续阅读，或者先进入书库看看最近同步的内容。`;
+    noteEl.textContent = '';
   } else {
     titleEl.textContent = '本地书库已准备好';
     textEl.textContent = '先进入书库挑一篇笔记开始阅读，或者先同步一下线上最新内容。';
+    noteEl.textContent = '';
   }
 
-  if (state.syncStatusText) {
+  if (!hasCategoryContext && state.syncStatusText) {
     noteEl.textContent = state.syncStatusText;
-  } else if (meta?.updatedAt) {
+  } else if (!hasCategoryContext && meta?.updatedAt) {
     noteEl.textContent = `上次同步：${new Date(meta.updatedAt).toLocaleString('zh-CN')} · ${meta.noteCount || state.allNotes.length} 篇`;
-  } else {
+  } else if (!hasCategoryContext) {
     noteEl.textContent = '首次同步需要联网，完成后会优先读取本地缓存。';
   }
 
@@ -1664,6 +1744,10 @@ function setupEventListeners() {
   $('themePickerBtn').addEventListener('click', e => { e.stopPropagation(); togglePicker(); });
   $('syncNotesBtn').addEventListener('click', () => syncRemoteNotes());
   $('welcomeSyncBtn').addEventListener('click', () => syncRemoteNotes());
+  $('welcomeGuideBtn').addEventListener('click', () => {
+    const guideNote = getCategoryGuideNote();
+    if (guideNote) loadNote(guideNote, { historyMode: 'push' });
+  });
   $('welcomeLibraryBtn').addEventListener('click', () => switchMobilePanel('list'));
   $('welcomeContinueBtn').addEventListener('click', () => {
     const stored = getStoredLastOpenNote();
