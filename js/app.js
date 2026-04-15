@@ -23,6 +23,9 @@ const OPTIONAL_ASSETS = {
   katexAutoRenderScript: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js',
 };
 
+const MERMAID_LANGS = new Set(['mermaid', 'flowchart', 'graph']);
+const MERMAID_START_RE = /^\s*(flowchart|graph)\s+(TB|TD|BT|RL|LR)\b|^\s*(sequenceDiagram|classDiagram|stateDiagram(?:-v2)?|erDiagram|gantt|pie|journey|mindmap|timeline|quadrantChart|requirementDiagram|gitGraph|C4Context)\b/i;
+
 // ── Theme Definitions ─────────────────────────────────────────
 const THEMES = [
   // id, name, group, dark(hljs), swatch bg, accent color
@@ -113,9 +116,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initThemePicker();
     setupEventListeners();
 
-    if (window.marked?.setOptions) {
-      marked.setOptions({ gfm: true, breaks: true });
-    }
+    configureMarkdownRenderer();
 
     await loadIndex();
     bootOptionalAssets();
@@ -263,9 +264,10 @@ function enhanceArticleBody(body) {
   if (!body) return;
 
   wireArticleLinks(body);
+  renderMermaidDiagrams(body);
 
   if (typeof hljs !== 'undefined') {
-    body.querySelectorAll('pre code:not(.hljs)').forEach(el => {
+    body.querySelectorAll('pre code:not(.hljs):not(.language-mermaid):not(.language-flowchart)').forEach(el => {
       hljs.highlightElement(el);
     });
   }
@@ -281,6 +283,61 @@ function enhanceArticleBody(body) {
       throwOnError: false,
     });
   }
+}
+
+function configureMarkdownRenderer() {
+  if (!window.marked?.setOptions) return;
+
+  const renderer = new marked.Renderer();
+  renderer.code = (code, infostring = '') => {
+    const lang = String(infostring || '').trim().split(/\s+/)[0].toLowerCase();
+    const text = String(code || '').trim();
+    const isMermaid = MERMAID_LANGS.has(lang) || MERMAID_START_RE.test(text);
+
+    if (isMermaid) {
+      return [
+        '<figure class="mermaid-block">',
+        `<pre class="mermaid-source" hidden>${escHtml(text)}</pre>`,
+        `<div class="mermaid" role="img">${escHtml(text)}</div>`,
+        '</figure>',
+      ].join('');
+    }
+
+    const className = lang ? ` class="language-${escHtml(lang)}"` : '';
+    return `<pre><code${className}>${escHtml(code)}</code></pre>`;
+  };
+
+  marked.setOptions({ gfm: true, breaks: true, renderer });
+}
+
+function renderMermaidDiagrams(body) {
+  const nodes = [...body.querySelectorAll('.mermaid:not([data-processed])')];
+  if (!nodes.length) return;
+
+  if (!window.mermaid?.run) {
+    nodes.forEach(node => {
+      node.closest('.mermaid-block')?.classList.add('mermaid-block-unavailable');
+      node.setAttribute('data-processed', 'unavailable');
+    });
+    return;
+  }
+
+  const currentTheme = THEMES.find(t => t.id === state.theme) || THEMES[0];
+  mermaid.initialize({
+    startOnLoad: false,
+    securityLevel: 'strict',
+    theme: currentTheme.dark ? 'dark' : 'neutral',
+    flowchart: {
+      curve: 'basis',
+      htmlLabels: false,
+      useMaxWidth: true,
+    },
+    fontFamily: getComputedStyle(document.documentElement).getPropertyValue('--font-sans') || 'sans-serif',
+  });
+
+  mermaid.run({ nodes, suppressErrors: true }).catch(error => {
+    console.warn('Mermaid render failed', error);
+  });
 }
 
 function normalizeNotePath(path) {
@@ -1441,10 +1498,27 @@ function setTheme(id, animate = true) {
   if (hljsLight) hljsLight.disabled = theme.dark;
   if (hljsDark)  hljsDark.disabled  = !theme.dark;
 
+  rerenderMermaidForTheme();
+
   // Update active marker in picker
   document.querySelectorAll('.theme-option').forEach(btn =>
     btn.classList.toggle('active', btn.dataset.theme === theme.id)
   );
+}
+
+function rerenderMermaidForTheme() {
+  const body = $('articleBody');
+  if (!body || !window.mermaid?.run) return;
+
+  body.querySelectorAll('.mermaid-block').forEach(block => {
+    const source = block.querySelector('.mermaid-source')?.textContent;
+    const diagram = block.querySelector('.mermaid');
+    if (!source || !diagram) return;
+    diagram.removeAttribute('data-processed');
+    diagram.textContent = source;
+  });
+
+  renderMermaidDiagrams(body);
 }
 
 function setReadingDensity(density) {

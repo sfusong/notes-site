@@ -2111,6 +2111,41 @@ a, button, input, textarea, select, .cat-item, .note-card, .mobile-nav-btn {
   color: var(--code-text); font-size: 13px; line-height: 1.65;
 }
 
+/* Mermaid diagrams */
+.markdown-body .mermaid-block {
+  margin: var(--pre-gap) 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--panel-bg) 92%, var(--accent-soft) 8%);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.markdown-body .mermaid {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 8px;
+  color: var(--text-1);
+  -webkit-overflow-scrolling: touch;
+}
+
+.markdown-body .mermaid svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-body .mermaid-block-unavailable .mermaid {
+  justify-content: flex-start;
+  white-space: pre;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--code-text);
+}
+
 /* Table */
 .markdown-body table {
   display: block;
