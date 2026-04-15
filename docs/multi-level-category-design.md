@@ -62,19 +62,19 @@
 
 ```json
 {
-  "title": "BOCI 问答题库：短版",
-  "source_title": "BOCI_QA_Short",
+  "title": "金融科技项目经理问答题库：短版",
+  "source_title": "金融科技项目经理问答题库_短版",
   "order": null,
   "unit": null,
-  "slug": "面试学习-券商-boci-boci-问答题库-短版",
-  "filename": "BOCI_QA_Short.md",
-  "file": "notes/面试学习/券商/BOCI/BOCI_QA_Short.md",
+  "slug": "面试学习-产品经理-项目经理-金融科技项目经理问答题库-短版",
+  "filename": "金融科技项目经理问答题库_短版.md",
+  "file": "notes/面试学习/产品经理_项目经理/金融科技项目经理问答题库_短版.md",
   "preview": "...",
-  "category": "BOCI",
+  "category": "产品经理_项目经理",
   "rootCategory": "面试学习",
-  "categoryKey": "面试学习/券商/BOCI",
-  "categoryPath": ["面试学习", "券商", "BOCI"],
-  "categoryPathLabel": "面试学习 / 券商 / BOCI"
+  "categoryKey": "面试学习/产品经理_项目经理",
+  "categoryPath": ["面试学习", "产品经理_项目经理"],
+  "categoryPathLabel": "面试学习 / 产品经理_项目经理"
 }
 ```
 
@@ -153,8 +153,8 @@ slug 的默认生成从：
 它表示当前选中的分类节点，例如：
 
 - `面试学习`
-- `面试学习/券商`
-- `面试学习/券商/BOCI`
+- `面试学习/产品经理_项目经理`
+- `面试学习/开发岗/开发课程`
 
 ### 6.2 展开状态
 

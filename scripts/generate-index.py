@@ -12,8 +12,10 @@ generate-index.py
 
 notes/
   面试学习/
-    券商/
-      BOCI/
+    开发岗/
+      开发课程/
+        xxx.md
+      项目面试资料包/
         xxx.md
 """
 

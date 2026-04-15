@@ -37,30 +37,6 @@
       "children": []
     },
     {
-      "name": "示例笔记",
-      "key": "示例笔记",
-      "path": [
-        "示例笔记"
-      ],
-      "pathLabel": "示例笔记",
-      "depth": 0,
-      "directNoteCount": 3,
-      "totalNoteCount": 3,
-      "children": []
-    },
-    {
-      "name": "资管IT",
-      "key": "资管IT",
-      "path": [
-        "资管IT"
-      ],
-      "pathLabel": "资管IT",
-      "depth": 0,
-      "directNoteCount": 11,
-      "totalNoteCount": 11,
-      "children": []
-    },
-    {
       "name": "资管IT学习（个人）",
       "key": "资管IT学习（个人）",
       "path": [
@@ -121,20 +97,6 @@
           "directNoteCount": 1,
           "totalNoteCount": 54,
           "children": [
-            {
-              "name": "工银高盛",
-              "key": "面试学习/开发岗/工银高盛",
-              "path": [
-                "面试学习",
-                "开发岗",
-                "工银高盛"
-              ],
-              "pathLabel": "面试学习 / 开发岗 / 工银高盛",
-              "depth": 2,
-              "directNoteCount": 8,
-              "totalNoteCount": 8,
-              "children": []
-            },
             {
               "name": "开发课程",
               "key": "面试学习/开发岗/开发课程",
@@ -239,6 +201,20 @@
                   "children": []
                 }
               ]
+            },
+            {
+              "name": "项目面试资料包",
+              "key": "面试学习/开发岗/项目面试资料包",
+              "path": [
+                "面试学习",
+                "开发岗",
+                "项目面试资料包"
+              ],
+              "pathLabel": "面试学习 / 开发岗 / 项目面试资料包",
+              "depth": 2,
+              "directNoteCount": 8,
+              "totalNoteCount": 8,
+              "children": []
             }
           ]
         }
@@ -1067,286 +1043,6 @@
       "categoryPathLabel": "宏观经济学"
     },
     {
-      "title": "示例笔记导航",
-      "source_title": "示例笔记导航",
-      "order": null,
-      "unit": null,
-      "slug": "示例笔记",
-      "legacySlugs": [
-        "示例笔记-示例笔记导航"
-      ],
-      "filename": "README.md",
-      "file": "notes/示例笔记/README.md",
-      "preview": "这个目录主要用来放演示站点能力的样例内容。",
-      "category": "示例笔记",
-      "rootCategory": "示例笔记",
-      "categoryKey": "示例笔记",
-      "categoryPath": [
-        "示例笔记"
-      ],
-      "categoryPathLabel": "示例笔记"
-    },
-    {
-      "title": "Markdown 语法示例",
-      "source_title": "Markdown 语法示例",
-      "order": null,
-      "unit": null,
-      "slug": "示例笔记-markdown语法示例",
-      "legacySlugs": [
-        "示例笔记-markdown-语法示例"
-      ],
-      "filename": "Markdown语法示例.md",
-      "file": "notes/示例笔记/Markdown语法示例.md",
-      "preview": "本文展示网站支持的各种 Markdown 格式，可以作为写笔记时的参考。",
-      "category": "示例笔记",
-      "rootCategory": "示例笔记",
-      "categoryKey": "示例笔记",
-      "categoryPath": [
-        "示例笔记"
-      ],
-      "categoryPathLabel": "示例笔记"
-    },
-    {
-      "title": "欢迎使用个人笔记网站",
-      "source_title": "欢迎使用个人笔记网站",
-      "order": null,
-      "unit": null,
-      "slug": "示例笔记-欢迎使用",
-      "legacySlugs": [
-        "示例笔记-欢迎使用个人笔记网站"
-      ],
-      "filename": "欢迎使用.md",
-      "file": "notes/示例笔记/欢迎使用.md",
-      "preview": "这是你的第一篇笔记！这个网站会自动读取 notes/ 目录下的所有子文件夹和 Markdown 文件。",
-      "category": "示例笔记",
-      "rootCategory": "示例笔记",
-      "categoryKey": "示例笔记",
-      "categoryPath": [
-        "示例笔记"
-      ],
-      "categoryPathLabel": "示例笔记"
-    },
-    {
-      "title": "资管 IT 课程导航",
-      "source_title": "资管 IT 课程导航",
-      "order": null,
-      "unit": null,
-      "slug": "资管it",
-      "legacySlugs": [
-        "资管it-资管-it-课程导航"
-      ],
-      "filename": "README.md",
-      "file": "notes/资管IT/README.md",
-      "preview": "这个目录是一套偏公开版、适合快速建立资管科技认知的课程笔记。",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第1讲：资管行业全景图",
-      "source_title": "资管行业全景图：资管科技产品经理进阶课笔记（第1讲）",
-      "order": 1,
-      "unit": "讲",
-      "slug": "资管it-资管行业全景图-第1讲笔记",
-      "legacySlugs": [
-        "资管it-第1讲-资管行业全景图"
-      ],
-      "filename": "资管行业全景图_第1讲笔记.md",
-      "file": "notes/资管IT/资管行业全景图_第1讲笔记.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第1讲的学习整理，适合有一定金融科技背景、希望深入理解中国资产管理行业全貌的同学阅读。内容覆盖行业格局、核心术语、系统架构、参与角色与产品经理视角，力求兼顾业务深度和实用价值…",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第2讲：资管产品生命周期",
-      "source_title": "资管产品生命周期：资管科技产品经理进阶课笔记（第2讲）",
-      "order": 2,
-      "unit": "讲",
-      "slug": "资管it-第2讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第2讲-资管产品生命周期"
-      ],
-      "filename": "第2讲_公开版_可分享.md",
-      "file": "notes/资管IT/第2讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第2讲的学习整理。上一讲建立了资管行业全景图，本讲进入\"主干线\"：一个资管产品是如何从设计到退出的？所有后台系统都是围绕产品的某个生命周期阶段在运转的。理解产品生命周期，是理…",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第3讲：TA系统、登记结算与份额体系",
-      "source_title": "TA系统、登记结算与份额体系：资管科技产品经理进阶课笔记（第3讲）",
-      "order": 3,
-      "unit": "讲",
-      "slug": "资管it-第3讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第3讲-ta系统登记结算与份额体系"
-      ],
-      "filename": "第3讲_公开版_可分享.md",
-      "file": "notes/资管IT/第3讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第3讲的学习整理。上一讲建立了资管产品的生命周期框架，本讲进入资管后台最核心的系统——TA系统（Transfer Agent，登记过户代理人系统）。本讲特别区分了公募基金TA…",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第4讲：估值、清算与对账",
-      "source_title": "估值、清算与对账：资管科技产品经理进阶课笔记（第4讲）",
-      "order": 4,
-      "unit": "讲",
-      "slug": "资管it-第4讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第4讲-估值清算与对账"
-      ],
-      "filename": "第4讲_公开版_可分享.md",
-      "file": "notes/资管IT/第4讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第4讲的学习整理。上一讲建立了TA系统的完整业务逻辑，本讲补齐估值清算这个\"上游\"：产品每日净值是如何计算出来的？日终清算分哪几条线？托管行为什么要独立复核净值？现金管理类产…",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第5讲：投研、交易与运营协同",
-      "source_title": "投研、交易与运营协同：资管科技产品经理进阶课笔记（第5讲）",
-      "order": 5,
-      "unit": "讲",
-      "slug": "资管it-第5讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第5讲-投研交易与运营协同"
-      ],
-      "filename": "第5讲_公开版_可分享.md",
-      "file": "notes/资管IT/第5讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第5讲的学习整理。前四讲建立了产品生命周期、TA系统、估值清算的完整认知，本讲从前台视角补齐全链条认知：投资决策如何变成市场上真实的买卖，以及前台成交数据如何流入后台系统触发…",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第6讲：销售渠道与代销体系",
-      "source_title": "销售渠道与代销体系：资管科技产品经理进阶课笔记（第6讲）",
-      "order": 6,
-      "unit": "讲",
-      "slug": "资管it-第6讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第6讲-销售渠道与代销体系"
-      ],
-      "filename": "第6讲_公开版_可分享.md",
-      "file": "notes/资管IT/第6讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第6讲的学习整理。前五讲建立了资管机构\"内部\"从产品设计、投资交易到TA系统、估值清算的完整认知，本讲从销售侧视角补齐全链条：理财产品是如何通过母行和代销渠道到达投资者手中的…",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第7讲：风控、合规与信息披露",
-      "source_title": "风控、合规与信息披露：资管科技产品经理进阶课笔记（第7讲）",
-      "order": 7,
-      "unit": "讲",
-      "slug": "资管it-第7讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第7讲-风控合规与信息披露"
-      ],
-      "filename": "第7讲_公开版_可分享.md",
-      "file": "notes/资管IT/第7讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第7讲的学习整理。前六讲覆盖了资管机构\"正向运营链条\"的各个环节，本讲从中台视角补齐风险管理、合规监控和信息披露这套\"保障体系\"，把前六讲各自提到的风控合规内容整合为完整的体…",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第8讲：资管科技系统地图",
-      "source_title": "资管科技系统地图：资管科技产品经理进阶课笔记（第8讲）",
-      "order": 8,
-      "unit": "讲",
-      "slug": "资管it-第8讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第8讲-资管科技系统地图"
-      ],
-      "filename": "第8讲_公开版_可分享.md",
-      "file": "notes/资管IT/第8讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第8讲的学习整理。前七讲按业务场景逐讲深入，本讲从全局视角将前七讲分散介绍的所有系统整合成一张完整的资管科技系统地图，建立对资管机构IT架构的整体认知。",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第9讲：把业务语言翻译成产品语言",
-      "source_title": "把业务语言翻译成产品语言：资管科技产品经理进阶课笔记（第9讲）",
-      "order": 9,
-      "unit": "讲",
-      "slug": "资管it-第9讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第9讲-把业务语言翻译成产品语言"
-      ],
-      "filename": "第9讲_公开版_可分享.md",
-      "file": "notes/资管IT/第9讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第9讲的学习整理。前八讲建立了完整的资管业务知识体系，本讲聚焦资管科技PM的核心工作方法：如何把业务需求准确地转化为系统需求。",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
-      "title": "第10讲：面试表达与跳槽叙事整合",
-      "source_title": "面试表达与跳槽叙事整合：资管科技产品经理进阶课笔记（第10讲）",
-      "order": 10,
-      "unit": "讲",
-      "slug": "资管it-第10讲-公开版-可分享",
-      "legacySlugs": [
-        "资管it-第10讲-面试表达与跳槽叙事整合"
-      ],
-      "filename": "第10讲_公开版_可分享.md",
-      "file": "notes/资管IT/第10讲_公开版_可分享.md",
-      "preview": "写在前面：本笔记是系列课程《资管业务 × 科技系统 × 产品视角》第10讲，也是整个课程的终章。本讲把前九讲的所有知识和面试素材整合成可以实际使用的跳槽叙事框架。",
-      "category": "资管IT",
-      "rootCategory": "资管IT",
-      "categoryKey": "资管IT",
-      "categoryPath": [
-        "资管IT"
-      ],
-      "categoryPathLabel": "资管IT"
-    },
-    {
       "title": "资管 IT 学习（个人）导航",
       "source_title": "资管 IT 学习（个人）导航",
       "order": null,
@@ -1577,7 +1273,7 @@
       ],
       "filename": "README.md",
       "file": "notes/面试学习/README.md",
-      "preview": "按当前找工作的三个方向整理：",
+      "preview": "这个一级目录按你的目标岗位和简历资产整理，而不是按具体公司整理。",
       "category": "面试学习",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习",
@@ -2152,16 +1848,16 @@
       "categoryPathLabel": "面试学习 / 产品经理_项目经理"
     },
     {
-      "title": "BOCI 自我介绍：短版",
-      "source_title": "BOCI 自我介绍：短版",
+      "title": "金融科技项目经理自我介绍：短版",
+      "source_title": "金融科技项目经理自我介绍：短版",
       "order": null,
       "unit": null,
-      "slug": "面试学习-产品经理-项目经理-boci自我介绍-短版",
+      "slug": "面试学习-产品经理-项目经理-通用自我介绍-短版",
       "legacySlugs": [
-        "面试学习-产品经理-项目经理-boci-自我介绍-短版"
+        "面试学习-产品经理-项目经理-金融科技项目经理自我介绍-短版"
       ],
-      "filename": "BOCI自我介绍_短版.md",
-      "file": "notes/面试学习/产品经理_项目经理/BOCI自我介绍_短版.md",
+      "filename": "通用自我介绍_短版.md",
+      "file": "notes/面试学习/产品经理_项目经理/通用自我介绍_短版.md",
       "preview": "Good morning, and thank you for the opportunity.",
       "category": "产品经理_项目经理",
       "rootCategory": "面试学习",
@@ -2173,16 +1869,14 @@
       "categoryPathLabel": "面试学习 / 产品经理_项目经理"
     },
     {
-      "title": "BOCI 问答题库：短版",
-      "source_title": "BOCI 问答题库：短版",
+      "title": "金融科技项目经理问答题库：短版",
+      "source_title": "金融科技项目经理问答题库：短版",
       "order": null,
       "unit": null,
-      "slug": "面试学习-产品经理-项目经理-boci问答题库-短版",
-      "legacySlugs": [
-        "面试学习-产品经理-项目经理-boci-问答题库-短版"
-      ],
-      "filename": "BOCI问答题库_短版.md",
-      "file": "notes/面试学习/产品经理_项目经理/BOCI问答题库_短版.md",
+      "slug": "面试学习-产品经理-项目经理-金融科技项目经理问答题库-短版",
+      "legacySlugs": [],
+      "filename": "金融科技项目经理问答题库_短版.md",
+      "file": "notes/面试学习/产品经理_项目经理/金融科技项目经理问答题库_短版.md",
       "preview": "Use short answers first. If the interviewer wants more detail, then expand. Keep each answer clear and calm. Do not try…",
       "category": "产品经理_项目经理",
       "rootCategory": "面试学习",
@@ -2194,16 +1888,14 @@
       "categoryPathLabel": "面试学习 / 产品经理_项目经理"
     },
     {
-      "title": "BOCI 面试题库：完整问答手册",
-      "source_title": "BOCI 面试题库：完整问答手册",
+      "title": "金融科技项目经理面试题库：完整问答手册",
+      "source_title": "金融科技项目经理面试题库：完整问答手册",
       "order": null,
       "unit": null,
-      "slug": "面试学习-产品经理-项目经理-boci面试题库-完整问答手册",
-      "legacySlugs": [
-        "面试学习-产品经理-项目经理-boci-面试题库-完整问答手册"
-      ],
-      "filename": "BOCI面试题库_完整问答手册.md",
-      "file": "notes/面试学习/产品经理_项目经理/BOCI面试题库_完整问答手册.md",
+      "slug": "面试学习-产品经理-项目经理-金融科技项目经理面试题库-完整问答手册",
+      "legacySlugs": [],
+      "filename": "金融科技项目经理面试题库_完整问答手册.md",
+      "file": "notes/面试学习/产品经理_项目经理/金融科技项目经理面试题库_完整问答手册.md",
       "preview": "使用说明 - 本手册共 8 大类、50+ 题，全部基于你的真实经历 - 每题包含：面试官意图 + 答题要点 + 可直接复述的完整答案 - 关键英文术语已在答案中标注 - 不要死记硬背，理解逻辑后用自己的话说出来 - 重点练习：第一类（自我介…",
       "category": "产品经理_项目经理",
       "rootCategory": "面试学习",
@@ -2234,182 +1926,6 @@
         "开发岗"
       ],
       "categoryPathLabel": "面试学习 / 开发岗"
-    },
-    {
-      "title": "工银高盛项目面试资料包",
-      "source_title": "工银高盛项目面试资料包",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-工银高盛项目面试资料包"
-      ],
-      "filename": "README.md",
-      "file": "notes/面试学习/开发岗/工银高盛/README.md",
-      "preview": "这个文件夹包含 7 份项目专属面试材料，按你的简历主线拆开：",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
-    },
-    {
-      "title": "产品生命周期管理系统面试资料",
-      "source_title": "产品生命周期管理系统面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛-01-产品生命周期管理系统",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-产品生命周期管理系统面试资料"
-      ],
-      "filename": "01_产品生命周期管理系统.md",
-      "file": "notes/面试学习/开发岗/工银高盛/01_产品生命周期管理系统.md",
-      "preview": "这是一个内部业务系统，主要解决两类产品生命周期事件管理问题：",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
-    },
-    {
-      "title": "Apprentice（学徒）面试资料",
-      "source_title": "Apprentice（学徒）面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛-02-apprentice-学徒",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-apprentice-学徒-面试资料"
-      ],
-      "filename": "02_Apprentice_学徒.md",
-      "file": "notes/面试学习/开发岗/工银高盛/02_Apprentice_学徒.md",
-      "preview": "Apprentice 是一个面向企业系统的、配置驱动的 AI 操作层。 它不是简单的聊天机器人，而是想验证一条完整闭环：",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
-    },
-    {
-      "title": "产品文档按模板生成工具面试资料",
-      "source_title": "产品文档按模板生成工具面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛-03-产品文档按模板生成工具",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-产品文档按模板生成工具面试资料"
-      ],
-      "filename": "03_产品文档按模板生成工具.md",
-      "file": "notes/面试学习/开发岗/工银高盛/03_产品文档按模板生成工具.md",
-      "preview": "这是一个我在宁银理财做的轻量级 Python 自动化工具，用来解决产品说明书生成效率低的问题。 在产品管理系统正式上线前，业务同事已经有文档生成需求，所以我先做了一个基于模板和字段映射的一键生成工具，减少手工整理和复制粘贴工作。",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
-    },
-    {
-      "title": "嘉实基金数字资产托管平台面试资料",
-      "source_title": "嘉实基金数字资产托管平台面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛-04-嘉实基金-数字资产托管平台",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-嘉实基金数字资产托管平台面试资料"
-      ],
-      "filename": "04_嘉实基金_数字资产托管平台.md",
-      "file": "notes/面试学习/开发岗/工银高盛/04_嘉实基金_数字资产托管平台.md",
-      "preview": "这是一个数字资产托管平台原型项目，采用前后端分离架构。 我在里面做了两块：",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
-    },
-    {
-      "title": "广发基金 Orange 多用户平台面试资料",
-      "source_title": "广发基金 Orange 多用户平台面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛-05-广发基金-orange多用户平台",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-广发基金-orange-多用户平台面试资料"
-      ],
-      "filename": "05_广发基金_Orange多用户平台.md",
-      "file": "notes/面试学习/开发岗/工银高盛/05_广发基金_Orange多用户平台.md",
-      "preview": "这是一个基于 Linux 的多用户 Orange 数据挖掘平台，目标是让团队成员通过浏览器直接使用可视化数据挖掘环境，而不需要每个人在本地单独安装环境。 我在里面主要做了：",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
-    },
-    {
-      "title": "广发证券授信变动查询面试资料",
-      "source_title": "广发证券授信变动查询面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛-06-广发证券-授信变动查询",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-广发证券授信变动查询面试资料"
-      ],
-      "filename": "06_广发证券_授信变动查询.md",
-      "file": "notes/面试学习/开发岗/工银高盛/06_广发证券_授信变动查询.md",
-      "preview": "这是客户授信管理系统中的一个后端功能开发项目，核心是做“授信变动查询”。 目标是让风控人员更直观地看到某个客户当前生效授信额度最近一次变动的方向和结果，并支持查询、统计和 CSV 导出。",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
-    },
-    {
-      "title": "小红书 CAT 监控平台面试资料",
-      "source_title": "小红书 CAT 监控平台面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-工银高盛-07-小红书-cat监控平台",
-      "legacySlugs": [
-        "面试学习-开发岗-工银高盛-小红书-cat-监控平台面试资料"
-      ],
-      "filename": "07_小红书_CAT监控平台.md",
-      "file": "notes/面试学习/开发岗/工银高盛/07_小红书_CAT监控平台.md",
-      "preview": "这是一个基于开源 CAT 的分布式应用监控平台适配与后端开发项目。 我在里面参与的是 Java / Maven 多模块监控平台里的升级适配和后端模块开发，接触到了监控消息采集、报表聚合、后台展示和告警链路等可观测性能力。",
-      "category": "工银高盛",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/工银高盛",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "工银高盛"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 工银高盛"
     },
     {
       "title": "开发知识库首页",
@@ -2522,17 +2038,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
     },
     {
-      "title": "工银高盛开发岗 JD 拆解",
-      "source_title": "工银高盛开发岗 JD 拆解",
+      "title": "开发岗系统学习计划",
+      "source_title": "开发岗系统学习计划",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-工银高盛开发岗-jd拆解",
+      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-开发岗-系统学习计划",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-01-岗位与计划-工银高盛开发岗-jd-拆解"
+        "面试学习-开发岗-开发课程-01-岗位与计划-开发岗系统学习计划"
       ],
-      "filename": "工银高盛开发岗_JD拆解.md",
-      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/工银高盛开发岗_JD拆解.md",
-      "preview": "对应原始岗位： 工银高盛理财.txt（外部文件：工银高盛理财.txt，站内未导入）",
+      "filename": "开发岗_系统学习计划.md",
+      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/开发岗_系统学习计划.md",
+      "preview": "适用目标岗位： 金融机构开发岗 JD（外部文件：通用金融机构开发岗JD.txt，站内未导入）",
       "category": "01_岗位与计划",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
@@ -2545,17 +2061,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
     },
     {
-      "title": "开发岗系统学习计划",
-      "source_title": "开发岗系统学习计划",
+      "title": "金融机构开发岗 JD 能力拆解",
+      "source_title": "金融机构开发岗 JD 能力拆解",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-开发岗-系统学习计划",
+      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-金融机构开发岗-jd能力拆解",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-01-岗位与计划-开发岗系统学习计划"
+        "面试学习-开发岗-开发课程-01-岗位与计划-金融机构开发岗-jd-能力拆解"
       ],
-      "filename": "开发岗_系统学习计划.md",
-      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/开发岗_系统学习计划.md",
-      "preview": "适用目标岗位： 工银高盛理财开发岗 JD（外部文件：工银高盛理财.txt，站内未导入）",
+      "filename": "金融机构开发岗_JD能力拆解.md",
+      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/金融机构开发岗_JD能力拆解.md",
+      "preview": "对应原始岗位： 通用金融机构开发岗JD.txt（外部文件：通用金融机构开发岗JD.txt，站内未导入）",
       "category": "01_岗位与计划",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
@@ -3422,8 +2938,184 @@
         "05_岗位定制补充"
       ],
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "项目面试资料包",
+      "source_title": "项目面试资料包",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-项目面试资料包"
+      ],
+      "filename": "README.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/README.md",
+      "preview": "这个文件夹包含 7 份项目表达材料，按你的简历主线拆开。它不是某一家机构的定制包，而是用来支撑金融科技开发岗、系统建设岗、业务系统开发岗等相近岗位的通用项目素材库。",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "产品生命周期管理系统面试资料",
+      "source_title": "产品生命周期管理系统面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-01-产品生命周期管理系统",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-产品生命周期管理系统面试资料"
+      ],
+      "filename": "01_产品生命周期管理系统.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/01_产品生命周期管理系统.md",
+      "preview": "这是一个内部业务系统，主要解决两类产品生命周期事件管理问题：",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "Apprentice（学徒）面试资料",
+      "source_title": "Apprentice（学徒）面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-02-apprentice-学徒",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-apprentice-学徒-面试资料"
+      ],
+      "filename": "02_Apprentice_学徒.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/02_Apprentice_学徒.md",
+      "preview": "Apprentice 是一个面向企业系统的、配置驱动的 AI 操作层。 它不是简单的聊天机器人，而是想验证一条完整闭环：",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "产品文档按模板生成工具面试资料",
+      "source_title": "产品文档按模板生成工具面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-03-产品文档按模板生成工具",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-产品文档按模板生成工具面试资料"
+      ],
+      "filename": "03_产品文档按模板生成工具.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/03_产品文档按模板生成工具.md",
+      "preview": "这是一个我在当前理财子公司做的轻量级 Python 自动化工具，用来解决产品说明书生成效率低的问题。 在产品管理系统正式上线前，业务同事已经有文档生成需求，所以我先做了一个基于模板和字段映射的一键生成工具，减少手工整理和复制粘贴工作。",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "嘉实基金数字资产托管平台面试资料",
+      "source_title": "嘉实基金数字资产托管平台面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-04-嘉实基金-数字资产托管平台",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-嘉实基金数字资产托管平台面试资料"
+      ],
+      "filename": "04_嘉实基金_数字资产托管平台.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/04_嘉实基金_数字资产托管平台.md",
+      "preview": "这是一个嘉实基金数字资产托管平台原型项目，采用前后端分离架构。 我在里面做了两块：",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "广发基金 Orange 多用户平台面试资料",
+      "source_title": "广发基金 Orange 多用户平台面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-05-广发基金-orange多用户平台",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-广发基金-orange-多用户平台面试资料"
+      ],
+      "filename": "05_广发基金_Orange多用户平台.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/05_广发基金_Orange多用户平台.md",
+      "preview": "这是一个基于 Linux 的多用户 Orange 数据挖掘平台，目标是让团队成员通过浏览器直接使用可视化数据挖掘环境，而不需要每个人在本地单独安装环境。 我在里面主要做了：",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "广发证券授信变动查询面试资料",
+      "source_title": "广发证券授信变动查询面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-06-广发证券-授信变动查询",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-广发证券授信变动查询面试资料"
+      ],
+      "filename": "06_广发证券_授信变动查询.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/06_广发证券_授信变动查询.md",
+      "preview": "这是客户授信管理系统中的一个后端功能开发项目，核心是做“授信变动查询”。 目标是让风控人员更直观地看到某个客户当前生效授信额度最近一次变动的方向和结果，并支持查询、统计和 CSV 导出。",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "小红书 CAT 监控平台面试资料",
+      "source_title": "小红书 CAT 监控平台面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-07-小红书-cat监控平台",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-小红书-cat-监控平台面试资料"
+      ],
+      "filename": "07_小红书_CAT监控平台.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/07_小红书_CAT监控平台.md",
+      "preview": "这是一个基于开源 CAT 的分布式应用监控平台适配与后端开发项目。 我在里面参与的是 Java / Maven 多模块监控平台里的升级适配和后端模块开发，接触到了监控消息采集、报表聚合、后台展示和告警链路等可观测性能力。",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     }
   ],
-  "total": 151,
-  "generated": "2026-04-16T02:48:00"
+  "total": 137,
+  "generated": "2026-04-16T03:17:36"
 }

@@ -10,7 +10,7 @@
 
 详细设计见：
 
-- [多级分类详细设计](/Users/shifusong/notes-site/docs/multi-level-category-design.md)
+- [多级分类详细设计](docs/multi-level-category-design.md)
 
 ## 目录结构
 
@@ -23,7 +23,7 @@ notes/
   面试学习/
     README.md
     产品经理_项目经理/
-      BOCI问答题库_短版.md
+      金融科技项目经理问答题库_短版.md
     AI产品经理/
       README.md
       第1课_AI产品经理和传统产品经理的区别.md
@@ -35,11 +35,11 @@ notes/
         03_项目表达/
           README.md
           产品生命周期管理系统_项目讲法.md
-      工银高盛/
+      项目面试资料包/
         README.md
         01_产品生命周期管理系统.md
-  资管IT/
-    第1讲_资管行业全景图.md
+  资管IT学习（个人）/
+    第1讲_完整版_含个人分析.md
 ```
 
 说明：
@@ -168,5 +168,5 @@ npm run android:build:debug
 
 更多说明见：
 
-- [Android 快速开始](/Users/shifusong/notes-site/scripts/android-quickstart.md)
-- [开发课程整合说明](/Users/shifusong/notes-site/docs/development-course-integration.md)
+- [Android 快速开始](scripts/android-quickstart.md)
+- [开发课程整合说明](docs/development-course-integration.md)
