@@ -57,7 +57,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 100,
+      "totalNoteCount": 103,
       "children": [
         {
           "name": "AI产品经理",
@@ -95,7 +95,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 2,
-          "totalNoteCount": 69,
+          "totalNoteCount": 72,
           "children": [
             {
               "name": "开发课程",
@@ -108,7 +108,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 2,
-              "totalNoteCount": 52,
+              "totalNoteCount": 55,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -196,8 +196,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充",
                   "depth": 3,
-                  "directNoteCount": 4,
-                  "totalNoteCount": 4,
+                  "directNoteCount": 7,
+                  "totalNoteCount": 7,
                   "children": []
                 }
               ]
@@ -3056,6 +3056,50 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
     },
     {
+      "title": "开发岗中文自我介绍",
+      "source_title": "开发岗中文自我介绍",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-开发岗中文自我介绍",
+      "legacySlugs": [],
+      "filename": "开发岗中文自我介绍.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/开发岗中文自我介绍.md",
+      "preview": "这份材料的目标不是让你背一段很“像模板”的自我介绍，而是让你在不同面试场景里，都能稳定地开场。",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "Development Track Self-Introduction in English",
+      "source_title": "Development Track Self-Introduction in English",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-开发岗英文自我介绍",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-05-岗位定制补充-development-track-self-introduction-in-english"
+      ],
+      "filename": "开发岗英文自我介绍.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/开发岗英文自我介绍.md",
+      "preview": "This note is meant for direct speaking in interviews. The goal is not to sound overly formal. The goal is to sound clear…",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
       "title": "Financial Domain English Interview Pack",
       "source_title": "Financial Domain English Interview Pack",
       "order": null,
@@ -3109,6 +3153,27 @@
       "filename": "金融开发岗英语项目表达.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/金融开发岗英语项目表达.md",
       "preview": "这份材料的目标不是把你训练成英文演讲选手，而是让你在金融开发岗面试里，至少能稳定完成这 4 件事：",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "高盛工银开发岗面试复习方案",
+      "source_title": "高盛工银开发岗面试复习方案",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银开发岗面试复习方案",
+      "legacySlugs": [],
+      "filename": "高盛工银开发岗面试复习方案.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银开发岗面试复习方案.md",
+      "preview": "这份方案是基于两部分信息整理的：",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -3451,6 +3516,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     }
   ],
-  "total": 152,
-  "generated": "2026-04-28T01:32:47"
+  "total": 155,
+  "generated": "2026-04-28T01:44:47"
 }
