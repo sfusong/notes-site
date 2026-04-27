@@ -2,6 +2,10 @@
 
 这一层的资料不再按“随手笔记”理解，而是按下面 3 类用途来用：
 
+## 英文面试入口
+
+- [System and Delivery English Interview Pack](notes/面试学习/开发岗/开发课程/02_系统与交付基础/系统与交付基础_English_Interview_Pack.md)
+
 1. `主线文件`
 2. `补充文件`
 3. `追问文件`

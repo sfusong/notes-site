@@ -2,6 +2,10 @@
 
 这一层现在按“项目主文件 + 追问文件 + 补充文件”来组织。
 
+## 英文面试入口
+
+- [Delivery and Project Expression English Pack](notes/面试学习/开发岗/开发课程/03_项目表达/交付与系统项目表达_English_Interview_Pack.md)
+
 你以后准备项目时，建议固定按下面的方法用：
 
 - `先看主文件`

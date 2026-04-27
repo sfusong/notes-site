@@ -57,7 +57,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 92,
+      "totalNoteCount": 100,
       "children": [
         {
           "name": "AI产品经理",
@@ -94,8 +94,8 @@
           ],
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
-          "directNoteCount": 1,
-          "totalNoteCount": 61,
+          "directNoteCount": 2,
+          "totalNoteCount": 69,
           "children": [
             {
               "name": "开发课程",
@@ -107,8 +107,8 @@
               ],
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
-              "directNoteCount": 1,
-              "totalNoteCount": 45,
+              "directNoteCount": 2,
+              "totalNoteCount": 52,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -121,8 +121,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 00_课程总纲",
                   "depth": 3,
-                  "directNoteCount": 3,
-                  "totalNoteCount": 3,
+                  "directNoteCount": 4,
+                  "totalNoteCount": 4,
                   "children": []
                 },
                 {
@@ -136,8 +136,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划",
                   "depth": 3,
-                  "directNoteCount": 3,
-                  "totalNoteCount": 3,
+                  "directNoteCount": 4,
+                  "totalNoteCount": 4,
                   "children": []
                 },
                 {
@@ -151,8 +151,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础",
                   "depth": 3,
-                  "directNoteCount": 12,
-                  "totalNoteCount": 12,
+                  "directNoteCount": 13,
+                  "totalNoteCount": 13,
                   "children": []
                 },
                 {
@@ -166,8 +166,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达",
                   "depth": 3,
-                  "directNoteCount": 14,
-                  "totalNoteCount": 14,
+                  "directNoteCount": 15,
+                  "totalNoteCount": 15,
                   "children": []
                 },
                 {
@@ -181,8 +181,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础",
                   "depth": 3,
-                  "directNoteCount": 9,
-                  "totalNoteCount": 9,
+                  "directNoteCount": 10,
+                  "totalNoteCount": 10,
                   "children": []
                 },
                 {
@@ -196,8 +196,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充",
                   "depth": 3,
-                  "directNoteCount": 3,
-                  "totalNoteCount": 3,
+                  "directNoteCount": 4,
+                  "totalNoteCount": 4,
                   "children": []
                 }
               ]
@@ -1928,6 +1928,27 @@
       "categoryPathLabel": "面试学习 / 开发岗"
     },
     {
+      "title": "Development Track English Interview Guide",
+      "source_title": "Development Track English Interview Guide",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-readme-english",
+      "legacySlugs": [
+        "面试学习-开发岗-development-track-english-interview-guide"
+      ],
+      "filename": "README_English.md",
+      "file": "notes/面试学习/开发岗/README_English.md",
+      "preview": "This page is the English-speaking entry for the development-track materials. It is not a literal translation of the whol…",
+      "category": "开发岗",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗",
+      "categoryPath": [
+        "面试学习",
+        "开发岗"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗"
+    },
+    {
       "title": "开发知识库首页",
       "source_title": "开发知识库首页",
       "order": null,
@@ -1939,6 +1960,28 @@
       "filename": "README.md",
       "file": "notes/面试学习/开发岗/开发课程/README.md",
       "preview": "这份首页现在有两个作用：",
+      "category": "开发课程",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程"
+    },
+    {
+      "title": "Development Course English Guide",
+      "source_title": "Development Course English Guide",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-readme-english",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-development-course-english-guide"
+      ],
+      "filename": "README_English.md",
+      "file": "notes/面试学习/开发岗/开发课程/README_English.md",
+      "preview": "This is the English interview entry for the non-project part of the development track.",
       "category": "开发课程",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程",
@@ -1982,6 +2025,29 @@
       "filename": "开发岗课程总纲.md",
       "file": "notes/面试学习/开发岗/开发课程/00_课程总纲/开发岗课程总纲.md",
       "preview": "这份文件现在是：",
+      "category": "00_课程总纲",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/00_课程总纲",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "00_课程总纲"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 00_课程总纲"
+    },
+    {
+      "title": "Development Track Course Roadmap in English",
+      "source_title": "Development Track Course Roadmap in English",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-00-课程总纲-开发岗课程总纲-english",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-00-课程总纲-development-track-course-roadmap-in-english"
+      ],
+      "filename": "开发岗课程总纲_English.md",
+      "file": "notes/面试学习/开发岗/开发课程/00_课程总纲/开发岗课程总纲_English.md",
+      "preview": "This note explains the most effective review order for the development-track materials if your goal is interview readine…",
       "category": "00_课程总纲",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/00_课程总纲",
@@ -2072,6 +2138,29 @@
       "filename": "金融机构开发岗_JD能力拆解.md",
       "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/金融机构开发岗_JD能力拆解.md",
       "preview": "对应原始岗位： 通用金融机构开发岗JD.txt（外部文件：通用金融机构开发岗JD.txt，站内未导入）",
+      "category": "01_岗位与计划",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "01_岗位与计划"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
+    },
+    {
+      "title": "JD Fit and Candidate Positioning for Financial-Institution Developer Roles",
+      "source_title": "JD Fit and Candidate Positioning for Financial-Institution Developer Roles",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-金融机构开发岗-jd能力拆解-english",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-01-岗位与计划-jd-fit-and-candidate-positioning-for-financial-institution-developer-roles"
+      ],
+      "filename": "金融机构开发岗_JD能力拆解_English.md",
+      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/金融机构开发岗_JD能力拆解_English.md",
+      "preview": "This note is meant for English interviews. It helps you explain why your background fits a developer role in a financial…",
       "category": "01_岗位与计划",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
@@ -2356,6 +2445,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
     },
     {
+      "title": "System and Delivery English Interview Pack",
+      "source_title": "System and Delivery English Interview Pack",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-02-系统与交付基础-系统与交付基础-english-interview-pack",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-02-系统与交付基础-system-and-delivery-english-interview-pack"
+      ],
+      "filename": "系统与交付基础_English_Interview_Pack.md",
+      "file": "notes/面试学习/开发岗/开发课程/02_系统与交付基础/系统与交付基础_English_Interview_Pack.md",
+      "preview": "This pack helps you answer English interview questions about how systems run, how versions are released and how teams co…",
+      "category": "02_系统与交付基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/02_系统与交付基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "02_系统与交付基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
+    },
+    {
       "title": "项目表达",
       "source_title": "项目表达",
       "order": null,
@@ -2551,6 +2663,29 @@
       "filename": "TA自动化测试_项目讲法.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA自动化测试_项目讲法.md",
       "preview": "这份讲法基于：",
+      "category": "03_项目表达",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
+    },
+    {
+      "title": "Delivery and Project Expression English Pack",
+      "source_title": "Delivery and Project Expression English Pack",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-交付与系统项目表达-english-interview-pack",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-delivery-and-project-expression-english-pack"
+      ],
+      "filename": "交付与系统项目表达_English_Interview_Pack.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/交付与系统项目表达_English_Interview_Pack.md",
+      "preview": "This note covers the non-project-experience side of project expression in English, especially the parts that show delive…",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -2833,6 +2968,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
     },
     {
+      "title": "Backend Fundamentals English Interview Pack",
+      "source_title": "Backend Fundamentals English Interview Pack",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-后端基础-english-interview-pack",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-04-语言与数据基础-backend-fundamentals-english-interview-pack"
+      ],
+      "filename": "后端基础_English_Interview_Pack.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/后端基础_English_Interview_Pack.md",
+      "preview": "This pack helps you explain backend fundamentals in English without drifting into overly theoretical answers.",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
       "title": "开发岗防守型基础收口",
       "source_title": "开发岗防守型基础收口",
       "order": null,
@@ -2886,6 +3044,29 @@
       "filename": "README.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/README.md",
       "preview": "这一层放的是：",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "Financial Domain English Interview Pack",
+      "source_title": "Financial Domain English Interview Pack",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-金融业务认知-english-interview-pack",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-05-岗位定制补充-financial-domain-english-interview-pack"
+      ],
+      "filename": "金融业务认知_English_Interview_Pack.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/金融业务认知_English_Interview_Pack.md",
+      "preview": "This note helps you answer business-side questions in English without sounding like you are pretending to be an investme…",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -3270,6 +3451,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     }
   ],
-  "total": 144,
-  "generated": "2026-04-27T23:37:34"
+  "total": 152,
+  "generated": "2026-04-28T01:32:47"
 }

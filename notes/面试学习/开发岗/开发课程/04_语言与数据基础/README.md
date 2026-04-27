@@ -2,6 +2,10 @@
 
 这一层不要再理解成“纯八股目录”，而要分成两部分看：
 
+## 英文面试入口
+
+- [Backend Fundamentals English Interview Pack](notes/面试学习/开发岗/开发课程/04_语言与数据基础/后端基础_English_Interview_Pack.md)
+
 1. `项目绑定技术骨架`
 2. `防守型基础补强`
 

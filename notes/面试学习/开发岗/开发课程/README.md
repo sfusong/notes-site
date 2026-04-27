@@ -5,6 +5,13 @@
 1. 作为 `面试学习/开发` 的唯一知识库入口
 2. 告诉你：这套资料里哪份管课程顺序，哪份管导航检索
 
+## 英文面试入口
+
+如果你要准备英文技术面，优先看：
+
+- [Development Course English Guide](notes/面试学习/开发岗/开发课程/README_English.md)
+- [Development Track Course Roadmap in English](notes/面试学习/开发岗/开发课程/00_课程总纲/开发岗课程总纲_English.md)
+
 ## 一、先记住这两个“总文件”
 
 ### 1. 想知道“应该按什么顺序学”
