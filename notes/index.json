@@ -57,7 +57,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 85,
+      "totalNoteCount": 92,
       "children": [
         {
           "name": "AI产品经理",
@@ -95,7 +95,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 1,
-          "totalNoteCount": 54,
+          "totalNoteCount": 61,
           "children": [
             {
               "name": "开发课程",
@@ -212,8 +212,8 @@
               ],
               "pathLabel": "面试学习 / 开发岗 / 项目面试资料包",
               "depth": 2,
-              "directNoteCount": 8,
-              "totalNoteCount": 8,
+              "directNoteCount": 15,
+              "totalNoteCount": 15,
               "children": []
             }
           ]
@@ -2984,6 +2984,28 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     },
     {
+      "title": "Product Lifecycle Management System Interview Notes",
+      "source_title": "Product Lifecycle Management System Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-01-产品生命周期管理系统-english",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-product-lifecycle-management-system-interview-notes"
+      ],
+      "filename": "01_产品生命周期管理系统_English.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/01_产品生命周期管理系统_English.md",
+      "preview": "This is an interview-ready English version for speaking. It is not meant to overstate scope. Use the parts you can expla…",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
       "title": "Apprentice（学徒）面试资料",
       "source_title": "Apprentice（学徒）面试资料",
       "order": null,
@@ -2995,6 +3017,28 @@
       "filename": "02_Apprentice_学徒.md",
       "file": "notes/面试学习/开发岗/项目面试资料包/02_Apprentice_学徒.md",
       "preview": "Apprentice 是一个面向企业系统的、配置驱动的 AI 操作层。 它不是简单的聊天机器人，而是想验证一条完整闭环：",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "Apprentice AI Operations Layer Interview Notes",
+      "source_title": "Apprentice AI Operations Layer Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-02-apprentice-学徒-english",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-apprentice-ai-operations-layer-interview-notes"
+      ],
+      "filename": "02_Apprentice_学徒_English.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/02_Apprentice_学徒_English.md",
+      "preview": "This English version is optimized for live interview speaking, especially for interviewers who care about system boundar…",
       "category": "项目面试资料包",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/项目面试资料包",
@@ -3028,6 +3072,28 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     },
     {
+      "title": "Template-Based Product Document Generator Interview Notes",
+      "source_title": "Template-Based Product Document Generator Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-03-产品文档按模板生成工具-english",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-template-based-product-document-generator-interview-notes"
+      ],
+      "filename": "03_产品文档按模板生成工具_English.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/03_产品文档按模板生成工具_English.md",
+      "preview": "This note is meant for direct English speaking. The safest way to position it is as a lightweight but very practical aut…",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
       "title": "嘉实基金数字资产托管平台面试资料",
       "source_title": "嘉实基金数字资产托管平台面试资料",
       "order": null,
@@ -3039,6 +3105,28 @@
       "filename": "04_嘉实基金_数字资产托管平台.md",
       "file": "notes/面试学习/开发岗/项目面试资料包/04_嘉实基金_数字资产托管平台.md",
       "preview": "这是一个嘉实基金数字资产托管平台原型项目，采用前后端分离架构。 我在里面做了两块：",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "Harvest Fund Digital Asset Custody Platform Interview Notes",
+      "source_title": "Harvest Fund Digital Asset Custody Platform Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-04-嘉实基金-数字资产托管平台-english",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-harvest-fund-digital-asset-custody-platform-interview-notes"
+      ],
+      "filename": "04_嘉实基金_数字资产托管平台_English.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/04_嘉实基金_数字资产托管平台_English.md",
+      "preview": "This project is best presented as a full-stack prototype plus Web3-related scenario exploration, not as a large-scale pr…",
       "category": "项目面试资料包",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/项目面试资料包",
@@ -3072,6 +3160,28 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     },
     {
+      "title": "Orange Multi-User Data Mining Platform Interview Notes",
+      "source_title": "Orange Multi-User Data Mining Platform Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-05-广发基金-orange多用户平台-english",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-orange-multi-user-data-mining-platform-interview-notes"
+      ],
+      "filename": "05_广发基金_Orange多用户平台_English.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/05_广发基金_Orange多用户平台_English.md",
+      "preview": "This project is best framed as an internal platform engineering and environment-delivery project rather than a normal bu…",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
       "title": "广发证券授信变动查询面试资料",
       "source_title": "广发证券授信变动查询面试资料",
       "order": null,
@@ -3083,6 +3193,28 @@
       "filename": "06_广发证券_授信变动查询.md",
       "file": "notes/面试学习/开发岗/项目面试资料包/06_广发证券_授信变动查询.md",
       "preview": "这是客户授信管理系统中的一个后端功能开发项目，核心是做“授信变动查询”。 目标是让风控人员更直观地看到某个客户当前生效授信额度最近一次变动的方向和结果，并支持查询、统计和 CSV 导出。",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "Credit Change Query Interview Notes",
+      "source_title": "Credit Change Query Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-06-广发证券-授信变动查询-english",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-credit-change-query-interview-notes"
+      ],
+      "filename": "06_广发证券_授信变动查询_English.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/06_广发证券_授信变动查询_English.md",
+      "preview": "This project is strong for showing backend logic, data modeling and business-rule translation in a financial system.",
       "category": "项目面试资料包",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/项目面试资料包",
@@ -3114,8 +3246,30 @@
         "项目面试资料包"
       ],
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+    },
+    {
+      "title": "Xiaohongshu CAT Monitoring Platform Interview Notes",
+      "source_title": "Xiaohongshu CAT Monitoring Platform Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-项目面试资料包-07-小红书-cat监控平台-english",
+      "legacySlugs": [
+        "面试学习-开发岗-项目面试资料包-xiaohongshu-cat-monitoring-platform-interview-notes"
+      ],
+      "filename": "07_小红书_CAT监控平台_English.md",
+      "file": "notes/面试学习/开发岗/项目面试资料包/07_小红书_CAT监控平台_English.md",
+      "preview": "This project is useful for showing your understanding of observability, monitoring architecture and backend engineering…",
+      "category": "项目面试资料包",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "项目面试资料包"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     }
   ],
-  "total": 137,
-  "generated": "2026-04-16T03:17:36"
+  "total": 144,
+  "generated": "2026-04-27T23:37:34"
 }
