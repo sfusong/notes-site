@@ -11,6 +11,7 @@
 详细设计见：
 
 - [多级分类详细设计](docs/multi-level-category-design.md)
+- [找工作笔记同步映射说明](docs/job-notes-sync-mapping.md)
 
 ## 目录结构
 
