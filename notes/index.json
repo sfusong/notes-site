@@ -57,7 +57,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 103,
+      "totalNoteCount": 108,
       "children": [
         {
           "name": "AI产品经理",
@@ -95,7 +95,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 2,
-          "totalNoteCount": 72,
+          "totalNoteCount": 77,
           "children": [
             {
               "name": "开发课程",
@@ -108,7 +108,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 2,
-              "totalNoteCount": 55,
+              "totalNoteCount": 60,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -136,8 +136,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划",
                   "depth": 3,
-                  "directNoteCount": 4,
-                  "totalNoteCount": 4,
+                  "directNoteCount": 5,
+                  "totalNoteCount": 5,
                   "children": []
                 },
                 {
@@ -166,8 +166,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达",
                   "depth": 3,
-                  "directNoteCount": 15,
-                  "totalNoteCount": 15,
+                  "directNoteCount": 18,
+                  "totalNoteCount": 18,
                   "children": []
                 },
                 {
@@ -196,8 +196,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充",
                   "depth": 3,
-                  "directNoteCount": 7,
-                  "totalNoteCount": 7,
+                  "directNoteCount": 8,
+                  "totalNoteCount": 8,
                   "children": []
                 }
               ]
@@ -2173,6 +2173,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
     },
     {
+      "title": "高盛工银开发岗 JD 拆解",
+      "source_title": "高盛工银开发岗 JD 拆解",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-高盛工银开发岗-jd拆解",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-01-岗位与计划-高盛工银开发岗-jd-拆解"
+      ],
+      "filename": "高盛工银开发岗_JD拆解.md",
+      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/高盛工银开发岗_JD拆解.md",
+      "preview": "对应原始岗位： 高盛工银理财软件开发工程师 JD",
+      "category": "01_岗位与计划",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "01_岗位与计划"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
+    },
+    {
       "title": "系统与交付基础",
       "source_title": "系统与交付基础",
       "order": null,
@@ -2675,6 +2698,27 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
+      "title": "三条开发项目的开发参与版全流程讲法",
+      "source_title": "三条开发项目的开发参与版全流程讲法",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-三条开发项目的开发参与版全流程讲法",
+      "legacySlugs": [],
+      "filename": "三条开发项目的开发参与版全流程讲法.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/三条开发项目的开发参与版全流程讲法.md",
+      "preview": "这份文档专门服务一个目标：",
+      "category": "03_项目表达",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
+    },
+    {
       "title": "Delivery and Project Expression English Pack",
       "source_title": "Delivery and Project Expression English Pack",
       "order": null,
@@ -2763,6 +2807,27 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
+      "title": "开发项目真实边界与技术补强清单",
+      "source_title": "开发项目真实边界与技术补强清单",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-开发项目真实边界与技术补强清单",
+      "legacySlugs": [],
+      "filename": "开发项目真实边界与技术补强清单.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/开发项目真实边界与技术补强清单.md",
+      "preview": "这份清单的目标不是把别人的工作讲成自己的，而是帮你把每条项目收成：",
+      "category": "03_项目表达",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
+    },
+    {
       "title": "接口联调、UAT、上线切换：怎么讲",
       "source_title": "接口联调、UAT、上线切换：怎么讲",
       "order": null,
@@ -2797,6 +2862,27 @@
       "filename": "确认文件内容自动校验.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/确认文件内容自动校验.md",
       "preview": "这份笔记专门回答一个很关键的问题：",
+      "category": "03_项目表达",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
+    },
+    {
+      "title": "项目表达：最小复习集",
+      "source_title": "项目表达：最小复习集",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-项目表达-最小复习集",
+      "legacySlugs": [],
+      "filename": "项目表达_最小复习集.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/项目表达_最小复习集.md",
+      "preview": "如果你马上要面试，不要把 03_项目表达/ 整个目录从头翻到尾。",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3165,6 +3251,27 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
     },
     {
+      "title": "高盛工银开发岗_面试前速查清单",
+      "source_title": "高盛工银开发岗_面试前速查清单",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银开发岗-面试前速查清单",
+      "legacySlugs": [],
+      "filename": "高盛工银开发岗_面试前速查清单.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银开发岗_面试前速查清单.md",
+      "preview": "我叫石馥菘，28 岁，本科和硕士分别毕业于北京邮电大学和悉尼大学，都是计算机相关专业。硕士毕业后，我在宁银理财科技部工作三年，主要围绕理财产品销售端和运营端相关系统建设，重点包括 TA 系统迭代优化、三方机构对接改造、产品管理系统建设，以及…",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
       "title": "高盛工银开发岗面试复习方案",
       "source_title": "高盛工银开发岗面试复习方案",
       "order": null,
@@ -3516,6 +3623,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     }
   ],
-  "total": 155,
-  "generated": "2026-04-28T01:44:47"
+  "total": 160,
+  "generated": "2026-05-01T19:39:18"
 }
