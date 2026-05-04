@@ -25,7 +25,7 @@
 
 每天按这个顺序走，不需要重新设计计划：
 
-1. 先扫一遍“每天必须练的 Java 语法”，3 到 5 分钟。
+1. 先扫一遍“Java 语法工具速查”，3 到 5 分钟。
 2. 按“每天练习顺序”从第一轮写到第四轮。
 3. 每题先不看答案写一遍，卡住再看“每天练的语法”。
 4. 写完立刻对照“注意事项和易错点”自查。
@@ -39,6 +39,25 @@
 - 能说时间复杂度和空间复杂度。
 
 如果时间不够，优先保证第一轮和第二轮；第三轮、第四轮可以隔天轮换。
+
+---
+
+## 每题三栏记忆法
+
+每天每道题都按这三栏记，不要一上来背代码：
+
+| 记忆栏 | 你要写下什么 | 例子 |
+|---|---|---|
+| 1. 思路 | 这题本质上怎么走 | “遍历数组，用 Map 查另一个数” |
+| 2. 辅助变量 / 工具 | 要准备哪些变量、集合、指针 | `map`、`slow/fast`、`prev/curr/next` |
+| 3. 边界和易错点 | 最容易写错哪一行 | “先查再 put”、“先保存 next”、“最后返回 slow + 1” |
+
+现场答题时也按这个顺序讲：
+
+1. “这题我会用……思路。”
+2. “我需要维护……变量 / 集合。”
+3. “边界上我会注意……。”
+4. “时间复杂度是……，空间复杂度是……。”
 
 ---
 
@@ -74,7 +93,7 @@
 
 ---
 
-## 每天必须练的 Java 语法
+## Java 语法工具速查：先会这些再写题
 
 ### 1. 数组
 
@@ -336,6 +355,152 @@ private void dfs(TreeNode node, List<Integer> result) {
 
 ---
 
+## 写题前 3 分钟防错清单
+
+这部分合并了原来的“现场最容易丢分的 Java 细节”和“Java 语法和方法小贴士”。它应该放在题解前面，因为你每天开始写题前最需要先扫这些。
+
+### 1. 长度和大小
+
+```java
+nums.length      // 数组长度，没有括号
+s.length()       // 字符串长度，有括号
+list.size()      // List 长度，有括号
+queue.size()     // Queue 长度，有括号
+```
+
+记法：
+
+- 数组是属性：`.length`
+- 字符串和集合是方法：`.length()` / `.size()`
+
+### 2. 泛型和集合声明
+
+```java
+Map<Integer, Integer> map = new HashMap<>();
+Set<Integer> set = new HashSet<>();
+Deque<Character> stack = new ArrayDeque<>();
+Queue<TreeNode> queue = new LinkedList<>();
+List<Integer> result = new ArrayList<>();
+```
+
+不要写：
+
+```java
+Map<int, int> map = new HashMap<>();      // 错
+Deque<char> stack = new ArrayDeque<>();   // 错
+```
+
+记法：
+
+- `int` 放进泛型时写 `Integer`
+- `char` 放进泛型时写 `Character`
+- 左边优先写接口：`Map`、`Set`、`Deque`、`Queue`、`List`
+- 右边写具体实现：`HashMap`、`HashSet`、`ArrayDeque`、`LinkedList`、`ArrayList`
+
+### 3. 常用集合方法
+
+```java
+map.put(key, value);
+map.get(key);
+map.containsKey(key);
+
+set.add(x);
+set.contains(x);
+
+list.add(x);
+list.get(i);
+list.isEmpty();
+
+stack.push(c);
+stack.pop();
+stack.isEmpty();
+
+queue.offer(node);
+queue.poll();
+queue.isEmpty();
+```
+
+记法：
+
+- `Map` 是 key-value。
+- `Set` 只判断有没有。
+- `List` 按下标取。
+- `Deque` 当栈用：`push` / `pop`。
+- `Queue` 当队列用：`offer` / `poll`。
+
+### 4. 高频一行模板
+
+```java
+int mid = left + (right - left) / 2;
+Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+result.toArray(new int[result.size()][]);
+```
+
+记法：
+
+- 二分中点用 `left + (right - left) / 2`。
+- 二维数组排序按第一个值排，用 `Integer.compare(a[0], b[0])`。
+- `List<int[]>` 转 `int[][]`，直接背 `result.toArray(new int[result.size()][])`。
+
+### 5. `==` 和 `.equals`
+
+```java
+if (slow == fast) {
+    return true;
+}
+```
+
+链表和树节点比较是不是同一个节点，用 `==`。
+
+字符串内容比较一般用：
+
+```java
+s1.equals(s2)
+```
+
+这套题里大多数时候比较的是 `int`、`char` 或节点引用，所以直接用 `==`。
+
+### 6. 空值判断和指针安全
+
+```java
+if (root == null) {
+    return result;
+}
+
+if (nums == null || nums.length == 0) {
+    return 0;
+}
+
+while (fast != null && fast.next != null) {
+}
+```
+
+记法：
+
+- 链表、树、数组对象可能是 `null`。
+- 访问 `.next`、`.left`、`.length` 前，先想会不会空指针。
+- 链表环里 `fast` 每次走两步，所以循环条件必须同时判断 `fast` 和 `fast.next`。
+
+### 7. 面试里少用花哨写法
+
+优先写清楚：
+
+```java
+nums1[p] = nums1[p1];
+p1--;
+p--;
+```
+
+不必强行写成：
+
+```java
+nums1[p--] = nums1[p1--];
+```
+
+现场目标是稳，不是压缩代码。
+
+---
+
 ## 题目总表
 
 | 优先级 | LeetCode | 题目 | 主要练什么 |
@@ -360,6 +525,29 @@ private void dfs(TreeNode node, List<Integer> result) {
 ---
 
 ## 1. LeetCode 1：Two Sum 两数之和
+
+### 题目描述
+
+给定一个整数数组 `nums` 和一个整数目标值 `target`，请在数组中找出两个不同位置的元素，使它们的和等于 `target`，并返回这两个元素的下标。
+
+示例：
+
+```java
+nums = [2, 7, 11, 15], target = 9
+返回 [0, 1]
+```
+
+说明：
+
+- `nums[0] + nums[1] = 2 + 7 = 9`
+- 同一个元素不能使用两次
+- 通常假设只有一个有效答案
+
+### 思路记忆版
+
+- 思路：一边遍历数组，一边查“当前数还差谁”。
+- 辅助变量 / 工具：`HashMap`，存“数字 -> 下标”。
+- 边界易错：先查 `need` 再 `put` 当前数，避免同一个元素用两次；返回的是下标。
 
 ### 类型
 
@@ -421,6 +609,31 @@ class Solution {
 ---
 
 ## 2. LeetCode 20：Valid Parentheses 有效括号
+
+### 题目描述
+
+给定一个只包含三类括号的字符串 `s`：小括号 `()`、中括号 `[]`、大括号 `{}`。判断这个字符串里的括号是否有效。
+
+有效需要满足：
+
+- 每个右括号都能匹配到同类型的左括号
+- 括号闭合顺序正确
+- 不能出现多余的左括号或右括号
+
+示例：
+
+```java
+s = "()[]{}"     // true
+s = "(]"         // false
+s = "([)]"       // false
+s = "{[]}"       // true
+```
+
+### 思路记忆版
+
+- 思路：左括号入栈，右括号和栈顶左括号匹配。
+- 辅助变量 / 工具：`Deque<Character> stack = new ArrayDeque<>()`。
+- 边界易错：右括号来时先判断栈空；最后必须检查栈是否为空。
 
 ### 类型
 
@@ -526,6 +739,31 @@ class Solution {
 
 ## 3. LeetCode 88：Merge Sorted Array 合并有序数组
 
+### 题目描述
+
+给定两个升序整数数组 `nums1` 和 `nums2`，以及两个整数 `m` 和 `n`，分别表示两个数组中有效元素的数量。`nums1` 的长度是 `m + n`，后面有足够空位容纳 `nums2`。
+
+要求把 `nums2` 合并到 `nums1` 中，使 `nums1` 成为一个完整的升序数组。
+
+示例：
+
+```java
+nums1 = [1, 2, 3, 0, 0, 0], m = 3
+nums2 = [2, 5, 6],          n = 3
+结果 nums1 = [1, 2, 2, 3, 5, 6]
+```
+
+说明：
+
+- 需要原地修改 `nums1`
+- `nums1` 后面的 `0` 只是占位，不代表有效数据
+
+### 思路记忆版
+
+- 思路：从后往前合并，把较大的数放到 `nums1` 后面的空位。
+- 辅助变量 / 工具：三个下标 `p1`、`p2`、`p`。
+- 边界易错：最后只补 `nums2` 剩余元素；不用补 `nums1`。
+
 ### 类型
 
 数组、双指针。
@@ -593,6 +831,29 @@ class Solution {
 
 ## 4. LeetCode 206：Reverse Linked List 反转链表
 
+### 题目描述
+
+给定一个单链表的头节点 `head`，请将整个链表反转，并返回反转后的新头节点。
+
+示例：
+
+```java
+输入：1 -> 2 -> 3 -> 4 -> 5 -> null
+输出：5 -> 4 -> 3 -> 2 -> 1 -> null
+```
+
+说明：
+
+- 链表可能为空
+- 需要返回新的头节点
+- 重点是改变每个节点的 `next` 指向
+
+### 思路记忆版
+
+- 思路：逐个节点把 `next` 指针反过来。
+- 辅助变量 / 工具：`prev`、`curr`、`next` 三个链表指针。
+- 边界易错：改 `curr.next` 前先保存 `next`；最后返回 `prev`。
+
 ### 类型
 
 链表、指针反转。
@@ -650,6 +911,28 @@ class Solution {
 ---
 
 ## 5. LeetCode 704：Binary Search 二分查找
+
+### 题目描述
+
+给定一个升序整数数组 `nums` 和一个目标值 `target`，请在数组中查找 `target`。如果找到，返回它的下标；如果不存在，返回 `-1`。
+
+示例：
+
+```java
+nums = [-1, 0, 3, 5, 9, 12], target = 9
+返回 4
+```
+
+说明：
+
+- 数组已经升序排列
+- 要求用 `O(log n)` 的时间复杂度
+
+### 思路记忆版
+
+- 思路：数组有序，每次看中间值，排除一半。
+- 辅助变量 / 工具：`left`、`right`、`mid`。
+- 边界易错：循环条件写 `left <= right`；`mid` 写 `left + (right - left) / 2`。
 
 ### 类型
 
@@ -713,6 +996,34 @@ class Solution {
 
 ## 6. LeetCode 387：First Unique Character 第一个不重复字符
 
+### 题目描述
+
+给定一个字符串 `s`，请找到第一个只出现一次的字符，并返回它在字符串中的下标。如果不存在只出现一次的字符，返回 `-1`。
+
+示例：
+
+```java
+s = "leetcode"
+返回 0
+
+s = "loveleetcode"
+返回 2
+
+s = "aabb"
+返回 -1
+```
+
+说明：
+
+- 常见版本限定字符串只包含小写英文字母
+- 要返回的是下标，不是字符本身
+
+### 思路记忆版
+
+- 思路：第一遍统计次数，第二遍按原顺序找第一个次数为 1 的字符。
+- 辅助变量 / 工具：`int[] count = new int[26]`。
+- 边界易错：字符下标写 `c - 'a'`；只有小写字母时才用 `int[26]`。
+
 ### 类型
 
 字符串、计数数组。
@@ -774,6 +1085,30 @@ class Solution {
 ---
 
 ## 7. LeetCode 26：Remove Duplicates from Sorted Array 有序数组去重
+
+### 题目描述
+
+给定一个升序数组 `nums`，请原地删除重复元素，使每个元素只出现一次，并返回去重后的长度 `k`。
+
+示例：
+
+```java
+nums = [1, 1, 2]
+返回 2
+前 2 个元素应为 [1, 2]
+```
+
+说明：
+
+- 必须原地修改数组
+- 只需要保证前 `k` 个元素正确
+- 数组后面剩余位置的值不重要
+
+### 思路记忆版
+
+- 思路：有序数组里重复元素相邻，用快慢指针把新元素往前写。
+- 辅助变量 / 工具：`slow` 维护去重后最后位置，`fast` 扫描。
+- 边界易错：空数组返回 `0`；最终长度是 `slow + 1`。
 
 ### 类型
 
@@ -838,6 +1173,31 @@ class Solution {
 
 ## 8. LeetCode 121：Best Time to Buy and Sell Stock 买卖股票
 
+### 题目描述
+
+给定一个数组 `prices`，其中 `prices[i]` 表示第 `i` 天的股票价格。你只能选择某一天买入，并选择未来某一天卖出，最多完成一次交易。
+
+要求返回可以获得的最大利润。如果无论如何都不能盈利，返回 `0`。
+
+示例：
+
+```java
+prices = [7, 1, 5, 3, 6, 4]
+返回 5
+```
+
+说明：
+
+- 第 2 天价格为 1 时买入，第 5 天价格为 6 时卖出
+- 最大利润是 `6 - 1 = 5`
+- 不能先卖出再买入
+
+### 思路记忆版
+
+- 思路：遍历每天价格，维护历史最低买入价，并尝试今天卖出。
+- 辅助变量 / 工具：`minPrice`、`maxProfit`。
+- 边界易错：利润是 `price - minPrice`，不是 `price - maxProfit`；一直下跌返回 `0`。
+
 ### 类型
 
 数组、一次遍历。
@@ -896,6 +1256,29 @@ class Solution {
 
 ## 9. LeetCode 53：Maximum Subarray 最大子数组和
 
+### 题目描述
+
+给定一个整数数组 `nums`，请找出一个和最大的连续子数组，并返回这个最大和。
+
+示例：
+
+```java
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+返回 6
+```
+
+说明：
+
+- 最大连续子数组是 `[4, -1, 2, 1]`
+- 这个子数组的和是 `6`
+- 子数组必须连续，不能跳着选
+
+### 思路记忆版
+
+- 思路：每个位置判断“接上前面”还是“从当前重新开始”。
+- 辅助变量 / 工具：`current` 表示以当前结尾的最大和，`best` 表示全局最大和。
+- 边界易错：用 `nums[0]` 初始化，不能用 `0`，否则全负数会错。
+
 ### 类型
 
 数组、基础动态规划。
@@ -951,6 +1334,28 @@ class Solution {
 ---
 
 ## 10. LeetCode 56：Merge Intervals 合并区间
+
+### 题目描述
+
+给定一个二维数组 `intervals`，其中每个元素都是一个区间 `[start, end]`。请合并所有有重叠的区间，并返回合并后的区间数组。
+
+示例：
+
+```java
+intervals = [[1, 3], [2, 6], [8, 10], [15, 18]]
+返回 [[1, 6], [8, 10], [15, 18]]
+```
+
+说明：
+
+- `[1, 3]` 和 `[2, 6]` 有重叠，所以合并为 `[1, 6]`
+- `[1, 4]` 和 `[4, 5]` 也算重叠，可以合并为 `[1, 5]`
+
+### 思路记忆版
+
+- 思路：先按每个区间第一个值排序，再拿结果列表最后一个区间和当前区间合并。
+- 辅助变量 / 工具：`Arrays.sort`、`List<int[]> result`、`last`。
+- 边界易错：比较的是 `last[1]` 和 `interval[0]`；不重叠时只加入当前区间。
 
 ### 类型
 
@@ -1030,6 +1435,32 @@ class Solution {
 
 ## 11. LeetCode 141：Linked List Cycle 判断链表环
 
+### 题目描述
+
+给定一个单链表的头节点 `head`，判断链表中是否存在环。
+
+如果链表中某个节点可以通过不断访问 `next` 再次到达自己或前面的某个节点，就说明链表有环。
+
+示意：
+
+```text
+1 -> 2 -> 3 -> 4
+     ^         |
+     |_________|
+```
+
+说明：
+
+- 有环时链表不会走到 `null`
+- 无环时最终会走到 `null`
+- 判断的是节点引用是否相同，不是节点值是否相同
+
+### 思路记忆版
+
+- 思路：快慢指针一起走，有环时快指针会追上慢指针。
+- 辅助变量 / 工具：`slow` 每次一步，`fast` 每次两步。
+- 边界易错：循环条件写 `fast != null && fast.next != null`；比较节点引用用 `slow == fast`。
+
 ### 类型
 
 链表、快慢指针。
@@ -1093,6 +1524,38 @@ public class Solution {
 ---
 
 ## 12. LeetCode 102：Binary Tree Level Order Traversal 二叉树层序遍历
+
+### 题目描述
+
+给定一棵二叉树的根节点 `root`，请按层从上到下、每层从左到右返回节点值。
+
+示例：
+
+```text
+        3
+       / \
+      9   20
+         /  \
+        15   7
+```
+
+返回：
+
+```java
+[[3], [9, 20], [15, 7]]
+```
+
+说明：
+
+- 返回类型是 `List<List<Integer>>`
+- 外层 List 表示所有层
+- 内层 List 表示某一层的节点值
+
+### 思路记忆版
+
+- 思路：用队列一层一层处理二叉树。
+- 辅助变量 / 工具：`Queue<TreeNode>`、`result`、`level`、每层的 `size`。
+- 边界易错：每轮先记录 `size`，for 循环只处理当前层；`root == null` 返回空列表。
 
 ### 类型
 
@@ -1178,6 +1641,36 @@ class Solution {
 ---
 
 ## 13. LeetCode 144 / 94 / 145：二叉树前序 / 中序 / 后序遍历
+
+### 题目描述
+
+给定一棵二叉树的根节点 `root`，返回节点值的 DFS 遍历结果。
+
+三种遍历顺序：
+
+```text
+前序遍历：根 -> 左 -> 右
+中序遍历：左 -> 根 -> 右
+后序遍历：左 -> 右 -> 根
+```
+
+示例：
+
+```text
+    1
+     \
+      2
+     /
+    3
+```
+
+前序结果是 `[1, 2, 3]`，中序结果是 `[1, 3, 2]`，后序结果是 `[3, 2, 1]`。
+
+### 思路记忆版
+
+- 思路：递归 DFS，区别只在“访问根节点”的位置。
+- 辅助变量 / 工具：`List<Integer> result`、`private void dfs(...)`。
+- 边界易错：递归第一句写 `if (node == null) return;`；空树返回空 `List`。
 
 ### 类型
 
@@ -1291,6 +1784,28 @@ class Solution {
 
 ## 14. LeetCode 217：Contains Duplicate 存在重复元素
 
+### 题目描述
+
+给定一个整数数组 `nums`，判断数组中是否有重复元素。
+
+如果某个值至少出现两次，返回 `true`；如果每个元素都只出现一次，返回 `false`。
+
+示例：
+
+```java
+nums = [1, 2, 3, 1]
+返回 true
+
+nums = [1, 2, 3, 4]
+返回 false
+```
+
+### 思路记忆版
+
+- 思路：遍历数组，见过的数字放进集合；再见到就是重复。
+- 辅助变量 / 工具：`Set<Integer> set = new HashSet<>()`。
+- 边界易错：先 `contains` 再 `add`；`HashSet` 只保存元素，不保存次数。
+
 ### 类型
 
 数组、`HashSet`。
@@ -1352,6 +1867,34 @@ class Solution {
 ---
 
 ## 15. LeetCode 125：Valid Palindrome 验证回文串
+
+### 题目描述
+
+给定一个字符串 `s`，判断它在只保留字母和数字、并忽略大小写之后，是否是回文串。
+
+回文串的意思是：从左往右读和从右往左读结果一样。
+
+示例：
+
+```java
+s = "A man, a plan, a canal: Panama"
+返回 true
+
+s = "race a car"
+返回 false
+```
+
+说明：
+
+- 非字母数字字符要跳过
+- 大小写不敏感，`A` 和 `a` 视为相同
+- 空字符串或只包含非字母数字字符时，可以视为有效回文
+
+### 思路记忆版
+
+- 思路：左右双指针往中间走，跳过非字母数字字符，比较小写后的字符。
+- 辅助变量 / 工具：`left`、`right`、`Character.isLetterOrDigit`、`Character.toLowerCase`。
+- 边界易错：跳过字符时也要保持 `left < right`；比较前统一转小写。
 
 ### 类型
 
@@ -1428,6 +1971,39 @@ class Solution {
 
 ## 16. LeetCode 104：Maximum Depth of Binary Tree 二叉树最大深度
 
+### 题目描述
+
+给定一棵二叉树的根节点 `root`，返回这棵树的最大深度。
+
+最大深度指的是：从根节点到最远叶子节点路径上的节点数量。
+
+示例：
+
+```text
+        3
+       / \
+      9   20
+         /  \
+        15   7
+```
+
+返回：
+
+```java
+3
+```
+
+说明：
+
+- 空树的深度是 `0`
+- 只有一个根节点的树，深度是 `1`
+
+### 思路记忆版
+
+- 思路：树的最大深度等于左右子树最大深度的较大值加 1。
+- 辅助变量 / 工具：递归返回值、`left`、`right`、`Math.max`。
+- 边界易错：空节点深度是 `0`；最后不要忘记 `+ 1`。
+
 ### 类型
 
 二叉树、递归返回值。
@@ -1486,140 +2062,3 @@ class Solution {
 “我用递归。空节点深度是 0；非空节点的深度等于左右子树深度最大值加 1。每个节点访问一次，所以时间复杂度 O(n)。”
 
 ---
-
-## 现场最容易丢分的 Java 细节
-
-- 数组长度是 `nums.length`，字符串长度是 `s.length()`。
-- `HashMap` 写 `Map<Integer, Integer> map = new HashMap<>();`
-- `HashSet` 写 `Set<Integer> set = new HashSet<>();`
-- 泛型里写 `Integer`、`Character`，不要写 `int`、`char`。
-- 栈写 `Deque<Character> stack = new ArrayDeque<>();`
-- 队列写 `Queue<TreeNode> queue = new LinkedList<>();`
-- `ArrayList` 写 `List<Integer> result = new ArrayList<>();`
-- 字符工具类可以用 `Character.isLetterOrDigit(c)` 和 `Character.toLowerCase(c)`。
-- 二维数组按第一个值排序写 `Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));`
-- 链表反转必须先保存 `ListNode next = curr.next;`
-- 链表环比较节点引用，写 `slow == fast`。
-- 二分中点写 `left + (right - left) / 2`。
-- `List<int[]>` 转 `int[][]` 写 `result.toArray(new int[result.size()][])`。
-- 每题最后主动说时间复杂度和空间复杂度。
-
-## Java 语法和方法小贴士
-
-### 1. 长度相关
-
-```java
-nums.length      // 数组长度，没有括号
-s.length()       // 字符串长度，有括号
-list.size()      // List 长度，有括号
-queue.size()     // Queue 长度，有括号
-```
-
-记法：
-
-- 数组是属性：`.length`
-- 字符串和集合是方法：`.length()` / `.size()`
-
-### 2. 泛型只能写包装类
-
-```java
-Map<Integer, Integer> map = new HashMap<>();
-Set<Integer> set = new HashSet<>();
-Deque<Character> stack = new ArrayDeque<>();
-```
-
-不要写：
-
-```java
-Map<int, int> map = new HashMap<>();      // 错
-Deque<char> stack = new ArrayDeque<>();   // 错
-```
-
-记法：
-
-- `int` 放进泛型时写 `Integer`
-- `char` 放进泛型时写 `Character`
-
-### 3. 常用集合方法
-
-```java
-map.put(key, value);
-map.get(key);
-map.containsKey(key);
-
-set.add(x);
-set.contains(x);
-
-list.add(x);
-list.get(i);
-list.isEmpty();
-
-stack.push(c);
-stack.pop();
-stack.isEmpty();
-
-queue.offer(node);
-queue.poll();
-queue.isEmpty();
-```
-
-记法：
-
-- `Map` 是 key-value。
-- `Set` 只判断有没有。
-- `List` 按下标取。
-- `Deque` 当栈用：`push` / `pop`。
-- `Queue` 当队列用：`offer` / `poll`。
-
-### 4. `==` 和 `.equals`
-
-```java
-if (slow == fast) {
-    return true;
-}
-```
-
-链表和树节点比较是不是同一个节点，用 `==`。
-
-字符串内容比较一般用：
-
-```java
-s1.equals(s2)
-```
-
-这套题里大多数时候比较的是 `int`、`char` 或节点引用，所以直接用 `==`。
-
-### 5. 空值判断先写
-
-```java
-if (root == null) {
-    return result;
-}
-
-if (nums == null || nums.length == 0) {
-    return 0;
-}
-```
-
-记法：
-
-- 链表、树、数组对象可能是 `null`。
-- 访问 `.next`、`.left`、`.length` 前，先想会不会空指针。
-
-### 6. 面试里可以少用花哨写法
-
-优先写清楚：
-
-```java
-nums1[p] = nums1[p1];
-p1--;
-p--;
-```
-
-不必强行写成：
-
-```java
-nums1[p--] = nums1[p1--];
-```
-
-现场目标是稳，不是压缩代码。
