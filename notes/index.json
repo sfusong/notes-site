@@ -57,7 +57,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 108,
+      "totalNoteCount": 118,
       "children": [
         {
           "name": "AI产品经理",
@@ -95,7 +95,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 2,
-          "totalNoteCount": 77,
+          "totalNoteCount": 87,
           "children": [
             {
               "name": "开发课程",
@@ -108,7 +108,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 2,
-              "totalNoteCount": 60,
+              "totalNoteCount": 70,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -151,8 +151,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础",
                   "depth": 3,
-                  "directNoteCount": 13,
-                  "totalNoteCount": 13,
+                  "directNoteCount": 14,
+                  "totalNoteCount": 14,
                   "children": []
                 },
                 {
@@ -166,8 +166,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达",
                   "depth": 3,
-                  "directNoteCount": 18,
-                  "totalNoteCount": 18,
+                  "directNoteCount": 19,
+                  "totalNoteCount": 19,
                   "children": []
                 },
                 {
@@ -181,8 +181,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础",
                   "depth": 3,
-                  "directNoteCount": 10,
-                  "totalNoteCount": 10,
+                  "directNoteCount": 12,
+                  "totalNoteCount": 12,
                   "children": []
                 },
                 {
@@ -196,8 +196,23 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充",
                   "depth": 3,
-                  "directNoteCount": 8,
-                  "totalNoteCount": 8,
+                  "directNoteCount": 12,
+                  "totalNoteCount": 12,
+                  "children": []
+                },
+                {
+                  "name": "06_Java手撕算法冲刺",
+                  "key": "面试学习/开发岗/开发课程/06_Java手撕算法冲刺",
+                  "path": [
+                    "面试学习",
+                    "开发岗",
+                    "开发课程",
+                    "06_Java手撕算法冲刺"
+                  ],
+                  "pathLabel": "面试学习 / 开发岗 / 开发课程 / 06_Java手撕算法冲刺",
+                  "depth": 3,
+                  "directNoteCount": 2,
+                  "totalNoteCount": 2,
                   "children": []
                 }
               ]
@@ -2263,6 +2278,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
     },
     {
+      "title": "Docker 容器化原理面试补强",
+      "source_title": "Docker 容器化原理面试补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-02-系统与交付基础-docker-容器化原理-面试补强",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-02-系统与交付基础-docker-容器化原理面试补强"
+      ],
+      "filename": "Docker_容器化原理_面试补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/02_系统与交付基础/Docker_容器化原理_面试补强.md",
+      "preview": "这份只补一个洞：",
+      "category": "02_系统与交付基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/02_系统与交付基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "02_系统与交付基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
+    },
+    {
       "title": "Git、SDLC 与发布协作：面试够用版",
       "source_title": "Git、SDLC 与发布协作：面试够用版",
       "order": null,
@@ -2895,6 +2933,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
+      "title": "高盛工银 Onsite：项目复习顺序",
+      "source_title": "高盛工银 Onsite：项目复习顺序",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-高盛工银onsite-项目复习顺序",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-高盛工银-onsite-项目复习顺序"
+      ],
+      "filename": "高盛工银Onsite_项目复习顺序.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/高盛工银Onsite_项目复习顺序.md",
+      "preview": "这份只服务一个目标：",
+      "category": "03_项目表达",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
+    },
+    {
       "title": "语言与数据基础",
       "source_title": "语言与数据基础",
       "order": null,
@@ -2906,6 +2967,29 @@
       "filename": "README.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/README.md",
       "preview": "这一层不要再理解成“纯八股目录”，而要分成两部分看：",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
+      "title": "Java OOP 与设计模式高盛工银补强",
+      "source_title": "Java OOP 与设计模式高盛工银补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-java-oop-设计模式-高盛工银补强",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-04-语言与数据基础-java-oop-与设计模式高盛工银补强"
+      ],
+      "filename": "Java_OOP_设计模式_高盛工银补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/Java_OOP_设计模式_高盛工银补强.md",
+      "preview": "这份只解决一个问题：",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -3098,6 +3182,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
     },
     {
+      "title": "数据库设计、UML 与异常恢复高盛工银补强",
+      "source_title": "数据库设计、UML 与异常恢复高盛工银补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-数据库设计-uml-异常恢复-高盛工银补强",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-04-语言与数据基础-数据库设计uml-与异常恢复高盛工银补强"
+      ],
+      "filename": "数据库设计_UML_异常恢复_高盛工银补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/数据库设计_UML_异常恢复_高盛工银补强.md",
+      "preview": "这份只解决一个问题：",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
       "title": "数据结构与算法高频题：开发岗够用版",
       "source_title": "数据结构与算法高频题：开发岗够用版",
       "order": null,
@@ -3209,6 +3316,27 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
     },
     {
+      "title": "金融基础与智力题轻量版",
+      "source_title": "金融基础与智力题轻量版",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-金融基础与智力题轻量版",
+      "legacySlugs": [],
+      "filename": "金融基础与智力题轻量版.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/金融基础与智力题轻量版.md",
+      "preview": "这份只服务高盛工银 onsite：",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
       "title": "金融市场 / 金融资产 / 风险管理基础认知",
       "source_title": "金融市场 / 金融资产 / 风险管理基础认知",
       "order": null,
@@ -3239,6 +3367,52 @@
       "filename": "金融开发岗英语项目表达.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/金融开发岗英语项目表达.md",
       "preview": "这份材料的目标不是把你训练成英文演讲选手，而是让你在金融开发岗面试里，至少能稳定完成这 4 件事：",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "高盛工银 Behavior 问题速查",
+      "source_title": "高盛工银 Behavior 问题速查",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银behavior问题速查",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银-behavior-问题速查"
+      ],
+      "filename": "高盛工银Behavior问题速查.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银Behavior问题速查.md",
+      "preview": "这份文件只解决一个问题：",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "高盛工银 Onsite 总准备清单",
+      "source_title": "高盛工银 Onsite 总准备清单",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银onsite总准备清单",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银-onsite-总准备清单"
+      ],
+      "filename": "高盛工银Onsite总准备清单.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银Onsite总准备清单.md",
+      "preview": "这份只解决一个问题：",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -3291,6 +3465,73 @@
         "05_岗位定制补充"
       ],
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "高盛工银技术八股与原理清单",
+      "source_title": "高盛工银技术八股与原理清单",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银技术八股与原理清单",
+      "legacySlugs": [],
+      "filename": "高盛工银技术八股与原理清单.md",
+      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银技术八股与原理清单.md",
+      "preview": "这份只服务一个目标：",
+      "category": "05_岗位定制补充",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "05_岗位定制补充"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
+    },
+    {
+      "title": "Java 手撕算法冲刺",
+      "source_title": "Java 手撕算法冲刺",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-06-java手撕算法冲刺",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-06-java手撕算法冲刺-java-手撕算法冲刺"
+      ],
+      "filename": "README.md",
+      "file": "notes/面试学习/开发岗/开发课程/06_Java手撕算法冲刺/README.md",
+      "preview": "这个目录只服务一个目标：",
+      "category": "06_Java手撕算法冲刺",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/06_Java手撕算法冲刺",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "06_Java手撕算法冲刺"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 06_Java手撕算法冲刺"
+    },
+    {
+      "title": "高盛工银 onsite Java coding 七天冲刺手册",
+      "source_title": "高盛工银 onsite Java coding 七天冲刺手册",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-06-java手撕算法冲刺-01-高盛工银onsite前java算法题与语法清单",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-06-java手撕算法冲刺-高盛工银-onsite-java-coding-七天冲刺手册"
+      ],
+      "filename": "01_高盛工银onsite前Java算法题与语法清单.md",
+      "file": "notes/面试学习/开发岗/开发课程/06_Java手撕算法冲刺/01_高盛工银onsite前Java算法题与语法清单.md",
+      "preview": "这份不是大厂算法大全，而是为这次 onsite 准备的 Java 手写最小题库。",
+      "category": "06_Java手撕算法冲刺",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/06_Java手撕算法冲刺",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "06_Java手撕算法冲刺"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 06_Java手撕算法冲刺"
     },
     {
       "title": "项目面试资料包",
@@ -3623,6 +3864,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
     }
   ],
-  "total": 160,
-  "generated": "2026-05-01T20:23:35"
+  "total": 170,
+  "generated": "2026-05-04T17:47:25"
 }

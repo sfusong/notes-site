@@ -14,14 +14,16 @@
 
 如果你只想把这层先学顺，优先看这 4 份：
 
-1. [CI_CD.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/CI_CD.md)
-2. [Jenkins_Pipeline.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Jenkins_Pipeline.md)
-3. [Tomcat_Nginx.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Tomcat_Nginx.md)
-4. [Git_SDLC_发布协作面试够用版.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Git_SDLC_发布协作面试够用版.md)
+1. [Docker_容器化原理_面试补强.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Docker_容器化原理_面试补强.md)
+2. [CI_CD.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/CI_CD.md)
+3. [Jenkins_Pipeline.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Jenkins_Pipeline.md)
+4. [Tomcat_Nginx.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Tomcat_Nginx.md)
+5. [Git_SDLC_发布协作面试够用版.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Git_SDLC_发布协作面试够用版.md)
 
 这 4 份负责把：
 
 - 系统怎么跑
+- 容器怎么理解
 - 请求怎么转
 - 版本怎么发
 - 团队怎么协作
@@ -41,6 +43,10 @@
 - [React_开发岗面试够用版.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/React_开发岗面试够用版.md)
 
 ## 三、最常见问题分别看哪份
+
+### 问：Docker / 容器化 / 镜像 / 容器
+
+- [Docker_容器化原理_面试补强.md](notes/面试学习/开发岗/开发课程/02_系统与交付基础/Docker_容器化原理_面试补强.md)
 
 ### 问：CI/CD 到底是什么
 
