@@ -266,7 +266,7 @@ docker build -t my-app:1.0 .
 
 这份旧笔记不是面试主材料，但可以帮你找回命令手感：
 
-- Docker 命令旧笔记（外部归档文件，站内未导入）
+- [Docker命令解析.md](/Users/shifusong/Projects/找工作/实习相关项目/广发基金实习项目/gffund/week_1_archive/Docker命令解析.md)
 
 它里面有：
 

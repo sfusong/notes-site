@@ -84,7 +84,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 118,
+      "totalNoteCount": 90,
       "children": [
         {
           "name": "AI产品经理",
@@ -121,8 +121,8 @@
           ],
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
-          "directNoteCount": 2,
-          "totalNoteCount": 87,
+          "directNoteCount": 1,
+          "totalNoteCount": 59,
           "children": [
             {
               "name": "开发课程",
@@ -134,8 +134,8 @@
               ],
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
-              "directNoteCount": 2,
-              "totalNoteCount": 70,
+              "directNoteCount": 1,
+              "totalNoteCount": 58,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -148,8 +148,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 00_课程总纲",
                   "depth": 3,
-                  "directNoteCount": 4,
-                  "totalNoteCount": 4,
+                  "directNoteCount": 2,
+                  "totalNoteCount": 2,
                   "children": []
                 },
                 {
@@ -163,8 +163,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划",
                   "depth": 3,
-                  "directNoteCount": 5,
-                  "totalNoteCount": 5,
+                  "directNoteCount": 2,
+                  "totalNoteCount": 2,
                   "children": []
                 },
                 {
@@ -178,8 +178,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础",
                   "depth": 3,
-                  "directNoteCount": 14,
-                  "totalNoteCount": 14,
+                  "directNoteCount": 12,
+                  "totalNoteCount": 12,
                   "children": []
                 },
                 {
@@ -193,8 +193,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达",
                   "depth": 3,
-                  "directNoteCount": 19,
-                  "totalNoteCount": 19,
+                  "directNoteCount": 13,
+                  "totalNoteCount": 13,
                   "children": []
                 },
                 {
@@ -208,8 +208,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础",
                   "depth": 3,
-                  "directNoteCount": 12,
-                  "totalNoteCount": 12,
+                  "directNoteCount": 10,
+                  "totalNoteCount": 10,
                   "children": []
                 },
                 {
@@ -223,8 +223,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充",
                   "depth": 3,
-                  "directNoteCount": 12,
-                  "totalNoteCount": 12,
+                  "directNoteCount": 8,
+                  "totalNoteCount": 8,
                   "children": []
                 },
                 {
@@ -241,22 +241,40 @@
                   "directNoteCount": 2,
                   "totalNoteCount": 2,
                   "children": []
+                },
+                {
+                  "name": "07_TA自动化测试复现项目",
+                  "key": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目",
+                  "path": [
+                    "面试学习",
+                    "开发岗",
+                    "开发课程",
+                    "07_TA自动化测试复现项目"
+                  ],
+                  "pathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目",
+                  "depth": 3,
+                  "directNoteCount": 2,
+                  "totalNoteCount": 8,
+                  "children": [
+                    {
+                      "name": "docs",
+                      "key": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs",
+                      "path": [
+                        "面试学习",
+                        "开发岗",
+                        "开发课程",
+                        "07_TA自动化测试复现项目",
+                        "docs"
+                      ],
+                      "pathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs",
+                      "depth": 4,
+                      "directNoteCount": 6,
+                      "totalNoteCount": 6,
+                      "children": []
+                    }
+                  ]
                 }
               ]
-            },
-            {
-              "name": "项目面试资料包",
-              "key": "面试学习/开发岗/项目面试资料包",
-              "path": [
-                "面试学习",
-                "开发岗",
-                "项目面试资料包"
-              ],
-              "pathLabel": "面试学习 / 开发岗 / 项目面试资料包",
-              "depth": 2,
-              "directNoteCount": 15,
-              "totalNoteCount": 15,
-              "children": []
             }
           ]
         }
@@ -2446,28 +2464,7 @@
       ],
       "filename": "README.md",
       "file": "notes/面试学习/开发岗/README.md",
-      "preview": "这个节点下面现在有两条线：",
-      "category": "开发岗",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗",
-      "categoryPath": [
-        "面试学习",
-        "开发岗"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗"
-    },
-    {
-      "title": "Development Track English Interview Guide",
-      "source_title": "Development Track English Interview Guide",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-readme-english",
-      "legacySlugs": [
-        "面试学习-开发岗-development-track-english-interview-guide"
-      ],
-      "filename": "README_English.md",
-      "file": "notes/面试学习/开发岗/README_English.md",
-      "preview": "This page is the English-speaking entry for the development-track materials. It is not a literal translation of the whol…",
+      "preview": "这个节点已按 /Users/shifusong/Projects/找工作/面试学习/开发 的最新精简结构同步。",
       "category": "开发岗",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗",
@@ -2488,7 +2485,7 @@
       ],
       "filename": "README.md",
       "file": "notes/面试学习/开发岗/开发课程/README.md",
-      "preview": "这份首页现在有两个作用：",
+      "preview": "这份首页只回答两件事：",
       "category": "开发课程",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程",
@@ -2498,51 +2495,6 @@
         "开发课程"
       ],
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程"
-    },
-    {
-      "title": "Development Course English Guide",
-      "source_title": "Development Course English Guide",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-readme-english",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-development-course-english-guide"
-      ],
-      "filename": "README_English.md",
-      "file": "notes/面试学习/开发岗/开发课程/README_English.md",
-      "preview": "This is the English interview entry for the non-project part of the development track.",
-      "category": "开发课程",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程"
-    },
-    {
-      "title": "开发课程总纲与导航",
-      "source_title": "开发课程总纲与导航",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-00-课程总纲",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-00-课程总纲-开发课程总纲与导航"
-      ],
-      "filename": "README.md",
-      "file": "notes/面试学习/开发岗/开发课程/00_课程总纲/README.md",
-      "preview": "这个节点只有两份文件，但它们承担的是整套开发课程里最重要的导航作用。",
-      "category": "00_课程总纲",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/00_课程总纲",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "00_课程总纲"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 00_课程总纲"
     },
     {
       "title": "开发岗课程总纲",
@@ -2554,29 +2506,6 @@
       "filename": "开发岗课程总纲.md",
       "file": "notes/面试学习/开发岗/开发课程/00_课程总纲/开发岗课程总纲.md",
       "preview": "这份文件现在是：",
-      "category": "00_课程总纲",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/00_课程总纲",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "00_课程总纲"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 00_课程总纲"
-    },
-    {
-      "title": "Development Track Course Roadmap in English",
-      "source_title": "Development Track Course Roadmap in English",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-00-课程总纲-开发岗课程总纲-english",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-00-课程总纲-development-track-course-roadmap-in-english"
-      ],
-      "filename": "开发岗课程总纲_English.md",
-      "file": "notes/面试学习/开发岗/开发课程/00_课程总纲/开发岗课程总纲_English.md",
-      "preview": "This note explains the most effective review order for the development-track materials if your goal is interview readine…",
       "category": "00_课程总纲",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/00_课程总纲",
@@ -2610,17 +2539,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 00_课程总纲"
     },
     {
-      "title": "岗位与计划导航",
-      "source_title": "岗位与计划导航",
+      "title": "工银高盛开发岗 JD 拆解",
+      "source_title": "工银高盛开发岗 JD 拆解",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-开发课程-01-岗位与计划",
+      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-工银高盛开发岗-jd拆解",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-01-岗位与计划-岗位与计划导航"
+        "面试学习-开发岗-开发课程-01-岗位与计划-工银高盛开发岗-jd-拆解"
       ],
-      "filename": "README.md",
-      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/README.md",
-      "preview": "这一层解决的是：你到底在准备什么岗位，以及接下来怎么学。",
+      "filename": "工银高盛开发岗_JD拆解.md",
+      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/工银高盛开发岗_JD拆解.md",
+      "preview": "对应原始岗位： 工银高盛理财.txt",
       "category": "01_岗位与计划",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
@@ -2643,76 +2572,7 @@
       ],
       "filename": "开发岗_系统学习计划.md",
       "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/开发岗_系统学习计划.md",
-      "preview": "适用目标岗位： 金融机构开发岗 JD（外部文件：通用金融机构开发岗JD.txt，站内未导入）",
-      "category": "01_岗位与计划",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "01_岗位与计划"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
-    },
-    {
-      "title": "金融机构开发岗 JD 能力拆解",
-      "source_title": "金融机构开发岗 JD 能力拆解",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-金融机构开发岗-jd能力拆解",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-01-岗位与计划-金融机构开发岗-jd-能力拆解"
-      ],
-      "filename": "金融机构开发岗_JD能力拆解.md",
-      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/金融机构开发岗_JD能力拆解.md",
-      "preview": "对应原始岗位： 通用金融机构开发岗JD.txt（外部文件：通用金融机构开发岗JD.txt，站内未导入）",
-      "category": "01_岗位与计划",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "01_岗位与计划"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
-    },
-    {
-      "title": "JD Fit and Candidate Positioning for Financial-Institution Developer Roles",
-      "source_title": "JD Fit and Candidate Positioning for Financial-Institution Developer Roles",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-金融机构开发岗-jd能力拆解-english",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-01-岗位与计划-jd-fit-and-candidate-positioning-for-financial-institution-developer-roles"
-      ],
-      "filename": "金融机构开发岗_JD能力拆解_English.md",
-      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/金融机构开发岗_JD能力拆解_English.md",
-      "preview": "This note is meant for English interviews. It helps you explain why your background fits a developer role in a financial…",
-      "category": "01_岗位与计划",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "01_岗位与计划"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 01_岗位与计划"
-    },
-    {
-      "title": "高盛工银开发岗 JD 拆解",
-      "source_title": "高盛工银开发岗 JD 拆解",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-01-岗位与计划-高盛工银开发岗-jd拆解",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-01-岗位与计划-高盛工银开发岗-jd-拆解"
-      ],
-      "filename": "高盛工银开发岗_JD拆解.md",
-      "file": "notes/面试学习/开发岗/开发课程/01_岗位与计划/高盛工银开发岗_JD拆解.md",
-      "preview": "对应原始岗位： 高盛工银理财软件开发工程师 JD",
+      "preview": "适用目标岗位： 工银高盛理财开发岗 JD",
       "category": "01_岗位与计划",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/01_岗位与计划",
@@ -2928,29 +2788,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
     },
     {
-      "title": "Spring Boot 为什么常打 jar 不打 war",
-      "source_title": "Spring Boot 为什么常打 jar 不打 war",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-02-系统与交付基础-springboot-jar-vs-war",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-02-系统与交付基础-spring-boot-为什么常打-jar-不打-war"
-      ],
-      "filename": "SpringBoot_JAR_vs_WAR.md",
-      "file": "notes/面试学习/开发岗/开发课程/02_系统与交付基础/SpringBoot_JAR_vs_WAR.md",
-      "preview": "这也是 Java 开发岗里很常见的一道题。",
-      "category": "02_系统与交付基础",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/02_系统与交付基础",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "02_系统与交付基础"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
-    },
-    {
       "title": "Tomcat、Maven、打包、JDK/JRE/JVM",
       "source_title": "Tomcat、Maven、打包、JDK/JRE/JVM",
       "order": null,
@@ -3020,29 +2857,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
     },
     {
-      "title": "System and Delivery English Interview Pack",
-      "source_title": "System and Delivery English Interview Pack",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-02-系统与交付基础-系统与交付基础-english-interview-pack",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-02-系统与交付基础-system-and-delivery-english-interview-pack"
-      ],
-      "filename": "系统与交付基础_English_Interview_Pack.md",
-      "file": "notes/面试学习/开发岗/开发课程/02_系统与交付基础/系统与交付基础_English_Interview_Pack.md",
-      "preview": "This pack helps you answer English interview questions about how systems run, how versions are released and how teams co…",
-      "category": "02_系统与交付基础",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/02_系统与交付基础",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "02_系统与交付基础"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 02_系统与交付基础"
-    },
-    {
       "title": "项目表达",
       "source_title": "项目表达",
       "order": null,
@@ -3053,7 +2867,7 @@
       ],
       "filename": "README.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/README.md",
-      "preview": "这一层现在按“项目主文件 + 追问文件 + 补充文件”来组织。",
+      "preview": "这一层只服务项目面试。",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3076,7 +2890,7 @@
       ],
       "filename": "React在你的项目里怎么讲.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/React在你的项目里怎么讲.md",
-      "preview": "这份材料的目标不是再讲一遍 React 基础概念，而是解决：",
+      "preview": "配套基础课：React_开发岗面试够用版.md",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3099,7 +2913,7 @@
       ],
       "filename": "TA批前预警稽核平台_项目讲法.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA批前预警稽核平台_项目讲法.md",
-      "preview": "这份材料的目标是让你把这条项目讲成：",
+      "preview": "这是围绕 TA 夜间跑批 / 清算前检查 建设的前置稽核能力，把交易规模、产品状态、账户、费率、开放期等检查规则沉淀成可执行校验项，在正式跑批前提前暴露问题。",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3112,17 +2926,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
-      "title": "TA 批前预警稽核平台高频追问怎么答",
-      "source_title": "TA 批前预警稽核平台高频追问怎么答",
+      "title": "TA 批前预警稽核平台：高频追问",
+      "source_title": "TA 批前预警稽核平台：高频追问",
       "order": null,
       "unit": null,
       "slug": "面试学习-开发岗-开发课程-03-项目表达-ta批前预警稽核平台-高频追问怎么答",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-ta-批前预警稽核平台高频追问怎么答"
+        "面试学习-开发岗-开发课程-03-项目表达-ta-批前预警稽核平台-高频追问"
       ],
       "filename": "TA批前预警稽核平台_高频追问怎么答.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA批前预警稽核平台_高频追问怎么答.md",
-      "preview": "这份材料不是再重复“项目是什么”，而是专门解决：",
+      "preview": "配套主文档：TA批前预警稽核平台_项目讲法.md",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3135,109 +2949,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
-      "title": "TA 自动化测试：实现方案与技术速记",
-      "source_title": "TA 自动化测试：实现方案与技术速记",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-ta自动化测试-实现方案与技术速记",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-ta-自动化测试-实现方案与技术速记"
-      ],
-      "filename": "TA自动化测试_实现方案与技术速记.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA自动化测试_实现方案与技术速记.md",
-      "preview": "这份是面试速记版。",
-      "category": "03_项目表达",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "03_项目表达"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
-    },
-    {
-      "title": "TA 自动化测试项目技术方案详解",
-      "source_title": "TA 自动化测试项目技术方案详解",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-ta自动化测试-技术方案详解",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-ta-自动化测试项目技术方案详解"
-      ],
-      "filename": "TA自动化测试_技术方案详解.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA自动化测试_技术方案详解.md",
-      "preview": "如果你只想看一份最完整、最适合面试复习的材料，优先看：",
-      "category": "03_项目表达",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "03_项目表达"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
-    },
-    {
-      "title": "TA 自动化测试：真实但有竞争力的面试话术",
-      "source_title": "TA 自动化测试：真实但有竞争力的面试话术",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-ta自动化测试-真实但有竞争力的面试话术",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-ta-自动化测试-真实但有竞争力的面试话术"
-      ],
-      "filename": "TA自动化测试_真实但有竞争力的面试话术.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA自动化测试_真实但有竞争力的面试话术.md",
-      "preview": "如果你只想看一份最完整、最适合面试复习的材料，优先看：",
-      "category": "03_项目表达",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "03_项目表达"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
-    },
-    {
-      "title": "TA 自动化测试项目面试总纲",
-      "source_title": "TA 自动化测试项目面试总纲",
+      "title": "TA 自动化测试：面试总纲",
+      "source_title": "TA 自动化测试：面试总纲",
       "order": null,
       "unit": null,
       "slug": "面试学习-开发岗-开发课程-03-项目表达-ta自动化测试-面试总纲",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-ta-自动化测试项目面试总纲"
+        "面试学习-开发岗-开发课程-03-项目表达-ta-自动化测试-面试总纲"
       ],
       "filename": "TA自动化测试_面试总纲.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA自动化测试_面试总纲.md",
-      "preview": "这份笔记是你讲这个项目时最该看的主文件。",
-      "category": "03_项目表达",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "03_项目表达"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
-    },
-    {
-      "title": "TA 自动化测试项目讲法",
-      "source_title": "TA 自动化测试项目讲法",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-ta自动化测试-项目讲法",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-ta-自动化测试项目讲法"
-      ],
-      "filename": "TA自动化测试_项目讲法.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/TA自动化测试_项目讲法.md",
-      "preview": "这份讲法基于：",
+      "preview": "这份文档只保留面试有用内容：",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3258,30 +2980,7 @@
       "legacySlugs": [],
       "filename": "三条开发项目的开发参与版全流程讲法.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/三条开发项目的开发参与版全流程讲法.md",
-      "preview": "这份文档专门服务一个目标：",
-      "category": "03_项目表达",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "03_项目表达"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
-    },
-    {
-      "title": "Delivery and Project Expression English Pack",
-      "source_title": "Delivery and Project Expression English Pack",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-交付与系统项目表达-english-interview-pack",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-delivery-and-project-expression-english-pack"
-      ],
-      "filename": "交付与系统项目表达_English_Interview_Pack.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/交付与系统项目表达_English_Interview_Pack.md",
-      "preview": "This note covers the non-project-experience side of project expression in English, especially the parts that show delive…",
+      "preview": "这份文档只解决一个问题：面试官问“你过去做过哪些真正偏开发的项目”时，如何把三条主战项目讲成 真实参与、技术链路清楚、能抗追问 的版本。",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3302,7 +3001,7 @@
       "legacySlugs": [],
       "filename": "产品生命周期管理系统_项目讲法.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统_项目讲法.md",
-      "preview": "这份材料的目标是让你把这条项目讲成：",
+      "preview": "这是正式产品管理系统上线前，我们自研的一套内网前后端系统，用来管理特殊理财产品在成立、存续、分红、收益达标、到期等阶段的关键事件，并通过页面、邮件和 OA 做协同提醒。",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3315,17 +3014,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
-      "title": "产品生命周期管理系统高频追问怎么答",
-      "source_title": "产品生命周期管理系统高频追问怎么答",
+      "title": "产品生命周期管理系统：高频追问",
+      "source_title": "产品生命周期管理系统：高频追问",
       "order": null,
       "unit": null,
       "slug": "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统-高频追问怎么答",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统高频追问怎么答"
+        "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统-高频追问"
       ],
       "filename": "产品生命周期管理系统_高频追问怎么答.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统_高频追问怎么答.md",
-      "preview": "这份材料不是再重复“项目是什么”，而是解决：",
+      "preview": "答：",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3346,7 +3045,7 @@
       "legacySlugs": [],
       "filename": "广发证券授信变动查询项目怎么讲.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/广发证券授信变动查询项目怎么讲.md",
-      "preview": "这份材料的目标是把你简历里这条经历：",
+      "preview": "一句话定位：",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3367,7 +3066,7 @@
       "legacySlugs": [],
       "filename": "开发项目真实边界与技术补强清单.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/开发项目真实边界与技术补强清单.md",
-      "preview": "这份清单的目标不是把别人的工作讲成自己的，而是帮你把每条项目收成：",
+      "preview": "这份文档用于控制面试风险：哪些项目可以强讲开发，哪些项目要讲交付和系统理解，哪些技术细节必须补到能追问。",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3390,7 +3089,7 @@
       ],
       "filename": "接口联调_UAT_上线切换怎么讲.md",
       "file": "notes/面试学习/开发岗/开发课程/03_项目表达/接口联调_UAT_上线切换怎么讲.md",
-      "preview": "这份材料的目标，是把你工作经历里这些很真实、也很值钱的动作讲成：",
+      "preview": "一句话定位：",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3403,17 +3102,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
-      "title": "确认文件内容自动校验，技术上通常会怎么做",
-      "source_title": "确认文件内容自动校验，技术上通常会怎么做",
+      "title": "产品说明书按模板一键生成工具：轻量复习",
+      "source_title": "产品说明书按模板一键生成工具：轻量复习",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-确认文件内容自动校验",
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-说明书自动生成工具-轻量复习",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-确认文件内容自动校验技术上通常会怎么做"
+        "面试学习-开发岗-开发课程-03-项目表达-产品说明书按模板一键生成工具-轻量复习"
       ],
-      "filename": "确认文件内容自动校验.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/确认文件内容自动校验.md",
-      "preview": "这份笔记专门回答一个很关键的问题：",
+      "filename": "说明书自动生成工具_轻量复习.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/说明书自动生成工具_轻量复习.md",
+      "preview": "一句话定位：",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3426,38 +3125,17 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
-      "title": "项目表达：最小复习集",
-      "source_title": "项目表达：最小复习集",
+      "title": "高盛工银 Onsite：项目文档总入口",
+      "source_title": "高盛工银 Onsite：项目文档总入口",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-项目表达-最小复习集",
-      "legacySlugs": [],
-      "filename": "项目表达_最小复习集.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/项目表达_最小复习集.md",
-      "preview": "如果你马上要面试，不要把 03_项目表达/ 整个目录从头翻到尾。",
-      "category": "03_项目表达",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "03_项目表达"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
-    },
-    {
-      "title": "高盛工银 Onsite：项目复习顺序",
-      "source_title": "高盛工银 Onsite：项目复习顺序",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-03-项目表达-高盛工银onsite-项目复习顺序",
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-高盛工银onsite-项目文档总入口",
       "legacySlugs": [
-        "面试学习-开发岗-开发课程-03-项目表达-高盛工银-onsite-项目复习顺序"
+        "面试学习-开发岗-开发课程-03-项目表达-高盛工银-onsite-项目文档总入口"
       ],
-      "filename": "高盛工银Onsite_项目复习顺序.md",
-      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/高盛工银Onsite_项目复习顺序.md",
-      "preview": "这份只服务一个目标：",
+      "filename": "高盛工银Onsite_项目文档总入口.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/高盛工银Onsite_项目文档总入口.md",
+      "preview": "项目复习只围绕三条主战线：",
       "category": "03_项目表达",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
@@ -3595,7 +3273,7 @@
       ],
       "filename": "SpringBoot_RESTAPI_后端系统怎么讲.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/SpringBoot_RESTAPI_后端系统怎么讲.md",
-      "preview": "这份材料的目标，不是把你训练成 Spring 源码选手，而是让你在开发岗面试里，能把：",
+      "preview": "面试目标：不讲 Spring 源码，讲清一个后端系统如何用 Spring Boot 和 REST API 落地。",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -3618,7 +3296,7 @@
       ],
       "filename": "SpringMVC_请求流程_参数校验_返回结果怎么讲.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/SpringMVC_请求流程_参数校验_返回结果怎么讲.md",
-      "preview": "这份材料的目标，是让你在开发岗面试里，能把：",
+      "preview": "面试目标：能把下面四件事讲得像做过接口开发，而不是只背概念。",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -3639,30 +3317,7 @@
       "legacySlugs": [],
       "filename": "SQL_数据库表设计_查询功能开发怎么讲.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/SQL_数据库表设计_查询功能开发怎么讲.md",
-      "preview": "这份材料的目标，不是把你训练成 DBA，而是让你在开发岗面试里，能把：",
-      "category": "04_语言与数据基础",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "04_语言与数据基础"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
-    },
-    {
-      "title": "Backend Fundamentals English Interview Pack",
-      "source_title": "Backend Fundamentals English Interview Pack",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-后端基础-english-interview-pack",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-04-语言与数据基础-backend-fundamentals-english-interview-pack"
-      ],
-      "filename": "后端基础_English_Interview_Pack.md",
-      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/后端基础_English_Interview_Pack.md",
-      "preview": "This pack helps you explain backend fundamentals in English without drifting into overly theoretical answers.",
+      "preview": "面试目标：不按 DBA 深度准备，而是讲清中后台开发里 SQL、表设计、查询和历史数据回填怎么落地。",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -3683,7 +3338,7 @@
       "legacySlugs": [],
       "filename": "开发岗防守型基础收口.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/开发岗防守型基础收口.md",
-      "preview": "这份材料的目标不是补新知识，而是把前面已经学过的内容压缩成：",
+      "preview": "用途：面试前最后一轮收口，防止基础题失守。覆盖重点：",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -3719,27 +3374,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
     },
     {
-      "title": "数据结构与算法高频题：开发岗够用版",
-      "source_title": "数据结构与算法高频题：开发岗够用版",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-数据结构与算法高频题-开发岗够用版",
-      "legacySlugs": [],
-      "filename": "数据结构与算法高频题_开发岗够用版.md",
-      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/数据结构与算法高频题_开发岗够用版.md",
-      "preview": "这份笔记的目标不是把你训练成刷题型选手，而是让你在开发岗面试里：",
-      "category": "04_语言与数据基础",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "04_语言与数据基础"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
-    },
-    {
       "title": "岗位定制补充",
       "source_title": "岗位定制补充",
       "order": null,
@@ -3751,73 +3385,6 @@
       "filename": "README.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/README.md",
       "preview": "这一层放的是：",
-      "category": "05_岗位定制补充",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "05_岗位定制补充"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
-    },
-    {
-      "title": "开发岗中文自我介绍",
-      "source_title": "开发岗中文自我介绍",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-开发岗中文自我介绍",
-      "legacySlugs": [],
-      "filename": "开发岗中文自我介绍.md",
-      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/开发岗中文自我介绍.md",
-      "preview": "这份材料的目标不是让你背一段很“像模板”的自我介绍，而是让你在不同面试场景里，都能稳定地开场。",
-      "category": "05_岗位定制补充",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "05_岗位定制补充"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
-    },
-    {
-      "title": "Development Track Self-Introduction in English",
-      "source_title": "Development Track Self-Introduction in English",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-开发岗英文自我介绍",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-05-岗位定制补充-development-track-self-introduction-in-english"
-      ],
-      "filename": "开发岗英文自我介绍.md",
-      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/开发岗英文自我介绍.md",
-      "preview": "This note is meant for direct speaking in interviews. The goal is not to sound overly formal. The goal is to sound clear…",
-      "category": "05_岗位定制补充",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "05_岗位定制补充"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
-    },
-    {
-      "title": "Financial Domain English Interview Pack",
-      "source_title": "Financial Domain English Interview Pack",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-金融业务认知-english-interview-pack",
-      "legacySlugs": [
-        "面试学习-开发岗-开发课程-05-岗位定制补充-financial-domain-english-interview-pack"
-      ],
-      "filename": "金融业务认知_English_Interview_Pack.md",
-      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/金融业务认知_English_Interview_Pack.md",
-      "preview": "This note helps you answer business-side questions in English without sounding like you are pretending to be an investme…",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -3859,7 +3426,7 @@
       "legacySlugs": [],
       "filename": "金融市场_金融资产_风险管理基础认知.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/金融市场_金融资产_风险管理基础认知.md",
-      "preview": "这份材料的目标，不是把你训练成投研或风控专家，而是让你在金融开发岗面试里，能够：",
+      "preview": "准备目标：不是讲成投研或风控专家，而是让你在金融开发岗面试里做到三件事。",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -3880,7 +3447,7 @@
       "legacySlugs": [],
       "filename": "金融开发岗英语项目表达.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/金融开发岗英语项目表达.md",
-      "preview": "这份材料的目标不是把你训练成英文演讲选手，而是让你在金融开发岗面试里，至少能稳定完成这 4 件事：",
+      "preview": "准备目标：不用追求复杂表达，先保证四件事能稳定开口。",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -3926,7 +3493,7 @@
       ],
       "filename": "高盛工银Onsite总准备清单.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银Onsite总准备清单.md",
-      "preview": "这份只解决一个问题：",
+      "preview": "已知形式：",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -3948,27 +3515,6 @@
       "filename": "高盛工银开发岗_面试前速查清单.md",
       "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银开发岗_面试前速查清单.md",
       "preview": "我叫石馥菘，28 岁，本科和硕士分别毕业于北京邮电大学和悉尼大学，都是计算机相关专业。硕士毕业后，我在宁银理财科技部工作三年，主要围绕理财产品销售端和运营端相关系统建设，重点包括 TA 系统迭代优化、三方机构对接改造、产品管理系统建设，以及…",
-      "category": "05_岗位定制补充",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "开发课程",
-        "05_岗位定制补充"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 05_岗位定制补充"
-    },
-    {
-      "title": "高盛工银开发岗面试复习方案",
-      "source_title": "高盛工银开发岗面试复习方案",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-开发课程-05-岗位定制补充-高盛工银开发岗面试复习方案",
-      "legacySlugs": [],
-      "filename": "高盛工银开发岗面试复习方案.md",
-      "file": "notes/面试学习/开发岗/开发课程/05_岗位定制补充/高盛工银开发岗面试复习方案.md",
-      "preview": "这份方案是基于两部分信息整理的：",
       "category": "05_岗位定制补充",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/05_岗位定制补充",
@@ -4048,336 +3594,196 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 06_Java手撕算法冲刺"
     },
     {
-      "title": "项目面试资料包",
-      "source_title": "项目面试资料包",
+      "title": "TA 自动化测试复现项目",
+      "source_title": "TA 自动化测试复现项目",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-项目面试资料包"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-ta-自动化测试复现项目"
       ],
       "filename": "README.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/README.md",
-      "preview": "这个文件夹包含 7 份项目表达材料，按你的简历主线拆开。它不是某一家机构的定制包，而是用来支撑金融科技开发岗、系统建设岗、业务系统开发岗等相近岗位的通用项目素材库。",
-      "category": "项目面试资料包",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/README.md",
+      "preview": "这一层专门服务一个目标：",
+      "category": "07_TA自动化测试复现项目",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目"
     },
     {
-      "title": "产品生命周期管理系统面试资料",
-      "source_title": "产品生命周期管理系统面试资料",
+      "title": "新线程启动 Prompt：TA 自动化测试项目复现",
+      "source_title": "新线程启动 Prompt：TA 自动化测试项目复现",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-01-产品生命周期管理系统",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-新线程启动prompt-ta自动化测试复现",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-产品生命周期管理系统面试资料"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-新线程启动-prompt-ta-自动化测试项目复现"
       ],
-      "filename": "01_产品生命周期管理系统.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/01_产品生命周期管理系统.md",
-      "preview": "这是一个内部业务系统，主要解决两类产品生命周期事件管理问题：",
-      "category": "项目面试资料包",
+      "filename": "新线程启动Prompt_TA自动化测试复现.md",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/新线程启动Prompt_TA自动化测试复现.md",
+      "preview": "下面这段 prompt 用于新开一个 Codex 线程后启动项目复现。",
+      "category": "07_TA自动化测试复现项目",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目"
     },
     {
-      "title": "Product Lifecycle Management System Interview Notes",
-      "source_title": "Product Lifecycle Management System Interview Notes",
+      "title": "TA 自动化测试复现文档索引",
+      "source_title": "TA 自动化测试复现文档索引",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-01-产品生命周期管理系统-english",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-product-lifecycle-management-system-interview-notes"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-ta-自动化测试复现文档索引"
       ],
-      "filename": "01_产品生命周期管理系统_English.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/01_产品生命周期管理系统_English.md",
-      "preview": "This is an interview-ready English version for speaking. It is not meant to overstate scope. Use the parts you can expla…",
-      "category": "项目面试资料包",
+      "filename": "README.md",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs/README.md",
+      "preview": "这一份是 面试学习/开发 知识库内的文档副本索引。",
+      "category": "docs",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目",
+        "docs"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     },
     {
-      "title": "Apprentice（学徒）面试资料",
-      "source_title": "Apprentice（学徒）面试资料",
+      "title": "Docker 应用流程与容器化原理：从 Java 程序到容器运行",
+      "source_title": "Docker 应用流程与容器化原理：从 Java 程序到容器运行",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-02-apprentice-学徒",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-docker-application-guide",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-apprentice-学徒-面试资料"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-docker-应用流程与容器化原理-从-java-程序到容器运行"
       ],
-      "filename": "02_Apprentice_学徒.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/02_Apprentice_学徒.md",
-      "preview": "Apprentice 是一个面向企业系统的、配置驱动的 AI 操作层。 它不是简单的聊天机器人，而是想验证一条完整闭环：",
-      "category": "项目面试资料包",
+      "filename": "docker-application-guide.md",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs/docker-application-guide.md",
+      "preview": "这份文档用和 Jenkins 教学文档一样的方式讲 Docker：",
+      "category": "docs",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目",
+        "docs"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     },
     {
-      "title": "Apprentice AI Operations Layer Interview Notes",
-      "source_title": "Apprentice AI Operations Layer Interview Notes",
+      "title": "Expected vs Actual 对账如何从 Java 业务逻辑体现到 Jenkins 流水线",
+      "source_title": "Expected vs Actual 对账如何从 Java 业务逻辑体现到 Jenkins 流水线",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-02-apprentice-学徒-english",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-expected-actual-jenkins-flow",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-apprentice-ai-operations-layer-interview-notes"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-expected-vs-actual-对账如何从-java-业务逻辑体现到-jenkins-流水线"
       ],
-      "filename": "02_Apprentice_学徒_English.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/02_Apprentice_学徒_English.md",
-      "preview": "This English version is optimized for live interview speaking, especially for interviewers who care about system boundar…",
-      "category": "项目面试资料包",
+      "filename": "expected-actual-jenkins-flow.md",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs/expected-actual-jenkins-flow.md",
+      "preview": "这份文档专门解释：",
+      "category": "docs",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目",
+        "docs"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     },
     {
-      "title": "产品文档按模板生成工具面试资料",
-      "source_title": "产品文档按模板生成工具面试资料",
+      "title": "TA 自动化测试复现：实现复盘与面试记忆点",
+      "source_title": "TA 自动化测试复现：实现复盘与面试记忆点",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-03-产品文档按模板生成工具",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-implementation-notes",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-产品文档按模板生成工具面试资料"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-ta-自动化测试复现-实现复盘与面试记忆点"
       ],
-      "filename": "03_产品文档按模板生成工具.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/03_产品文档按模板生成工具.md",
-      "preview": "这是一个我在当前理财子公司做的轻量级 Python 自动化工具，用来解决产品说明书生成效率低的问题。 在产品管理系统正式上线前，业务同事已经有文档生成需求，所以我先做了一个基于模板和字段映射的一键生成工具，减少手工整理和复制粘贴工作。",
-      "category": "项目面试资料包",
+      "filename": "implementation-notes.md",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs/implementation-notes.md",
+      "preview": "这次复现没有实现 TA 批处理。它实现的是 TA 回归测试流程里的自动化辅助部分：",
+      "category": "docs",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目",
+        "docs"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     },
     {
-      "title": "Template-Based Product Document Generator Interview Notes",
-      "source_title": "Template-Based Product Document Generator Interview Notes",
+      "title": "从 Java 代码到 Jenkins 流水线：TA 自动化测试工具是如何被触发和编排的",
+      "source_title": "从 Java 代码到 Jenkins 流水线：TA 自动化测试工具是如何被触发和编排的",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-03-产品文档按模板生成工具-english",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-jenkins-integration-guide",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-template-based-product-document-generator-interview-notes"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-从-java-代码到-jenkins-流水线-ta-自动化测试工具是如何被触发和编排的"
       ],
-      "filename": "03_产品文档按模板生成工具_English.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/03_产品文档按模板生成工具_English.md",
-      "preview": "This note is meant for direct English speaking. The safest way to position it is as a lightweight but very practical aut…",
-      "category": "项目面试资料包",
+      "filename": "jenkins-integration-guide.md",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs/jenkins-integration-guide.md",
+      "preview": "这份文档专门回答一个问题：",
+      "category": "docs",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目",
+        "docs"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     },
     {
-      "title": "嘉实基金数字资产托管平台面试资料",
-      "source_title": "嘉实基金数字资产托管平台面试资料",
+      "title": "TA 自动化测试复现：工作流教学版",
+      "source_title": "TA 自动化测试复现：工作流教学版",
       "order": null,
       "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-04-嘉实基金-数字资产托管平台",
+      "slug": "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-workflow",
       "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-嘉实基金数字资产托管平台面试资料"
+        "面试学习-开发岗-开发课程-07-ta自动化测试复现项目-docs-ta-自动化测试复现-工作流教学版"
       ],
-      "filename": "04_嘉实基金_数字资产托管平台.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/04_嘉实基金_数字资产托管平台.md",
-      "preview": "这是一个嘉实基金数字资产托管平台原型项目，采用前后端分离架构。 我在里面做了两块：",
-      "category": "项目面试资料包",
+      "filename": "workflow.md",
+      "file": "notes/面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs/workflow.md",
+      "preview": "这个项目不是实现 TA 核心系统，也不是替代 TA 批处理。它复现的是 TA 回归测试中最容易被标准化的两段：",
+      "category": "docs",
       "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
+      "categoryKey": "面试学习/开发岗/开发课程/07_TA自动化测试复现项目/docs",
       "categoryPath": [
         "面试学习",
         "开发岗",
-        "项目面试资料包"
+        "开发课程",
+        "07_TA自动化测试复现项目",
+        "docs"
       ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
-    },
-    {
-      "title": "Harvest Fund Digital Asset Custody Platform Interview Notes",
-      "source_title": "Harvest Fund Digital Asset Custody Platform Interview Notes",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-04-嘉实基金-数字资产托管平台-english",
-      "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-harvest-fund-digital-asset-custody-platform-interview-notes"
-      ],
-      "filename": "04_嘉实基金_数字资产托管平台_English.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/04_嘉实基金_数字资产托管平台_English.md",
-      "preview": "This project is best presented as a full-stack prototype plus Web3-related scenario exploration, not as a large-scale pr…",
-      "category": "项目面试资料包",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "项目面试资料包"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
-    },
-    {
-      "title": "广发基金 Orange 多用户平台面试资料",
-      "source_title": "广发基金 Orange 多用户平台面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-05-广发基金-orange多用户平台",
-      "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-广发基金-orange-多用户平台面试资料"
-      ],
-      "filename": "05_广发基金_Orange多用户平台.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/05_广发基金_Orange多用户平台.md",
-      "preview": "这是一个基于 Linux 的多用户 Orange 数据挖掘平台，目标是让团队成员通过浏览器直接使用可视化数据挖掘环境，而不需要每个人在本地单独安装环境。 我在里面主要做了：",
-      "category": "项目面试资料包",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "项目面试资料包"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
-    },
-    {
-      "title": "Orange Multi-User Data Mining Platform Interview Notes",
-      "source_title": "Orange Multi-User Data Mining Platform Interview Notes",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-05-广发基金-orange多用户平台-english",
-      "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-orange-multi-user-data-mining-platform-interview-notes"
-      ],
-      "filename": "05_广发基金_Orange多用户平台_English.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/05_广发基金_Orange多用户平台_English.md",
-      "preview": "This project is best framed as an internal platform engineering and environment-delivery project rather than a normal bu…",
-      "category": "项目面试资料包",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "项目面试资料包"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
-    },
-    {
-      "title": "广发证券授信变动查询面试资料",
-      "source_title": "广发证券授信变动查询面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-06-广发证券-授信变动查询",
-      "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-广发证券授信变动查询面试资料"
-      ],
-      "filename": "06_广发证券_授信变动查询.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/06_广发证券_授信变动查询.md",
-      "preview": "这是客户授信管理系统中的一个后端功能开发项目，核心是做“授信变动查询”。 目标是让风控人员更直观地看到某个客户当前生效授信额度最近一次变动的方向和结果，并支持查询、统计和 CSV 导出。",
-      "category": "项目面试资料包",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "项目面试资料包"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
-    },
-    {
-      "title": "Credit Change Query Interview Notes",
-      "source_title": "Credit Change Query Interview Notes",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-06-广发证券-授信变动查询-english",
-      "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-credit-change-query-interview-notes"
-      ],
-      "filename": "06_广发证券_授信变动查询_English.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/06_广发证券_授信变动查询_English.md",
-      "preview": "This project is strong for showing backend logic, data modeling and business-rule translation in a financial system.",
-      "category": "项目面试资料包",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "项目面试资料包"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
-    },
-    {
-      "title": "小红书 CAT 监控平台面试资料",
-      "source_title": "小红书 CAT 监控平台面试资料",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-07-小红书-cat监控平台",
-      "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-小红书-cat-监控平台面试资料"
-      ],
-      "filename": "07_小红书_CAT监控平台.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/07_小红书_CAT监控平台.md",
-      "preview": "这是一个基于开源 CAT 的分布式应用监控平台适配与后端开发项目。 我在里面参与的是 Java / Maven 多模块监控平台里的升级适配和后端模块开发，接触到了监控消息采集、报表聚合、后台展示和告警链路等可观测性能力。",
-      "category": "项目面试资料包",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "项目面试资料包"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
-    },
-    {
-      "title": "Xiaohongshu CAT Monitoring Platform Interview Notes",
-      "source_title": "Xiaohongshu CAT Monitoring Platform Interview Notes",
-      "order": null,
-      "unit": null,
-      "slug": "面试学习-开发岗-项目面试资料包-07-小红书-cat监控平台-english",
-      "legacySlugs": [
-        "面试学习-开发岗-项目面试资料包-xiaohongshu-cat-monitoring-platform-interview-notes"
-      ],
-      "filename": "07_小红书_CAT监控平台_English.md",
-      "file": "notes/面试学习/开发岗/项目面试资料包/07_小红书_CAT监控平台_English.md",
-      "preview": "This project is useful for showing your understanding of observability, monitoring architecture and backend engineering…",
-      "category": "项目面试资料包",
-      "rootCategory": "面试学习",
-      "categoryKey": "面试学习/开发岗/项目面试资料包",
-      "categoryPath": [
-        "面试学习",
-        "开发岗",
-        "项目面试资料包"
-      ],
-      "categoryPathLabel": "面试学习 / 开发岗 / 项目面试资料包"
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     }
   ],
-  "total": 194,
-  "generated": "2026-05-05T03:45:15"
+  "total": 166,
+  "generated": "2026-05-06T02:14:53"
 }
