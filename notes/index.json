@@ -84,7 +84,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 90,
+      "totalNoteCount": 98,
       "children": [
         {
           "name": "AI产品经理",
@@ -122,7 +122,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 1,
-          "totalNoteCount": 59,
+          "totalNoteCount": 67,
           "children": [
             {
               "name": "开发课程",
@@ -135,7 +135,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 1,
-              "totalNoteCount": 58,
+              "totalNoteCount": 66,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -194,8 +194,25 @@
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达",
                   "depth": 3,
                   "directNoteCount": 13,
-                  "totalNoteCount": 13,
-                  "children": []
+                  "totalNoteCount": 21,
+                  "children": [
+                    {
+                      "name": "补充项目",
+                      "key": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+                      "path": [
+                        "面试学习",
+                        "开发岗",
+                        "开发课程",
+                        "03_项目表达",
+                        "补充项目"
+                      ],
+                      "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目",
+                      "depth": 4,
+                      "directNoteCount": 8,
+                      "totalNoteCount": 8,
+                      "children": []
+                    }
+                  ]
                 },
                 {
                   "name": "04_语言与数据基础",
@@ -3148,6 +3165,198 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
+      "title": "Apprentice（学徒）面试资料",
+      "source_title": "Apprentice（学徒）面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-02-apprentice-学徒",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-apprentice-学徒-面试资料"
+      ],
+      "filename": "02_Apprentice_学徒.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/02_Apprentice_学徒.md",
+      "preview": "Apprentice 是一个面向企业系统的、配置驱动的 AI 操作层。 它不是简单的聊天机器人，而是想验证一条完整闭环：",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
+      "title": "Apprentice AI Operations Layer Interview Notes",
+      "source_title": "Apprentice AI Operations Layer Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-02-apprentice-学徒-english",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-apprentice-ai-operations-layer-interview-notes"
+      ],
+      "filename": "02_Apprentice_学徒_English.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/02_Apprentice_学徒_English.md",
+      "preview": "This English version is optimized for live interview speaking, especially for interviewers who care about system boundar…",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
+      "title": "嘉实基金数字资产托管平台面试资料",
+      "source_title": "嘉实基金数字资产托管平台面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-04-嘉实基金-数字资产托管平台",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-嘉实基金数字资产托管平台面试资料"
+      ],
+      "filename": "04_嘉实基金_数字资产托管平台.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/04_嘉实基金_数字资产托管平台.md",
+      "preview": "这是一个嘉实基金数字资产托管平台原型项目，采用前后端分离架构。 我在里面做了两块：",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
+      "title": "Harvest Fund Digital Asset Custody Platform Interview Notes",
+      "source_title": "Harvest Fund Digital Asset Custody Platform Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-04-嘉实基金-数字资产托管平台-english",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-harvest-fund-digital-asset-custody-platform-interview-notes"
+      ],
+      "filename": "04_嘉实基金_数字资产托管平台_English.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/04_嘉实基金_数字资产托管平台_English.md",
+      "preview": "This project is best presented as a full-stack prototype plus Web3-related scenario exploration, not as a large-scale pr…",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
+      "title": "广发基金 Orange 多用户平台面试资料",
+      "source_title": "广发基金 Orange 多用户平台面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-05-广发基金-orange多用户平台",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-广发基金-orange-多用户平台面试资料"
+      ],
+      "filename": "05_广发基金_Orange多用户平台.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/05_广发基金_Orange多用户平台.md",
+      "preview": "这是一个基于 Linux 的多用户 Orange 数据挖掘平台，目标是让团队成员通过浏览器直接使用可视化数据挖掘环境，而不需要每个人在本地单独安装环境。 我在里面主要做了：",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
+      "title": "Orange Multi-User Data Mining Platform Interview Notes",
+      "source_title": "Orange Multi-User Data Mining Platform Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-05-广发基金-orange多用户平台-english",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-orange-multi-user-data-mining-platform-interview-notes"
+      ],
+      "filename": "05_广发基金_Orange多用户平台_English.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/05_广发基金_Orange多用户平台_English.md",
+      "preview": "This project is best framed as an internal platform engineering and environment-delivery project rather than a normal bu…",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
+      "title": "小红书 CAT 监控平台面试资料",
+      "source_title": "小红书 CAT 监控平台面试资料",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-07-小红书-cat监控平台",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-小红书-cat-监控平台面试资料"
+      ],
+      "filename": "07_小红书_CAT监控平台.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/07_小红书_CAT监控平台.md",
+      "preview": "这是一个基于开源 CAT 的分布式应用监控平台适配与后端开发项目。 我在里面参与的是 Java / Maven 多模块监控平台里的升级适配和后端模块开发，接触到了监控消息采集、报表聚合、后台展示和告警链路等可观测性能力。",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
+      "title": "Xiaohongshu CAT Monitoring Platform Interview Notes",
+      "source_title": "Xiaohongshu CAT Monitoring Platform Interview Notes",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-补充项目-07-小红书-cat监控平台-english",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-补充项目-xiaohongshu-cat-monitoring-platform-interview-notes"
+      ],
+      "filename": "07_小红书_CAT监控平台_English.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/补充项目/07_小红书_CAT监控平台_English.md",
+      "preview": "This project is useful for showing your understanding of observability, monitoring architecture and backend engineering…",
+      "category": "补充项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "补充项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 补充项目"
+    },
+    {
       "title": "语言与数据基础",
       "source_title": "语言与数据基础",
       "order": null,
@@ -3784,6 +3993,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     }
   ],
-  "total": 166,
-  "generated": "2026-05-07T00:59:06"
+  "total": 174,
+  "generated": "2026-05-07T02:04:27"
 }
