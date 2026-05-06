@@ -84,7 +84,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 100,
+      "totalNoteCount": 103,
       "children": [
         {
           "name": "AI产品经理",
@@ -122,7 +122,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 1,
-          "totalNoteCount": 69,
+          "totalNoteCount": 72,
           "children": [
             {
               "name": "开发课程",
@@ -135,7 +135,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 1,
-              "totalNoteCount": 68,
+              "totalNoteCount": 71,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -225,8 +225,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础",
                   "depth": 3,
-                  "directNoteCount": 12,
-                  "totalNoteCount": 12,
+                  "directNoteCount": 15,
+                  "totalNoteCount": 15,
                   "children": []
                 },
                 {
@@ -3562,6 +3562,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
     },
     {
+      "title": "Spring 后端工程化、代码质量、测试面试补强",
+      "source_title": "Spring 后端工程化、代码质量、测试面试补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-spring后端工程化-代码质量-测试面试补强",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-04-语言与数据基础-spring-后端工程化代码质量测试面试补强"
+      ],
+      "filename": "Spring后端工程化_代码质量_测试面试补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/Spring后端工程化_代码质量_测试面试补强.md",
+      "preview": "这份笔记解决一个很实在的问题：",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
       "title": "SQL / 数据库表设计 / 查询功能开发怎么讲",
       "source_title": "SQL / 数据库表设计 / 查询功能开发怎么讲",
       "order": null,
@@ -3604,6 +3627,29 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
     },
     {
+      "title": "数据库索引、锁、批处理可靠性面试补强",
+      "source_title": "数据库索引、锁、批处理可靠性面试补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-数据库索引-锁-批处理可靠性面试补强",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-04-语言与数据基础-数据库索引锁批处理可靠性面试补强"
+      ],
+      "filename": "数据库索引_锁_批处理可靠性面试补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/数据库索引_锁_批处理可靠性面试补强.md",
+      "preview": "这份笔记补的是数据库和批处理追问。",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
       "title": "数据库设计、UML 与异常恢复高盛工银补强",
       "source_title": "数据库设计、UML 与异常恢复高盛工银补强",
       "order": null,
@@ -3615,6 +3661,29 @@
       "filename": "数据库设计_UML_异常恢复_高盛工银补强.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/数据库设计_UML_异常恢复_高盛工银补强.md",
       "preview": "这份只解决一个问题：",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
+      "title": "金融开发系统设计、边界、可靠性面试补强",
+      "source_title": "金融开发系统设计、边界、可靠性面试补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-金融开发系统设计-边界-可靠性面试补强",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-04-语言与数据基础-金融开发系统设计边界可靠性面试补强"
+      ],
+      "filename": "金融开发系统设计_边界_可靠性面试补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/金融开发系统设计_边界_可靠性面试补强.md",
+      "preview": "这份笔记只训练一种能力：",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -4037,6 +4106,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     }
   ],
-  "total": 176,
-  "generated": "2026-05-07T02:21:44"
+  "total": 179,
+  "generated": "2026-05-07T02:45:22"
 }
