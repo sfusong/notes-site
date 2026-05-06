@@ -84,7 +84,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 103,
+      "totalNoteCount": 105,
       "children": [
         {
           "name": "AI产品经理",
@@ -122,7 +122,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 1,
-          "totalNoteCount": 72,
+          "totalNoteCount": 74,
           "children": [
             {
               "name": "开发课程",
@@ -135,7 +135,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 1,
-              "totalNoteCount": 71,
+              "totalNoteCount": 73,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -193,8 +193,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达",
                   "depth": 3,
-                  "directNoteCount": 13,
-                  "totalNoteCount": 21,
+                  "directNoteCount": 14,
+                  "totalNoteCount": 22,
                   "children": [
                     {
                       "name": "补充项目",
@@ -225,8 +225,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础",
                   "depth": 3,
-                  "directNoteCount": 15,
-                  "totalNoteCount": 15,
+                  "directNoteCount": 16,
+                  "totalNoteCount": 16,
                   "children": []
                 },
                 {
@@ -3142,6 +3142,27 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
+      "title": "项目面试总索引",
+      "source_title": "项目面试总索引",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-项目面试总索引",
+      "legacySlugs": [],
+      "filename": "项目面试总索引.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/项目面试总索引.md",
+      "preview": "这份只管项目，不放 Java 八股，不放金融概念，不放行为面试。",
+      "category": "03_项目表达",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
+    },
+    {
       "title": "高盛工银 Onsite：项目文档总入口",
       "source_title": "高盛工银 Onsite：项目文档总入口",
       "order": null,
@@ -3594,6 +3615,27 @@
       "filename": "SQL_数据库表设计_查询功能开发怎么讲.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/SQL_数据库表设计_查询功能开发怎么讲.md",
       "preview": "面试目标：不按 DBA 深度准备，而是讲清中后台开发里 SQL、表设计、查询和历史数据回填怎么落地。",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
+      "title": "基础技术面试总索引",
+      "source_title": "基础技术面试总索引",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-基础技术面试总索引",
+      "legacySlugs": [],
+      "filename": "基础技术面试总索引.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/基础技术面试总索引.md",
+      "preview": "这份只管基础技术和系统工程，不放项目逐条讲法。",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -4106,6 +4148,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     }
   ],
-  "total": 179,
-  "generated": "2026-05-07T02:45:22"
+  "total": 181,
+  "generated": "2026-05-07T02:55:05"
 }
