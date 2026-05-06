@@ -84,7 +84,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 98,
+      "totalNoteCount": 100,
       "children": [
         {
           "name": "AI产品经理",
@@ -122,7 +122,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 1,
-          "totalNoteCount": 67,
+          "totalNoteCount": 69,
           "children": [
             {
               "name": "开发课程",
@@ -135,7 +135,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 1,
-              "totalNoteCount": 66,
+              "totalNoteCount": 68,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -225,8 +225,8 @@
                   ],
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础",
                   "depth": 3,
-                  "directNoteCount": 10,
-                  "totalNoteCount": 10,
+                  "directNoteCount": 12,
+                  "totalNoteCount": 12,
                   "children": []
                 },
                 {
@@ -3380,6 +3380,27 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
     },
     {
+      "title": "API、事务、数据一致性、可观测性面试补强",
+      "source_title": "API、事务、数据一致性、可观测性面试补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-api事务数据一致性可观测性面试补强",
+      "legacySlugs": [],
+      "filename": "API事务数据一致性可观测性面试补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/API事务数据一致性可观测性面试补强.md",
+      "preview": "这份是给高盛工银开发岗准备的系统延展笔记。",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
       "title": "Java OOP 与设计模式高盛工银补强",
       "source_title": "Java OOP 与设计模式高盛工银补强",
       "order": null,
@@ -3414,6 +3435,29 @@
       "filename": "Java基础与常见面试点.md",
       "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/Java基础与常见面试点.md",
       "preview": "这份笔记的目标不是让你把 Java 所有底层都背下来，而是让你在开发岗面试里：",
+      "category": "04_语言与数据基础",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "04_语言与数据基础"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 04_语言与数据基础"
+    },
+    {
+      "title": "Java 集合、异常、并发、JVM 面试补强",
+      "source_title": "Java 集合、异常、并发、JVM 面试补强",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-04-语言与数据基础-java集合-异常-并发-jvm面试补强",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-04-语言与数据基础-java-集合异常并发jvm-面试补强"
+      ],
+      "filename": "Java集合_异常_并发_JVM面试补强.md",
+      "file": "notes/面试学习/开发岗/开发课程/04_语言与数据基础/Java集合_异常_并发_JVM面试补强.md",
+      "preview": "这份只补一件事：",
       "category": "04_语言与数据基础",
       "rootCategory": "面试学习",
       "categoryKey": "面试学习/开发岗/开发课程/04_语言与数据基础",
@@ -3993,6 +4037,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     }
   ],
-  "total": 174,
-  "generated": "2026-05-07T02:04:27"
+  "total": 176,
+  "generated": "2026-05-07T02:21:44"
 }
