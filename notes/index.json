@@ -84,7 +84,7 @@
       "pathLabel": "面试学习",
       "depth": 0,
       "directNoteCount": 1,
-      "totalNoteCount": 106,
+      "totalNoteCount": 111,
       "children": [
         {
           "name": "AI产品经理",
@@ -122,7 +122,7 @@
           "pathLabel": "面试学习 / 开发岗",
           "depth": 1,
           "directNoteCount": 1,
-          "totalNoteCount": 75,
+          "totalNoteCount": 80,
           "children": [
             {
               "name": "开发课程",
@@ -135,7 +135,7 @@
               "pathLabel": "面试学习 / 开发岗 / 开发课程",
               "depth": 2,
               "directNoteCount": 1,
-              "totalNoteCount": 74,
+              "totalNoteCount": 79,
               "children": [
                 {
                   "name": "00_课程总纲",
@@ -194,8 +194,42 @@
                   "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达",
                   "depth": 3,
                   "directNoteCount": 14,
-                  "totalNoteCount": 22,
+                  "totalNoteCount": 27,
                   "children": [
+                    {
+                      "name": "产品生命周期管理系统复现项目",
+                      "key": "面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目",
+                      "path": [
+                        "面试学习",
+                        "开发岗",
+                        "开发课程",
+                        "03_项目表达",
+                        "产品生命周期管理系统复现项目"
+                      ],
+                      "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 产品生命周期管理系统复现项目",
+                      "depth": 4,
+                      "directNoteCount": 1,
+                      "totalNoteCount": 5,
+                      "children": [
+                        {
+                          "name": "docs",
+                          "key": "面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs",
+                          "path": [
+                            "面试学习",
+                            "开发岗",
+                            "开发课程",
+                            "03_项目表达",
+                            "产品生命周期管理系统复现项目",
+                            "docs"
+                          ],
+                          "pathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 产品生命周期管理系统复现项目 / docs",
+                          "depth": 5,
+                          "directNoteCount": 4,
+                          "totalNoteCount": 4,
+                          "children": []
+                        }
+                      ]
+                    },
                     {
                       "name": "补充项目",
                       "key": "面试学习/开发岗/开发课程/03_项目表达/补充项目",
@@ -3209,6 +3243,130 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达"
     },
     {
+      "title": "产品生命周期管理系统复现项目",
+      "source_title": "产品生命周期管理系统复现项目",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-产品生命周期管理系统复现项目"
+      ],
+      "filename": "README.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/README.md",
+      "preview": "这组文档用于补强 产品生命周期管理系统 的技术讲法。",
+      "category": "产品生命周期管理系统复现项目",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "产品生命周期管理系统复现项目"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 产品生命周期管理系统复现项目"
+    },
+    {
+      "title": "PLM 项目开发全过程教程：从 IDE 写 Java 到数据库、前端、外部接口和跑批",
+      "source_title": "PLM 项目开发全过程教程：从 IDE 写 Java 到数据库、前端、外部接口和跑批",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-developer-walkthrough",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-plm-项目开发全过程教程-从-ide-写-java-到数据库前端外部接口和跑批"
+      ],
+      "filename": "developer-walkthrough.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs/developer-walkthrough.md",
+      "preview": "这份文档用来模拟你作为开发者推进产品生命周期管理系统时，一步一步会做什么。",
+      "category": "docs",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "产品生命周期管理系统复现项目",
+        "docs"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 产品生命周期管理系统复现项目 / docs"
+    },
+    {
+      "title": "PLM 复现项目开发过程记录",
+      "source_title": "PLM 复现项目开发过程记录",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-development-diary",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-plm-复现项目开发过程记录"
+      ],
+      "filename": "development-diary.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs/development-diary.md",
+      "preview": "这份文档用来记录我们是如何一步一步推进这个项目的。它的作用不是写流水账，而是帮助你回忆当时做开发时应该经历过的思考过程。",
+      "category": "docs",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "产品生命周期管理系统复现项目",
+        "docs"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 产品生命周期管理系统复现项目 / docs"
+    },
+    {
+      "title": "PLM 功能实现细讲：每个功能是怎么写出来的",
+      "source_title": "PLM 功能实现细讲：每个功能是怎么写出来的",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-feature-implementation-guide",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-plm-功能实现细讲-每个功能是怎么写出来的"
+      ],
+      "filename": "feature-implementation-guide.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs/feature-implementation-guide.md",
+      "preview": "这份文档专门回答一个问题：",
+      "category": "docs",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "产品生命周期管理系统复现项目",
+        "docs"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 产品生命周期管理系统复现项目 / docs"
+    },
+    {
+      "title": "产品生命周期管理系统复现：工作流教学版",
+      "source_title": "产品生命周期管理系统复现：工作流教学版",
+      "order": null,
+      "unit": null,
+      "slug": "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-workflow",
+      "legacySlugs": [
+        "面试学习-开发岗-开发课程-03-项目表达-产品生命周期管理系统复现项目-docs-产品生命周期管理系统复现-工作流教学版"
+      ],
+      "filename": "workflow.md",
+      "file": "notes/面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs/workflow.md",
+      "preview": "产品生命周期管理系统，简称 PLM，不是为了替代 TA，也不是单纯做产品信息录入页面。它真正要解决的是：产品发行后，生命周期内会出现越来越多需要持续追踪的重大事件，单靠人工登记、人工提醒、人工查系统，很容易遗漏。",
+      "category": "docs",
+      "rootCategory": "面试学习",
+      "categoryKey": "面试学习/开发岗/开发课程/03_项目表达/产品生命周期管理系统复现项目/docs",
+      "categoryPath": [
+        "面试学习",
+        "开发岗",
+        "开发课程",
+        "03_项目表达",
+        "产品生命周期管理系统复现项目",
+        "docs"
+      ],
+      "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 03_项目表达 / 产品生命周期管理系统复现项目 / docs"
+    },
+    {
       "title": "Apprentice（学徒）面试资料",
       "source_title": "Apprentice（学徒）面试资料",
       "order": null,
@@ -4171,6 +4329,6 @@
       "categoryPathLabel": "面试学习 / 开发岗 / 开发课程 / 07_TA自动化测试复现项目 / docs"
     }
   ],
-  "total": 182,
-  "generated": "2026-05-08T11:58:36"
+  "total": 187,
+  "generated": "2026-05-08T12:25:05"
 }
